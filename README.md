@@ -8,7 +8,11 @@
 
 ### [paper-reading · 论文带读](skills/paper-reading/README.md)
 
-帮助读者在 ChatGPT 等 AI 助手中循序渐进地理解论文，从研究动机、方法架构到公式、实验和证据。详细功能、七站式阅读流程、安装说明、示例截图和本地 PDF 辅助脚本见[项目说明](skills/paper-reading/README.md)。
+> **无需 Codex 专用额度或额外 API Key，就能在 ChatGPT 对话中边读讲解、边对照论文原图。** ChatGPT 自身的套餐和使用限制仍然适用；并排查看取决于客户端支持。
+
+![ChatGPT 中边读论文讲解、边对照论文原图的示例](docs/images/chatgpt-side-by-side-paper-figure.png)
+
+详细功能、七站式阅读流程、安装说明、更多截图和本地 PDF 辅助脚本见[项目说明](skills/paper-reading/README.md)。
 
 核心行为规范位于 [`skills/paper-reading/SKILL.md`](skills/paper-reading/SKILL.md)。
 

@@ -37,6 +37,10 @@ def test_root_readmes_are_collection_overviews():
     assert 'skills/paper-reading/README.en.md' in root_en
     assert '## 在 ChatGPT 网页端创建和安装' not in root_zh
     assert '## Create and install it on ChatGPT Web' not in root_en
+    assert '无需 Codex 专用额度或额外 API Key' in root_zh
+    assert 'Codex-specific task quota' in root_en
+    assert '](docs/images/chatgpt-side-by-side-paper-figure.png)' in root_zh
+    assert '](docs/images/chatgpt-side-by-side-paper-figure.png)' in root_en
 
 
 def test_plugin_documentation_is_bilingual_and_repository_maintained():

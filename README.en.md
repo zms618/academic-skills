@@ -8,7 +8,11 @@ An evolving open-source collection of AI skills and plugins for academic researc
 
 ### [paper-reading](skills/paper-reading/README.en.md)
 
-A guided paper-reading experience for ChatGPT and other AI assistants, helping readers move from research motivation and method architecture to equations, experiments, and evidence. See the [project documentation](skills/paper-reading/README.en.md) for features, the seven-stage workflow, installation, screenshots, and optional local PDF utilities.
+> **Read with ChatGPT without using Codex-specific task quota or configuring a separate API key, while following explanations alongside the paper's original figures.** ChatGPT account and plan limits still apply, and side-by-side viewing depends on client support.
+
+![Following a paper explanation alongside its original figure in ChatGPT](docs/images/chatgpt-side-by-side-paper-figure.png)
+
+The [project documentation](skills/paper-reading/README.en.md) covers features, the seven-stage workflow, installation, more screenshots, and optional local PDF utilities.
 
 The core assistant instructions are in [`skills/paper-reading/SKILL.md`](skills/paper-reading/SKILL.md).
 
