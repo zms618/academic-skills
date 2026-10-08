@@ -4,13 +4,13 @@
 
 **Evidence-Driven Research Idea Discovery, Feasibility Validation & Scientific Review**
 
-An evidence-driven Research Skill that helps researchers identify opportunities in papers and real failure cases, then assess whether a candidate idea merits time and resources through data feasibility, novelty, motivation, mechanism logic, and experiment design.
+A personal research-idea discovery and validation plugin for ChatGPT Web, driven by the primary Research Idea Discovery Skill and supporting Skills. It helps researchers identify opportunities in papers and real failure cases, then assess whether a candidate idea merits time and resources through data feasibility, novelty, motivation, mechanism logic, and experiment design.
 
 > **From idea generation to defensible research: discover, challenge, validate, and refine scientific ideas with evidence.**
 
 It supports computer vision, multimodal learning, robotics, machine learning, and other user-selected fields. Scope can be adapted to a target venue or research goal. The objective is not to force an idea: when evidence is insufficient, the workflow may recommend narrowing the question, researching further, or stopping.
 
-All skills in this collection are designed for use in **ChatGPT Web** without starting a Codex coding task or using Codex-specific task quota. ChatGPT model, message, and tool use remains subject to the user's account and plan. Optional Python scripts run only in a local Python environment; do not assume ChatGPT Web executes them directly.
+This plugin is used in **ChatGPT Web** and does not consume Codex-specific task quota. ChatGPT model, message, and tool use remains subject to the user's account and plan. Optional Python scripts run only in a local Python environment; do not assume ChatGPT Web executes them directly.
 
 ## Why not just an idea generator?
 
@@ -58,7 +58,7 @@ When evidence remains insufficient, the Skill can prepare a targeted ChatGPT Dee
 
 This process can backtrack and iterate; it is not a one-shot answer pipeline. The full phase order, roles, and evidence gates are in the primary [`SKILL.md`](skills/research-idea-discovery/SKILL.md) and its `references/` files.
 
-## Use it in ChatGPT Web
+## Create and install this plugin in ChatGPT Web
 
 This repository contains open-source Skill/plugin files. It does not mean the plugin is already installed in a ChatGPT account or listed in the public directory. You can create a personal plugin using **Plugin Creator** in ChatGPT Web; availability depends on the account, workspace, and current product features.
 

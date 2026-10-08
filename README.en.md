@@ -2,9 +2,9 @@
 
 [简体中文](README.md) | **English**
 
-An evolving open-source collection of AI skills and plugins for academic research. Each project keeps its own usage guide and resources; this root README introduces the collection as a whole.
+An evolving open-source collection of research plugins for ChatGPT Web. Each plugin is driven by Skill instructions and supporting resources, and has its own ChatGPT installation guide and project documentation. This root README introduces the collection as a whole.
 
-> **These Skills are designed for ChatGPT Web. They do not require starting a Codex coding task or use Codex-specific task quota.** ChatGPT model, message, and tool usage remains subject to account and plan limits.
+> **The plugins in this collection are used in ChatGPT Web and do not consume Codex-specific task quota.**
 
 ## Available projects
 

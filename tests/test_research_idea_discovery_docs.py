@@ -15,6 +15,7 @@ def test_research_idea_discovery_is_listed_in_both_collection_overviews():
     assert 'Codex-specific task quota' in en
     assert '从产生科研想法，到验证科研价值' in zh
     assert 'From idea generation to defensible research' in en
+    assert '**本项目的 Skills 面向 ChatGPT 网页版使用，不消耗 Codex 专用额度。**' in zh
 
 
 def test_plugin_manifests_and_primary_skill_are_present():
@@ -59,3 +60,14 @@ def test_both_projects_credit_their_inspiration_sources():
     assert 'kelip-paper-reading' in paper_en
     assert '不代表官方合作、背书' in idea_zh
     assert 'do not imply official collaboration, endorsement' in idea_en
+
+
+def test_each_plugin_has_a_chatgpt_web_installation_tutorial():
+    paper_zh = (ROOT / 'skills/paper-reading/README.md').read_text(encoding='utf-8')
+    paper_en = (ROOT / 'skills/paper-reading/README.en.md').read_text(encoding='utf-8')
+    idea_zh = (PROJECT / 'README.md').read_text(encoding='utf-8')
+    idea_en = (PROJECT / 'README.en.md').read_text(encoding='utf-8')
+    assert '## 在 ChatGPT 网页端创建和安装' in paper_zh
+    assert '## Create and install it on ChatGPT Web' in paper_en
+    assert '## 在 ChatGPT 网页端创建和安装插件' in idea_zh
+    assert '## Create and install this plugin in ChatGPT Web' in idea_en

@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | **English** | [Collection overview](../../README.en.md)
 
-`paper-reading` is a paper-reading Skill/plugin designed primarily for ChatGPT Web. It guides readers through a paper step by step, helping them understand the research rather than just receive a summary. The core workflow and assistant behavior are specified in [`SKILL.md`](SKILL.md).
+`paper-reading` is a personal paper-reading plugin for ChatGPT Web, driven by its Skill instructions. It guides readers through a paper step by step, helping them understand the research rather than just receive a summary. The core workflow and assistant behavior are specified in [`SKILL.md`](SKILL.md).
 
 ## Features
 

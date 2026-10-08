@@ -4,13 +4,13 @@
 
 **Evidence-Driven Research Idea Discovery, Feasibility Validation & Scientific Review**
 
-一个面向科研人员的证据驱动 Research Skill，帮助从论文和真实失败现象中发现研究机会，再通过数据可行性、新颖性、研究动机、机制逻辑和实验设计等审查，判断候选 Idea 是否值得投入时间与资源。
+一款面向 ChatGPT 网页版的科研创新发现与验证个人插件，由 Research Idea Discovery Skill 及其辅助 Skills 驱动。它帮助研究者从论文和真实失败现象中发现机会，再审查数据可行性、新颖性、研究动机、机制逻辑和实验设计，判断候选 Idea 是否值得投入时间与资源。
 
 > **从产生科研想法，到验证科研价值：让每一个创新点经受可行性、动机、机制与证据的多重检验。**
 
 支持计算机视觉、多模态学习、机器人、机器学习及用户指定的其他领域，可按目标会议、期刊或研究目标调整范围。它不是为了凑出一个 Idea；证据不足时可以建议缩小问题、继续调研或停止。
 
-本仓库中的 Skills 面向 **ChatGPT 网页版**使用，无需启动 Codex 编程任务，也不消耗 Codex 专用额度。ChatGPT 模型、消息和工具使用仍受用户账号与套餐限制。可选 Python 脚本只在具备本地 Python 执行环境时运行，不能假设 ChatGPT 网页会直接执行它们。
+本插件在 **ChatGPT 网页版**中使用，不消耗 Codex 专用额度。ChatGPT 模型、消息和工具使用仍受用户账号与套餐限制。可选 Python 脚本只在具备本地 Python 执行环境时运行，不能假设 ChatGPT 网页会直接执行它们。
 
 ## 为什么不只是 Idea Generator？
 
@@ -58,7 +58,7 @@
 
 这是一套允许回退和迭代的研究流程，而不是一次生成答案的流水线。完整阶段顺序、角色分工与证据门槛见主 [`SKILL.md`](skills/research-idea-discovery/SKILL.md) 及其 `references/` 文件。
 
-## 在 ChatGPT 网页版使用
+## 在 ChatGPT 网页端创建和安装插件
 
 本仓库是开源 Skill/插件源码，并不表示它已经自动安装到 ChatGPT 账号或上架公共目录。可在 ChatGPT 网页端通过 **Plugin Creator** 创建个人插件；入口受账号、工作区和当前产品功能影响。
 

@@ -2,7 +2,7 @@
 
 **简体中文** | [English](README.en.md) | [科研技能集总览](../../README.md)
 
-`paper-reading` 是一个以 ChatGPT 网页聊天为主要使用场景的论文带读 Skill / 插件。它通过分阶段讲解帮助读者真正理解论文，而不只是生成一份摘要。核心流程和行为规范见 [`SKILL.md`](SKILL.md)。
+`paper-reading` 是一款面向 ChatGPT 网页版的论文带读个人插件，由 Skill 规范驱动。它通过分阶段讲解帮助读者真正理解论文，而不只是生成一份摘要。核心流程和行为规范见 [`SKILL.md`](SKILL.md)。
 
 ## 特点
 
