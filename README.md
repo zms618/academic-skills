@@ -26,6 +26,13 @@
 
 主 Skill：[`skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)。
 
+## 🙏 致谢与灵感来源
+
+- **paper-reading** 的设计受到 [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) 启发。
+- **Research Idea Discovery** 的设计受到 [ResearchStudio](https://github.com/microsoft/ResearchStudio)、[CCFA-Skills](https://github.com/mikubaka88/CCFA-Skills)、[ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)、[RW Research Skill](https://github.com/ozrwayne/rw-research-skill)、[TaShan Research Skills](https://github.com/TashanGKD/tashan-research-skills)、[AI Night-Scientist](https://github.com/microsoft/ai_night_scientist) 和 [PatSnap Skills](https://github.com/patsnap/skills) 启发。
+
+以上致谢表示设计与工作流灵感，不代表官方合作、背书或源码整合；实际复用的代码、文档和模板仍须遵守各自许可证。详细说明见各项目 README。
+
 ## 仓库结构
 
 ```text
