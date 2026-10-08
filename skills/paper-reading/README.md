@@ -130,4 +130,8 @@ python skills/paper-reading/scripts/make_figure_card.py output/figure-3.png --ou
 - 不要提交未获分发许可的论文、数据集、密钥、令牌、私人聊天或个人文件。
 - `sandbox:` 链接可能显示为下载附件；内嵌预览和点击放大由宿主客户端决定。
 
+## 🙏 Acknowledgements & Inspirations
+
+论文带读的设计受到 [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) 启发。感谢该项目作者分享相关工作。此处表示设计灵感来源，不代表官方合作、背书或源码整合；若实际复用其代码、文档或模板，仍需遵守其适用许可证。
+
 当前版本为 **v0.5.3**，详见仓库根目录 [`CHANGELOG.md`](../../CHANGELOG.md)。仓库采用 MIT License，见 [`LICENSE`](../../LICENSE)。

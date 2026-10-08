@@ -42,3 +42,20 @@ def test_project_documentation_local_links_resolve():
             if not target or '://' in target or target.startswith('mailto:'):
                 continue
             assert (doc.parent / target).exists(), f'{doc.relative_to(ROOT)} -> {target}'
+
+
+def test_both_projects_credit_their_inspiration_sources():
+    idea_zh = (PROJECT / 'README.md').read_text(encoding='utf-8')
+    idea_en = (PROJECT / 'README.en.md').read_text(encoding='utf-8')
+    paper_zh = (ROOT / 'skills/paper-reading/README.md').read_text(encoding='utf-8')
+    paper_en = (ROOT / 'skills/paper-reading/README.en.md').read_text(encoding='utf-8')
+    for source in (
+        'ResearchStudio', 'CCFA-Skills', 'Auto-claude-code-research-in-sleep',
+        'rw-research-skill', 'tashan-research-skills', 'ai_night_scientist', 'patsnap/skills',
+    ):
+        assert source in idea_zh
+        assert source in idea_en
+    assert 'kelip-paper-reading' in paper_zh
+    assert 'kelip-paper-reading' in paper_en
+    assert '不代表官方合作、背书' in idea_zh
+    assert 'do not imply official collaboration, endorsement' in idea_en

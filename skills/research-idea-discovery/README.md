@@ -121,6 +121,20 @@ python -m unittest discover -s tests -v
 
 **目标不是说服你某个 Idea 很好，而是让它经得起反复质疑之后，仍然值得投入科研时间和资源。**
 
+## 🙏 Acknowledgements & Inspirations
+
+Research Idea Discovery 在设计过程中受到以下开源科研项目的工作流与研究方法启发，感谢作者和贡献者分享这些资源：
+
+- [ResearchStudio-Idea](https://github.com/microsoft/ResearchStudio)：证据驱动的研究构思、基于文献的问题发现和 Idea 评估。
+- [CCFA-Skills](https://github.com/mikubaka88/CCFA-Skills)：科学叙事、Idea 打磨、审稿视角评估及主张与证据的一致性。
+- [ARIS（Auto-Research-In-Sleep）](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)：迭代研究流程、对抗式审查、实验反馈和持续改进。
+- [RW Research Skill](https://github.com/ozrwayne/rw-research-skill)：结构化研究过程、文献调查和证据推理。
+- [TaShan Research Skills](https://github.com/TashanGKD/tashan-research-skills)：模块化科研 Skill、证据管理和研究工作流组织。
+- [AI Night-Scientist](https://github.com/microsoft/ai_night_scientist)：迭代式科学假设探索与 AI 辅助研究发现。
+- [PatSnap Skills](https://github.com/patsnap/skills)：从已有研究与研发材料中识别潜在技术创新的思路。
+
+在这些启发之上，本项目独立组织了面向研究 Idea 的证据审查流程：**Idea 发现 → 可行性验证 → 动机复审 → 新颖性审查 → 机制与逻辑核验 → 科学论证 → 实验反馈**。以上致谢表示概念或工作流层面的启发，不代表官方合作、背书或完整集成上游项目。致谢不替代许可证义务；若实际复制、修改或分发上游代码、文档或模板，仍须核对并遵守对应许可证。
+
 ## 版本与许可
 
 当前版本为 **v2.7.1**。发布变化记录在 [`CHANGELOG.md`](CHANGELOG.md)，首页只保留当前项目说明。仓库采用 MIT License，见 [`../../LICENSE`](../../LICENSE)。

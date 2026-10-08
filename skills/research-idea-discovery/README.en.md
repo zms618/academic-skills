@@ -121,6 +121,20 @@ The Skill does not guarantee a novel direction, exhaustive literature coverage, 
 
 **The goal is not to convince you that an idea is good, but to help determine whether it remains worth your research time and resources after repeated scrutiny.**
 
+## 🙏 Acknowledgements & Inspirations
+
+Research Idea Discovery was shaped by ideas from open-source projects in AI-assisted scientific research. We thank their authors and contributors for sharing their work with the community:
+
+- [ResearchStudio-Idea](https://github.com/microsoft/ResearchStudio) — Evidence-grounded ideation, literature-driven problem discovery, and idea evaluation.
+- [CCFA-Skills](https://github.com/mikubaka88/CCFA-Skills) — Scientific storytelling, idea refinement, reviewer-oriented evaluation, and consistency between claims and evidence.
+- [ARIS (Auto-Research-In-Sleep)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) — Iterative research workflows, adversarial review, experimental feedback, and idea refinement.
+- [RW Research Skill](https://github.com/ozrwayne/rw-research-skill) — Structured research processes, literature investigation, and evidence-based reasoning.
+- [TaShan Research Skills](https://github.com/TashanGKD/tashan-research-skills) — Modular research Skills, evidence management, and workflow organization.
+- [AI Night-Scientist](https://github.com/microsoft/ai_night_scientist) — Iterative scientific hypothesis exploration and AI-assisted research discovery.
+- [PatSnap Skills](https://github.com/patsnap/skills) — Ideas for identifying potentially valuable technical innovations from existing research and development materials.
+
+Building on these inspirations, this project independently organizes an evidence-review workflow for research ideas: **Idea Discovery → Feasibility Validation → Motivation Review → Novelty Audit → Mechanism and Logic Checks → Scientific Argument → Experimental Feedback**. These acknowledgements indicate conceptual or workflow inspiration; they do not imply official collaboration, endorsement, or full integration of upstream projects. Acknowledgement is separate from license compliance: any code, documentation, or templates actually copied, adapted, or redistributed remain subject to their applicable licenses.
+
 ## Version and license
 
 Current release: **v2.7.1**. The [`CHANGELOG.md`](CHANGELOG.md) records release changes without turning this page into a version-by-version feature log. Licensed under MIT; see [`../../LICENSE`](../../LICENSE).
