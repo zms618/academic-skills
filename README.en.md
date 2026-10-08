@@ -2,7 +2,17 @@
 
 [简体中文](README.md) | **English**
 
-An evolving open-source collection of research plugins. **These plugins are installed and used in ChatGPT Web; they do not consume Codex-specific task quota.** Each plugin is powered by Skill instructions and supporting resources, and has its own ChatGPT installation tutorial in its project README.
+## Why this project exists
+
+I am a student too, and I know that tokens and API calls can be expensive for students with limited budgets. Traditional research Skills often run in clients such as Codex or Claude Code. Using those dedicated quotas for routine work like reading papers and exploring research ideas can make these tasks difficult to sustain.
+
+That is why I collected and organized these research plugins for **ChatGPT Web**. Students can use ChatGPT's **Plugin Creator** to create their own personal plugins, then use them directly in ChatGPT conversations—**without consuming Codex or Claude-specific quota and without configuring a separate API token**.
+
+Here, “token-free” means no separately paid API token and no Codex / Claude-specific quota. ChatGPT Web itself remains subject to account-plan, model, and message limits.
+
+## Plugins in this collection
+
+These plugins are installed and used in ChatGPT Web. Each is powered by Skill instructions and supporting resources, and each project README includes a tutorial for creating a personal plugin with Plugin Creator.
 
 > **How to use:** create and install the personal plugin in ChatGPT Web, then select it in a ChatGPT conversation.
 

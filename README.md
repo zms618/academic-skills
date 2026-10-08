@@ -2,7 +2,17 @@
 
 **简体中文** | [English](README.en.md)
 
-这是一个持续扩展的开源科研插件集合。**这些插件安装并使用于 ChatGPT 网页端，不消耗 Codex 专用额度。** 插件内部由 Skill 规范和配套资源驱动；ChatGPT 网页端的具体安装教程分别列在每个项目的 README 中。
+## 项目初衷
+
+作者自己也是学生，理解 token 和 API 调用成本会给经费有限的学生带来负担。传统科研 Skills 通常需要在 Codex、Claude Code 等客户端中使用；如果把日常读论文、找研究 Idea 等繁琐工作都放在那里，专用额度和费用可能让学生难以长期承担。
+
+因此，我搜集并整理了这些面向 **ChatGPT 网页端**的科研插件。学生可以通过网页版 ChatGPT 的 **Plugin Creator** 创建属于自己的插件，然后直接在 ChatGPT 对话中使用，**不消耗 Codex 或 Claude 专用额度，也无需额外配置 API Token**。
+
+这里的“免 token”指不需要为这些插件另付 API token，也不占 Codex / Claude 专用额度；ChatGPT 网页端本身仍受账号套餐、模型和消息使用限制。
+
+## 本项目的插件
+
+这些插件安装并使用于 ChatGPT 网页端。插件内部由 Skill 规范和配套资源驱动；每个项目的 README 都提供了使用 Plugin Creator 创建个人插件的教程。
 
 > **使用方式：在 ChatGPT 网页端创建并安装个人插件 → 在 ChatGPT 对话中选择插件并使用。**
 
