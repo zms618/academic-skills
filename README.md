@@ -1,5 +1,7 @@
 # academic-skills · 科研技能集
 
+**简体中文** | [English](README.en.md)
+
 这是一个持续扩展的开源科研技能仓库，用来整理面向学术研究的 AI skills 与插件。当前收录的第一个项目是 [`paper-reading`](skills/paper-reading/)：一款以 **ChatGPT** 为主要使用场景、同时保留 Codex 等兼容路径的论文带读插件。后续科研技能会继续加入本仓库。
 
 `academic-skills` 是项目集合，不是单一插件的别名；每个 skill/plugin 会在自己的目录中维护说明、脚本和版本信息。
@@ -70,25 +72,30 @@ v0.5.3 起，讲解论文图表时优先尝试在对话中真实显示已核验�
 
 ### 个人账号：在 ChatGPT 网页中创建并安装
 
-目前 `paper-reading` **尚未上架 ChatGPT 公共插件目录**，所以不能通过搜索插件名称直接一键安装。可以先在 ChatGPT 网页新建对话，把仓库链接和请求发给它，让 ChatGPT 识别项目并给出安装引导：
+目前 `paper-reading` **尚未上架 ChatGPT 公共插件目录**，但可以通过 ChatGPT 的 **Plugin Creator** 创建并安装为个人插件。下面这条提示已在 ChatGPT 网页端成功创建出 `论文带读（paper-reading）` 并保存到个人插件列表：
 
-```text
-https://github.com/zms618/academic-skills
+1. 打开 [ChatGPT 网页版](https://chatgpt.com/)，在新对话中选择或提及 **Plugin Creator**。
+2. 将下面的完整提示词发送给 Plugin Creator：
 
-帮我安装这个论文阅读插件，并引导我完成安装。
-```
+   ```text
+   请根据以下 GitHub 仓库创建并安装一个名为「论文带读（paper-reading）」的 ChatGPT 个人插件。
 
-这条消息是安装引导的开始，**不代表插件已经安装**。普通聊天通常不能直接修改账号里的插件列表；如果它无法从链接读取仓库或没有安装权限，请按下面的 Plugin Creator 流程继续。需要源文件时，可下载并上传 [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md)。
+   https://github.com/zms618/academic-skills
 
-1. 在浏览器打开 [ChatGPT 网页版](https://chatgpt.com/)，从侧边栏进入 **Plugins**，在插件目录中找到并安装 **Plugin Creator**（若该入口对你的账号和工作区开放）。
-2. 开始新对话并提及 `@plugin-creator`。
-3. 下载并上传本项目的 [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md)，或在创建对话中提供公开的 [GitHub 源码](https://github.com/zms618/academic-skills/tree/main/skills/paper-reading)。让 Plugin Creator 以这个文件作为主要行为规范，插件名称使用 **论文带读 / paper-reading**，保留七站顺序、阶段边界和读者确认，不要把它改成一次性摘要器。
-4. 可将以下说明发给 Plugin Creator：
+   以 skills/paper-reading/SKILL.md 为核心规范，完整保留七站式论文阅读流程、泛读与精读边界、原文图表讲解、数学公式推导和用户确认机制。
 
-   > 请根据我附上的 `SKILL.md` 和这个公开仓库创建名为“论文带读（paper-reading）”的 ChatGPT 个人插件：https://github.com/zms618/academic-skills 。以 `skills/paper-reading/SKILL.md` 为核心规范，完整保留七站式论文阅读流程、泛读与精读边界、原文图表讲解、数学公式推导和用户确认机制。支持中文学术论文精读，每次只推进一个阶段；优先依据原论文图表、caption 和原始数据讲解，不虚构实验结论。不需要额外 API Key 或第三方服务。若当前工具不能直接安装到我的账号，请明确告诉我需要在界面完成的最后一步，不要声称已经安装。
+   支持中文学术论文精读，每次只推进一个阶段，优先引用论文原图及原始数据，不虚构实验结论。
 
-5. 按 Plugin Creator 的提示检查并安装。ChatGPT 创建的本地插件可能自动安装而不显示单独的安装卡；安装后可在新对话的 **Plugins** 选择器中选择“论文带读”，或使用 `@` 提及它。
-6. 上传论文 PDF，先试用下面的示例提示。确认回答确实按站推进、图表说明和原文相符，再继续精读。
+   不需要额外 API Key 或第三方服务。完成后安装到我的个人插件列表。
+   ```
+
+3. 按 Plugin Creator 的界面提示完成创建和安装。成功后会看到“论文带读（paper-reading）”个人插件卡片；下图是实际成功创建的示例。
+
+   ![Plugin Creator 成功创建并保存论文带读个人插件](docs/images/plugin-creator-paper-reading-created.png)
+
+4. 新建 ChatGPT 对话，在插件选择器中选择“论文带读”，上传论文 PDF，即可开始阅读。若 Plugin Creator 无法读取公开仓库，可下载并上传本项目的 [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md) 后重试。
+
+插件创建和安装入口受账号计划、地区与工作区权限影响；个人插件不会因此出现在 ChatGPT 公共插件目录中。官方入口说明见 [Plugins in ChatGPT](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt)。
 
 主要阅读流程由 Skill 说明提供，不需要本地安装 Python。PDF 裁图脚本是可选辅助；只有在宿主提供可运行脚本的环境时才能执行，不能假设 ChatGPT 网页会直接运行仓库中的 Python 文件。
 
@@ -185,19 +192,3 @@ GitHub Actions 会在 push 和 pull request 时运行检查。
 ## License
 
 本仓库采用 MIT License，详见 [`LICENSE`](LICENSE)。第三方依赖仍遵循各自许可证。
-
----
-
-### English
-
-**academic-skills** is an extensible open-source collection for research-oriented AI skills and plugins. Its first project, [`paper-reading`](skills/paper-reading/), is designed primarily for **ChatGPT**, while retaining compatibility paths for Codex and other hosts. More research skills and plugins will be added over time.
-
-`paper-reading` provides a seven-stage workflow: three intuitive overview stages, three technical deep-reading stages, and an optional evidence and research-transfer stage. Readers can stop after the overview or continue into details. It also includes two local PDF image utilities. The framework in `skills/paper-reading/SKILL.md` is preserved.
-
-The screenshot above is an example of a Transformer explanation; its attention diagram is an explanatory schematic, not an original figure from the paper. Since v0.5.3, the workflow prefers displaying verified paper crops inline. A `sandbox:` link is only a download fallback and does not guarantee a right-side preview. One-click next-stage controls are used only when the host actually supports them; otherwise readers can explicitly reply “continue.”
-
-For ChatGPT Web, a convenient first step is to paste `https://github.com/zms618/academic-skills` into a new chat and ask for installation help. This starts the guidance; it does not install the plugin by itself. Continue with Plugin Creator and confirm installation in the interface. If the source cannot be read from the link, provide [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md). The repository is not currently listed in ChatGPT’s public plugin directory. Plugin access depends on account, plan, region, workspace, role, and client. A skills-only plugin does not require an external app connection or a separately configured OpenAI API key, but ChatGPT model, file, and tool usage remains subject to the account’s applicable limits. See the [official plugin guide](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt) and [ChatGPT model limits](https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt).
-
-The repository is not a standalone paper-reading application. PDF interpretation, web research, image display, and conversation continuity depend on the host platform and its tools. The Python scripts only render or crop user-selected PDF regions and create guide cards that preserve the original image pixels.
-
-See the Chinese documentation above for detailed workflow, setup, examples, limitations, and release notes.
