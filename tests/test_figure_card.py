@@ -2,15 +2,25 @@ import importlib.util
 from pathlib import Path
 from PIL import Image, ImageDraw
 import re
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 FILE = ROOT / 'skills/paper-reading/scripts/make_figure_card.py'
 spec = importlib.util.spec_from_file_location('card', FILE)
 card = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(card)
+FONT_CANDIDATES = (
+    '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
+    '/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf',
+    '/System/Library/Fonts/Supplemental/Arial.ttf',
+    'C:/Windows/Fonts/arial.ttf',
+)
+FONT = next((Path(path) for path in FONT_CANDIDATES if Path(path).is_file()), None)
 
 
 def test_unmodified_pixel_region_and_header(tmp_path, capsys):
+    if FONT is None:
+        pytest.skip('A system TrueType font is required for rendering the test card.')
     src = tmp_path / 'original.png'
     img = Image.new('RGB', (440, 200), '#cdef12')
     d = ImageDraw.Draw(img)
@@ -18,7 +28,7 @@ def test_unmodified_pixel_region_and_header(tmp_path, capsys):
     d.text((100, 60), 'Figure 1', fill='white')
     img.save(src)
     dest = tmp_path / 'card.png'
-    card.create_card(src, dest, 'Figure 1 · 研究动机', '先观察左侧的输入，再观察右侧的失败情况。')
+    card.create_card(src, dest, 'Figure 1 · Motivation', 'Follow the arrows from the input to the prediction.', FONT)
     output = capsys.readouterr().out
     assert 'Verified unmodified original image region' in output
     m = re.search(r'x=(\d+), y=(\d+), width=(\d+), height=(\d+)', output)
