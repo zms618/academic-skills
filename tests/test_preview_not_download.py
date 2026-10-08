@@ -1,7 +1,7 @@
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 SKILL=(ROOT/'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')
-README=(ROOT/'README.md').read_text(encoding='utf-8')
+README=(ROOT/'skills/paper-reading/README.md').read_text(encoding='utf-8')
 
 def test_no_false_preview_claim():
     assert '不能再声称点击沙盒文件链接会预览' in SKILL

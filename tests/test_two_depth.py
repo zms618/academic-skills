@@ -29,5 +29,5 @@ def test_deep_reading_preserves_reproducibility_and_figures():
         assert s in SKILL
 
 def test_readme_explains_stop_point():
-    s=(ROOT/'README.md').read_text(encoding='utf-8')
+    s=(ROOT/'skills/paper-reading/README.md').read_text(encoding='utf-8')
     assert '可在此停止' in s and '精读' in s and '泛读' in s
