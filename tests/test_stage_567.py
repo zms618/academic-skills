@@ -8,7 +8,7 @@ SKILL = (ROOT/'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')
 def test_manifest_versions_match():
     a=json.loads((ROOT/'plugin.json').read_text(encoding='utf-8'))
     b=json.loads((ROOT/'.codex-plugin/plugin.json').read_text(encoding='utf-8'))
-    assert a['version']==b['version']=='0.5.0'
+    assert a['version']==b['version']=='0.5.3'
 
 
 def test_stage5_training_and_rendered_math():

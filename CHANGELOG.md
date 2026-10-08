@@ -1,12 +1,19 @@
 # Release notes
 
-## Unreleased
+## v0.5.3 — 2026-10-08
 
-### Documentation
+### Added
 
-- Clarify that `academic-skills` is an extensible collection for multiple research skills and plugins, with `paper-reading` as its first project.
-- Make ChatGPT the primary use case for `paper-reading`, while retaining Codex compatibility and documenting platform and account limits.
-- Clarify that using the ChatGPT host avoids a separately configured API key for this skill, but does not bypass ChatGPT model or tool usage limits.
+- Add conditional one-click next-stage navigation while preserving explicit reader consent and the seven-stage reading flow.
+- Prefer verified, inline paper figures; distinguish an actual image display from sandbox download links and provide download links only as a fallback.
+- Add the verified sandbox download-link helper to the PDF crop script.
+- Add an in-repository screenshot example of a Transformer Self-Attention explanation. Its diagram is an explanatory schematic, not an original paper figure.
+
+### Updated
+
+- Make ChatGPT the primary use case while retaining Codex compatibility; clarify that account/model and client limits still apply.
+- Keep the package identifier `paper-reading` and the `academic-skills` collection structure while updating to the supplied v0.5.3 workflow.
+- Add tests for stage navigation, preview/download wording, and verified fallback links.
 
 ## v0.5.0 — 2026-10-08
 

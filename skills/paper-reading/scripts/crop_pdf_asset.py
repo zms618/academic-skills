@@ -10,6 +10,18 @@ Never invent a crop: inspect a full page first and read the paper caption.
 """
 import argparse
 from pathlib import Path
+from urllib.parse import quote
+
+
+def verified_download_link(output_path, sandbox_root=Path('/mnt/data')):
+    """Build a sandbox link only for a path inside its root; caller verifies the file."""
+    root = sandbox_root.resolve()
+    resolved_file = Path(output_path).resolve()
+    try:
+        relative_file = resolved_file.relative_to(root)
+    except ValueError:
+        return None
+    return f"sandbox:/mnt/data/{quote(relative_file.as_posix(), safe='/')}"
 
 
 def main():
@@ -50,6 +62,11 @@ def main():
     if width < 150 or height < 90:
         raise RuntimeError(f"Crop is too small: {width}x{height}; inspect coordinates/dpi")
     print(f"Verified original PDF crop: {args.output} ({width}x{height}), page={args.page}")
+    # Only emit a DOWNLOAD fallback link for a verified image saved in the
+    # ChatGPT sandbox. The caller still must display the original image.
+    download_link = verified_download_link(args.output)
+    if download_link:
+        print(f"Verified download-only fallback link: [下载原论文裁剪原图]({download_link})")
 
 
 if __name__ == "__main__":

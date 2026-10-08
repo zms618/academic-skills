@@ -28,7 +28,7 @@ def test_unmodified_pixel_region_and_header(tmp_path, capsys):
     d.text((100, 60), 'Figure 1', fill='white')
     img.save(src)
     dest = tmp_path / 'card.png'
-    card.create_card(src, dest, 'Figure 1 · Motivation', 'Follow the arrows from the input to the prediction.', FONT)
+    card.create_card(src, dest, 'Figure 1 · Motivation', 'Follow the input and compare it with the failure case.', FONT)
     output = capsys.readouterr().out
     assert 'Verified unmodified original image region' in output
     m = re.search(r'x=(\d+), y=(\d+), width=(\d+), height=(\d+)', output)

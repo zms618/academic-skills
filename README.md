@@ -20,11 +20,19 @@
 | 精读 | 6. 精确执行与双轮推演 | 执行顺序、状态与缓存，以及明确标注的玩具数值推演 |
 | 可选 | 7. 实验、审稿与科研迁移 | 主结果、消融、负面证据、公平性、复现与研究启发 |
 
+### ChatGPT 阅读示例
+
+下面展示了用 Transformer 论文讲解 Self-Attention 的一段实际阅读内容。图中的连线图是帮助理解全局连接的示意图，**不是论文原图**。
+
+![论文带读示例：通过示意图解释 Transformer Self-Attention 的全局连接](docs/images/self-attention-reading-example.png)
+
 ### 论文图像辅助脚本
 
 - `crop_pdf_asset.py`：渲染用户指定的 PDF 页面，或按相对坐标裁剪指定区域。
 - `make_figure_card.py`：在已核验的原图外添加标题和简短导读，并检查原图像素未被改动。
 - 脚本不会自动识别 Figure/Table、判断图表含义或把图片插入聊天。论文理解、联网核验和对话讲解由 ChatGPT 或其他宿主平台及其可用工具完成。
+
+v0.5.3 起，讲解论文图表时优先尝试在对话中真实显示已核验的裁图；只有用户需要保存文件或内嵌显示失败时才提供下载链接。`sandbox:/mnt/data/...` 是文件下载回退，不能称为预览，也不保证会在右侧栏打开。插件没有控制 ChatGPT 右侧图片预览栏的接口。
 
 ## 在 ChatGPT 中使用
 
@@ -40,7 +48,7 @@
 
 > 帮我读这篇论文。先进入第一站，用通俗语言说明研究问题和动机，并核验官方代码开源状态。按七站框架先完成前三站泛读，每次只讲一站；优先结合论文原图。第三站结束时停下来问我是否进入第四站精读。
 
-之后可以回复“继续”，或问“详细解释 Figure 3”。也可以要求“从第五站开始讲公式”或“直接评估实验”。能否读取上传附件、联网核验代码和显示原图，取决于当前 ChatGPT 账号、所选模型、客户端与可用工具。
+之后可以回复“继续”，或问“详细解释 Figure 3”。也可以要求“从第五站开始讲公式”或“直接评估实验”。每站结束时，若当前宿主提供真实可用的后续提问控件，可以点击进入下一站；不支持时仍以“继续”作为确认，插件不会自动跳站。能否读取上传附件、联网核验代码和显示原图，取决于当前 ChatGPT 账号、所选模型、客户端与可用工具。
 
 ## 其他兼容方式
 
@@ -89,6 +97,7 @@ academic-skills/
 ├── skills/paper-reading/
 │   ├── SKILL.md                     # 七站阅读框架与教学规范
 │   └── scripts/                     # 用户指定的 PDF 图像辅助脚本
+├── docs/images/                     # 阅读效果示例图
 ├── tests/                           # 清单、阅读框架与脚本测试
 ├── .github/workflows/check.yml
 ├── requirements.txt
@@ -98,7 +107,7 @@ academic-skills/
 
 ## 版本与检查
 
-当前插件版本为 **v0.5.0**。版本记录见 [`CHANGELOG.md`](CHANGELOG.md)。本地检查：
+当前插件版本为 **v0.5.3**。版本记录见 [`CHANGELOG.md`](CHANGELOG.md)。本地检查：
 
 ```bash
 python -m pip install -r requirements.txt pytest
@@ -113,6 +122,7 @@ GitHub Actions 会在 push 和 pull request 时运行检查。
 - Skill 提供 AI 助手的阅读流程与行为规范；论文解析、网络检索、图片展示和跨轮上下文依赖 ChatGPT 或其他宿主平台及其工具。
 - Python 脚本只执行本地 PDF 页面渲染、用户指定区域裁剪和图文卡生成；它们不判断论文内容是否正确，也不替代人工核对图表和 caption。
 - 不要提交未获分发许可的论文 PDF、数据集、访问密钥、令牌、私人聊天或个人文件。第三方依赖遵循各自的许可证。
+- `sandbox:` 文件链接可能被宿主显示为下载附件；是否提供内嵌预览或点击放大由客户端决定。不要把下载入口宣传为侧栏预览。
 
 ## License
 
@@ -125,6 +135,8 @@ GitHub Actions 会在 push 和 pull request 时运行检查。
 **academic-skills** is an extensible open-source collection for research-oriented AI skills and plugins. Its first project, [`paper-reading`](skills/paper-reading/), is designed primarily for **ChatGPT**, while retaining compatibility paths for Codex and other hosts. More research skills and plugins will be added over time.
 
 `paper-reading` provides a seven-stage workflow: three intuitive overview stages, three technical deep-reading stages, and an optional evidence and research-transfer stage. Readers can stop after the overview or continue into details. It also includes two local PDF image utilities. The framework in `skills/paper-reading/SKILL.md` is preserved.
+
+The screenshot above is an example of a Transformer explanation; its attention diagram is an explanatory schematic, not an original figure from the paper. Since v0.5.3, the workflow prefers displaying verified paper crops inline. A `sandbox:` link is only a download fallback and does not guarantee a right-side preview. One-click next-stage controls are used only when the host actually supports them; otherwise readers can explicitly reply “continue.”
 
 In ChatGPT, use Plugin Creator to build a plugin from the skill source and its supporting scripts, then test it with a paper before installing or sharing it. The public GitHub repository is the source for the project; it does not mean the plugin is listed in ChatGPT’s public directory or available to every account. Plugin access depends on account, plan, region, workspace, role, and client. A skills-only plugin does not require an external app connection or a separately configured OpenAI API key, but ChatGPT model, file, and tool usage remains subject to the account’s applicable limits. See the [official plugin guide](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt) and [ChatGPT model limits](https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt).
 

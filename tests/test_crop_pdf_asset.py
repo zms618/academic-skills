@@ -13,7 +13,7 @@ SCRIPT = ROOT / 'skills/paper-reading/scripts/crop_pdf_asset.py'
 def test_manifest():
     data = json.loads((ROOT / 'plugin.json').read_text(encoding='utf-8'))
     assert data['name'] == 'paper-reading'
-    assert data['version'] == '0.5.0'
+    assert data['version'] == '0.5.3'
     assert (ROOT / 'skills/paper-reading/SKILL.md').is_file()
 
 

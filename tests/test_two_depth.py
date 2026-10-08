@@ -7,7 +7,7 @@ SKILL = (ROOT/'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')
 def test_version_name_and_manifest_routing():
     a = json.loads((ROOT/'plugin.json').read_text(encoding='utf-8'))
     b = json.loads((ROOT/'.codex-plugin/plugin.json').read_text(encoding='utf-8'))
-    assert a['version'] == b['version'] == '0.5.0'
+    assert a['version'] == b['version'] == '0.5.3'
     assert a['extensions']['com.openai']['interface']['displayName'] == '论文带读'
     assert b['interface']['displayName'] == '论文带读'
     assert '前三站' in a['extensions']['com.openai']['interface']['longDescription']
