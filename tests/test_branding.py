@@ -10,7 +10,9 @@ def test_public_display_name_and_stable_internal_identifier():
     assert a['name'] == b['name'] == 'paper-reading'
     assert a['extensions']['com.openai']['interface']['displayName'] == '论文带读'
     assert b['interface']['displayName'] == '论文带读'
-    assert '论文带读' in (ROOT/'README.md').read_text(encoding='utf-8').splitlines()[0]
+    readme = (ROOT/'README.md').read_text(encoding='utf-8')
+    assert readme.splitlines()[0].startswith('# academic-skills')
+    assert '## 当前项目：paper-reading · 论文带读' in readme
 
 def test_reading_flow_unchanged():
     skill = (ROOT/'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')

@@ -1,5 +1,13 @@
 # Release notes
 
+## Unreleased
+
+### Documentation
+
+- Clarify that `academic-skills` is an extensible collection for multiple research skills and plugins, with `paper-reading` as its first project.
+- Make ChatGPT the primary use case for `paper-reading`, while retaining Codex compatibility and documenting platform and account limits.
+- Clarify that using the ChatGPT host avoids a separately configured API key for this skill, but does not bypass ChatGPT model or tool usage limits.
+
 ## v0.5.0 — 2026-10-08
 
 ### Added

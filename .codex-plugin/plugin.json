@@ -2,7 +2,7 @@
   "interface": {
     "displayName": "论文带读",
     "shortDescription": "先泛读看懂方法，再精读公式与实现",
-    "longDescription": "上传一次 PDF：前三站用原论文图与真实场景读懂动机、架构和方法运行；可停在泛读，或继续深入真实数据、数学目标、训练、逐步计算与实验审稿。计算机优先，跨学科兼容；核验官方代码开源状态。",
+    "longDescription": "面向 ChatGPT 的论文带读 skill：上传论文 PDF 后，前三站结合原论文图理解动机、架构和方法运行；可停在泛读，也可继续精读数据、数学目标、训练、逐步计算与实验。无需连接外部应用；实际文件、联网和图像能力取决于 ChatGPT 当前账号与工具。",
     "developerName": "Cheng He",
     "category": "Education",
     "capabilities": [
@@ -12,7 +12,7 @@
   },
   "name": "paper-reading",
   "version": "0.5.0",
-  "description": "A computer-science-first, two-depth research paper mentor: intuitive overview before formula-heavy deep reading, using original PDF figures and verifiable evidence.",
+  "description": "A ChatGPT-first research paper reading skill with a seven-stage workflow, from an intuitive overview to optional technical deep reading; compatible with Codex and other skill hosts.",
   "author": {
     "name": "Cheng He"
   },
