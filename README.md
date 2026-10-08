@@ -18,11 +18,25 @@
 - **结合论文中的真实图表学习**：优先依据论文原图与 caption 讲解；实际读取、裁图和在对话中显示图片取决于宿主提供的 PDF 与图像工具。仓库脚本不会自动识别所有 Figure/Table。
 - **每一步由读者决定**：支持真实交互控件时可以点选下一站；否则回复“继续”即可，不会擅自跳过阶段。
 
-### ChatGPT 阅读示例
+### ChatGPT 网页端使用示例
 
-下面展示了用 Transformer 论文讲解 Self-Attention 的一段实际阅读内容。图中的连线图是帮助理解全局连接的示意图，**不是论文原图**。
+以下截图展示了在 ChatGPT 网页端选择“论文带读”、上传论文 PDF 后生成论文分析卡，并进入第一站讲解的实际流程。最后一张中的连线图是帮助理解 Self-Attention 的示意图，**不是论文原图**。
 
-![论文带读示例：通过示意图解释 Transformer Self-Attention 的全局连接](docs/images/self-attention-reading-example.png)
+**1. 在聊天界面选择论文带读**
+
+![ChatGPT 网页插件选择器中的论文带读](docs/images/chatgpt-plugin-picker.png)
+
+**2. 上传 PDF 后生成论文分析卡并展示论文架构图**
+
+![论文带读分析 Attention Is All You Need 论文并展示 Transformer 架构图](docs/images/chatgpt-paper-reading-analysis.png)
+
+**3. 进入第一站：从研究动机开始逐步讲解**
+
+![论文带读第一站讲解 Transformer 的研究动机](docs/images/chatgpt-paper-reading-stage1.png)
+
+**4. 用示意图说明 Self-Attention 如何建立位置间联系**
+
+![用示意图解释 Transformer Self-Attention 的全局连接](docs/images/self-attention-reading-example.png)
 
 插件提供七站式阅读流程和两个 PDF 图像辅助脚本：前三站建立直觉、理解架构并跟踪一个样本如何经过方法得到输出；之后可继续深入数据协议、数学与训练、精确执行，以及可选的实验审视与研究迁移。
 
