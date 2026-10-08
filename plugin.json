@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "paper-reading",
+  "version": "0.5.0",
+  "description": "A computer-science-first, two-depth research paper mentor: intuitive overview before formula-heavy deep reading, using original PDF figures and verifiable evidence.",
+  "author": {
+    "name": "Cheng He"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "论文带读",
+        "shortDescription": "先泛读看懂方法，再精读公式与实现",
+        "longDescription": "上传一次 PDF：前三站用原论文图与真实场景读懂动机、架构和方法运行；可停在泛读，或继续深入真实数据、数学目标、训练、逐步计算与实验审稿。计算机优先，跨学科兼容；核验官方代码开源状态。",
+        "developerName": "Cheng He",
+        "category": "Education",
+        "capabilities": [
+          "Interactive"
+        ],
+        "defaultPrompt": "帮我读这篇论文。先用最通俗的语言和原论文 Figure 1 讲清第一站研究动机；接下来先读懂方法与它如何真正工作，前三站不着急推公式。到泛读结束问我是否进入精读。"
+      }
+    }
+  }
+}
