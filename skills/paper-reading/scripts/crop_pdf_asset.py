@@ -14,7 +14,7 @@ from urllib.parse import quote
 
 
 def verified_download_link(output_path, sandbox_root=Path('/mnt/data')):
-    """Build a sandbox link only for a path inside its root; caller verifies the file."""
+    """Return a sandbox link only when the verified output is inside its root."""
     root = sandbox_root.resolve()
     resolved_file = Path(output_path).resolve()
     try:

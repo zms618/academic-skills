@@ -11,6 +11,8 @@
 - **在 ChatGPT 对话中使用**：不必启动 Codex 编程任务；论文阅读仍受 ChatGPT 账号、模型、文件上传和工具限制。
 - **无需另配 API Key 或部署模型**：使用宿主当前可用的模型能力；这不代表模型调用没有用量限制。
 - **先泛读，再按需精读**：先理解研究动机、方法架构和样本运行，再决定是否继续看数据协议、数学机制与实现。
+- **按论证作用覆盖原图表**：为 Figure、Table、Algorithm 和 Teaser 建立语义图谱，按阶段记录必要证据并检查是否讲全；多张必要图表可在同一阶段分段讲解。
+- **准确区分方法图类型**：先判断论文是否有真正的整体架构图，区分架构图、流程图和算法伪代码；没有架构图时会明确说明。
 - **结合论文原图学习**：讲解尽量依据论文图表和 caption；并排展示能力取决于 ChatGPT 客户端及其文件、图像工具。
 - **读者控制进度**：一次推进一个阶段；前三站结束后可停下，也可确认继续。
 
@@ -58,7 +60,7 @@
    ```text
    请根据以下 GitHub 仓库创建并安装一个名为「论文带读（paper-reading）」的 ChatGPT 个人插件。
 
-   https://github.com/zms618/academic-skills
+   https://github.com/zms618/no-heartburn-academic-skills
 
    以 skills/paper-reading/SKILL.md 为核心规范，完整保留七站式论文阅读流程、泛读与精读边界、原文图表讲解、数学公式推导和用户确认机制。
 
@@ -73,7 +75,7 @@
 
 4. 新建对话，在插件选择器中选“论文带读”，上传论文 PDF。可以从第一站开始，也可以明确指定希望讨论的阶段。
 
-如果 Plugin Creator 无法读取公开仓库，可下载并上传 [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md)。创建入口受账号计划、地区和工作区权限影响；个人插件不会因此出现在公共插件目录中。官方说明见 [Plugins in ChatGPT](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt)。
+如果 Plugin Creator 无法读取公开仓库，可下载并上传 [`SKILL.md`](https://raw.githubusercontent.com/zms618/no-heartburn-academic-skills/main/skills/paper-reading/SKILL.md)。创建入口受账号计划、地区和工作区权限影响；个人插件不会因此出现在公共插件目录中。官方说明见 [Plugins in ChatGPT](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt)。
 
 ### 示例开场提示
 
@@ -87,10 +89,11 @@ ChatGPT 处理论文时仍受账号计划、模型、文件上传和工具额度
 
 ## 可选 PDF 图像脚本
 
-主要阅读流程不需要本地 Python。仓库包含两个可选工具：
+主要阅读流程不需要本地 Python。仓库包含三个可选工具：
 
 - `scripts/crop_pdf_asset.py`：渲染用户指定的 PDF 页面，或按相对坐标裁图。
 - `scripts/make_figure_card.py`：给已核验的原图添加标题和简短导读，并检查原图像素未被改动。
+- `scripts/check_figure_coverage.py`：检查人工核验的图表语义清单和当前站点记录是否覆盖必讲证据；它不自动解析 PDF，也不能验证客户端是否实际显示图片。
 
 脚本不会自动识别图表、解释图表含义或把图片插入聊天。需要 Python 3.10+：
 
@@ -136,4 +139,4 @@ python skills/paper-reading/scripts/make_figure_card.py output/figure-3.png --ou
 
 论文带读的设计受到 [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) 启发。感谢该项目作者分享相关工作。此处表示设计灵感来源，不代表官方合作、背书或源码整合；若实际复用其代码、文档或模板，仍需遵守其适用许可证。
 
-当前版本为 **v0.5.3**，详见仓库根目录 [`CHANGELOG.md`](../../CHANGELOG.md)。仓库采用 MIT License，见 [`LICENSE`](../../LICENSE)。
+当前版本为 **v0.6.0**，详见仓库根目录 [`CHANGELOG.md`](../../CHANGELOG.md)。仓库采用 MIT License，见 [`LICENSE`](../../LICENSE)。

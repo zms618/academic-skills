@@ -1,5 +1,11 @@
 # Research Idea Discovery release history
 
+## v3.0.0 — Mentor-style research decision reports
+
+- Add a `research-advisor-report` Skill that turns validated exploration into a decision-oriented report covering the idea, motivation, related-work position, hypothesis, evidence-supported contributions, scientific story, reviewer risks, feasibility, and next decisive experiment.
+- Add an output protocol that separates Idea, Evidence, Contribution, and Paper Claim, and labels claims as `VERIFIED`, `CONDITIONAL`, `UNKNOWN`, or `HYPOTHESIS`.
+- Preserve existing evidence gates: a report's completeness does not prove novelty, feasibility, or experimental results.
+
 ## v2.7.1
 
 - Fix pilot stdout checksum verification on Windows by hashing the exact UTF-8 bytes written to disk.

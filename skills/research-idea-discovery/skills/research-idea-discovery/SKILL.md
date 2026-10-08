@@ -1,6 +1,6 @@
 ---
 name: research-idea-discovery
-description: Use for finding, validating, refining, comparing or rejecting scientific research ideas and paper contributions in any user-chosen research field. Handles literature-grounded gap discovery, mechanism-level novelty checks, falsifiable hypotheses, minimum decisive experiments, and reviewer-style critique. Target venue (including CCF-A) and research domain are selectable, never fixed. Do not trigger for ordinary paper summarization, writing polish, or generic brainstorming unless the user asks to discover or evaluate novel research contributions.
+description: Use for finding, validating, refining, comparing or rejecting scientific research ideas and paper contributions in any user-chosen research field. Handles literature-grounded gap discovery, mechanism-level novelty checks, falsifiable hypotheses, minimum decisive experiments, reviewer-style critique, and evidence-labeled mentor-style decision reports. Target venue (including CCF-A) and research domain are selectable, never fixed. Do not trigger for ordinary paper summarization, writing polish, or generic brainstorming unless the user asks to discover or evaluate novel research contributions.
 ---
 
 # Research Idea Discovery — 用户指定领域 · 证据驱动 · 审稿级创新审计
@@ -187,6 +187,10 @@ description: Use for finding, validating, refining, comparing or rejecting scien
 `QUICK`：一个问题+主要证据+一个假设+最危险近邻+一个 killer test；`STANDARD` 默认优选一个经过比较的 Idea；`DEEP` 包含完整检索记录、候选淘汰史和更细实验矩阵。若用户只提某一个问题，直接针对该问题回答，不机械倾倒全部工作流。
 
 ## 5. 终版交付标准与阶段连续性
+
+### v3.0 导师式研究决策报告
+
+形成最终建议时，按插件中的 `skills/research-advisor-report/SKILL.md` 组织成可帮助研究者做决定的导师式报告，并遵守本 Skill 的 `references/research-advisor-output-protocol.md`。报告应把 Idea、证据、潜在贡献和论文主张分开；每项主张标注 `VERIFIED`、`CONDITIONAL`、`UNKNOWN` 或 `HYPOTHESIS`。结论必须来自前述证据门，不能因为报告格式完整就把未核实的新颖性或可行性说成已验证。
 
 若没有经核实的合格候选，**交付 Deep Research 定向提示词和报告返还说明，不允许空泛建议“再看看论文”**。若收到报告，明确报告增量及未核验事项。
 

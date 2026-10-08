@@ -24,7 +24,7 @@ This collection currently includes two research plugins you can create and use i
 
 ### 🧩 ChatGPT Web Plugin 01 · [paper-reading](skills/paper-reading/README.en.md)
 
-**Read explanations alongside a paper's original figures in ChatGPT**, with a seven-stage overview-to-deep-reading workflow.
+**Read explanations alongside a paper's original figures in ChatGPT**, with a seven-stage workflow, an argument map of the paper's figures and tables, and stage-by-stage evidence coverage checks.
 
 ![Following a paper explanation alongside its original figure in ChatGPT](docs/images/chatgpt-side-by-side-paper-figure.png)
 
@@ -32,7 +32,7 @@ Install it in ChatGPT Web: see the [paper-reading plugin guide and installation 
 
 ### 🔬 ChatGPT Web Plugin 02 · [Research Idea Discovery](skills/research-idea-discovery/README.en.md)
 
-**Discover research opportunities from papers and failure cases**, then examine feasibility, motivation, mechanism-level novelty, and evidence. When evidence is insufficient, the workflow can recommend revising, researching further, or stopping.
+**Discover research opportunities from papers and failure cases**, examine feasibility, motivation, mechanism-level novelty, and evidence, then produce an evidence-labeled mentor-style research decision report.
 
 Install it in ChatGPT Web: see the [Research Idea Discovery plugin guide and installation tutorial](skills/research-idea-discovery/README.en.md#create-and-install-this-plugin-in-chatgpt-web). Primary Skill: [`Research Idea Discovery`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md).
 

@@ -1,5 +1,19 @@
 # Release notes
 
+## v0.6.0 — 2026-10-08
+
+### Added
+
+- Build a semantic argument map for all paper figures, tables, algorithms, and teasers, including their roles, first-use stages, and later reuse.
+- Track all essential visuals for the current stage before declaring it complete; explain cross-figure argument links and allow multiple necessary figures.
+- Distinguish a true architecture diagram from a pipeline or algorithm listing, and state clearly when no architecture diagram is present.
+- Add `check_figure_coverage.py` to audit a human-reviewed figure plan and stage records. It checks supplied records; it does not parse PDFs or verify that a client displayed an image.
+
+### Updated
+
+- Keep the stable plugin ID `paper-reading` while synchronizing the v0.6.0 reading workflow and helper scripts.
+- Update project guides and installation links for the renamed `no-heartburn-academic-skills` repository.
+
 ## v0.5.3 — 2026-10-08
 
 ### Added

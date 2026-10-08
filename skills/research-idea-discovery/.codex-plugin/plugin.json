@@ -1,7 +1,7 @@
 {
   "name": "research-idea-discovery",
-  "version": "2.7.1",
-  "description": "Evidence-executed research Idea discovery with verifiable dataset sample access, reviewer and pilot gates, prior-art coverage logs, and negative-result feedback.",
+  "version": "3.0.0",
+  "description": "Evidence-executed research Idea discovery with mentor-style advisor reports, feasibility validation, novelty auditing, and scientific story review.",
   "author": {
     "name": "ADA F CRAIG",
     "email": "hecheng006@outlook.com"
@@ -9,7 +9,7 @@
   "interface": {
     "displayName": "Research Idea Discovery",
     "shortDescription": "发现并验证科研创新点",
-    "longDescription": "通用 Idea-first 科研创新发现：主动查文献和可用数据，验证实际小样本访问、近邻创新性、动机与逻辑；审稿和 Pilot 需要可检查的记录，失败实验会反向修改研究结论；可输出 Deep Research 定向调研提示词。",
+    "longDescription": "证据驱动的科研创新发现与导师式决策报告：主动查文献和数据可行性，审查近邻创新性、研究动机、机制逻辑与实验；最终报告区分已核实证据、条件判断、未知和假设，并提出风险与下一步验证。",
     "developerName": "Plugin owner",
     "category": "Productivity",
     "capabilities": [

@@ -55,5 +55,5 @@ def test_missing_figure_and_guardrails(tmp_path):
 
 def test_instruction_requires_intro_before_image_call():
     rules = (ROOT/'skills/paper-reading/SKILL.md').read_text('utf-8')
-    for phrase in ('导读**必须在发起图片显示工具调用之前', '导读在上、原图在下', 'make_figure_card.py', '原始 Figure/Table 像素区域'):
+    for phrase in ('导读**必须在发起该图的图片显示工具调用之前', '卡片内部仍然是先读图介绍、再看到原论文图', 'make_figure_card.py', '原始 Figure/Table 像素区域'):
         assert phrase in rules

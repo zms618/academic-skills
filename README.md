@@ -24,7 +24,7 @@
 
 ### 🧩 ChatGPT 网页端插件 01 · [论文带读 · paper-reading](skills/paper-reading/README.md)
 
-**在 ChatGPT 对话中边读讲解、边对照论文原图。** 支持七阶段泛读与精读流程。
+**在 ChatGPT 对话中边读讲解、边对照论文原图。** 支持七阶段泛读与精读，并建立全篇图表论证图谱，逐站检查必需证据是否讲全。
 
 ![ChatGPT 中边读论文讲解、边对照论文原图的示例](docs/images/chatgpt-side-by-side-paper-figure.png)
 
@@ -32,7 +32,7 @@
 
 ### 🔬 ChatGPT 网页端插件 02 · [科研创新点发现与验证 · Research Idea Discovery](skills/research-idea-discovery/README.md)
 
-**从论文和失败现象中寻找研究机会**，并审查可行性、研究动机、机制新颖性与验证证据；证据不足时也可以建议调整、继续调研或停止。
+**从论文和失败现象中寻找研究机会**，审查可行性、研究动机、机制新颖性与验证证据，并生成标注证据状态的导师式研究决策报告。
 
 在 ChatGPT 网页端安装：查看[Research Idea Discovery 插件介绍与安装教程](skills/research-idea-discovery/README.md#在-chatgpt-网页端创建和安装插件)。主 Skill：[`Research Idea Discovery`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)。
 

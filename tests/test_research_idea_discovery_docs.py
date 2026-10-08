@@ -26,10 +26,21 @@ def test_plugin_manifests_and_primary_skill_are_present():
     plugin = json.loads((PROJECT / 'plugin.json').read_text(encoding='utf-8'))
     codex = json.loads((PROJECT / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
     assert plugin['name'] == codex['name'] == 'research-idea-discovery'
-    assert plugin['version'] == codex['version'] == '2.7.1'
+    assert plugin['version'] == codex['version'] == '3.0.0'
     assert (PROJECT / 'skills/research-idea-discovery/SKILL.md').is_file()
     assert '[English](README.en.md)' in (PROJECT / 'README.md').read_text(encoding='utf-8')
     assert '[简体中文](README.md)' in (PROJECT / 'README.en.md').read_text(encoding='utf-8')
+
+
+def test_v3_advisor_report_is_registered_and_evidence_labeled():
+    main_skill = (PROJECT / 'skills/research-idea-discovery/SKILL.md').read_text(encoding='utf-8')
+    report_skill = (PROJECT / 'skills/research-advisor-report/SKILL.md').read_text(encoding='utf-8')
+    protocol = (PROJECT / 'skills/research-idea-discovery/references/research-advisor-output-protocol.md').read_text(encoding='utf-8')
+    assert 'skills/research-advisor-report/SKILL.md' in main_skill
+    assert 'references/research-advisor-output-protocol.md' in main_skill
+    for label in ('VERIFIED', 'CONDITIONAL', 'UNKNOWN', 'HYPOTHESIS'):
+        assert label in report_skill
+    assert 'Idea -> Evidence -> Contribution -> Paper Claim' in protocol
 
 
 def test_project_documentation_local_links_resolve():

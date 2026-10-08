@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "paper-reading",
-  "version": "0.5.3",
-  "description": "A ChatGPT-first research paper reading skill with a seven-stage workflow, verified figure guidance, and optional one-click stage navigation when supported by the host.",
+  "version": "0.6.0",
+  "description": "A figure-argument-aware paper reading mentor with evidence-complete stage coverage, honest architecture-vs-algorithm distinction, and reproducible deep reading.",
   "author": {
     "name": "Cheng He"
   },
@@ -11,13 +11,13 @@
       "interface": {
         "displayName": "论文带读",
         "shortDescription": "先泛读看懂方法，再精读公式与实现",
-        "longDescription": "面向 ChatGPT 的七站式论文带读 skill：前三站先建立直觉，之后可选精读；讲解原论文图时优先内嵌展示，下载链接只作备选；每站结束仅在宿主支持时提供真实的下一站交互。无需连接外部应用，具体能力由 ChatGPT 当前账号、模型和工具决定。",
+        "longDescription": "面向 ChatGPT 的七站式论文带读插件：建立全篇图表论证图谱，按阶段覆盖必要证据，并区分整体架构图、流程图与算法伪代码；前三站泛读，之后可选精读。阶段完整后再经用户确认继续；图片显示和交互能力取决于宿主。",
         "developerName": "Cheng He",
         "category": "Education",
         "capabilities": [
           "Interactive"
         ],
-        "defaultPrompt": "帮我读这篇论文。先用最通俗的语言和原论文 Figure 1 讲清第一站研究动机；接下来先读懂方法与它如何真正工作，前三站不着急推公式。到泛读结束问我是否进入精读。"
+        "defaultPrompt": "带我读这篇论文。先梳理全篇图表在研究论证中的作用，展示第一站所有必要的原图；讲方法时区分架构图、流程图和算法伪代码。每次只推进一站，泛读结束后先问我是否进入精读。"
       }
     }
   }

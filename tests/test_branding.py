@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_public_display_name_and_stable_internal_identifier():
     a = json.loads((ROOT / 'plugin.json').read_text(encoding='utf-8'))
     b = json.loads((ROOT / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
-    assert a['version'] == b['version'] == '0.5.3'
+    assert a['version'] == b['version'] == '0.6.0'
     assert a['name'] == b['name'] == 'paper-reading'
     assert a['extensions']['com.openai']['interface']['displayName'] == '论文带读'
     assert b['interface']['displayName'] == '论文带读'

@@ -48,6 +48,10 @@ Prioritize small experiments that can quickly support or refute the hypothesis. 
 
 When evidence remains insufficient, the Skill can prepare a targeted ChatGPT Deep Research prompt based on the current gaps. The user starts the research and returns the report to the original workflow. Candidate ideas, near neighbors, rejection reasons, and experiment feedback can be stored in a local work directory; this is not automatic ChatGPT cloud memory or a background task.
 
+### Mentor-style research decision report
+
+After evidence review, the plugin can organize its findings into a decision-oriented report covering a plain-language explanation, motivation, related-work position, falsifiable hypothesis, evidence-supported potential contributions, scientific story, reviewer risks, feasibility, and the next decisive experiment. Claims are labeled `VERIFIED`, `CONDITIONAL`, `UNKNOWN`, or `HYPOTHESIS`, with Idea, Evidence, Contribution, and Paper Claim kept distinct. The report format does not turn unverified points into established results.
+
 ## Research workflow
 
 **Opportunity discovery:** literature investigation → failure analysis → idea seeds
@@ -70,7 +74,7 @@ This repository contains open-source Skill/plugin files. It does not mean the pl
    ```text
    Please create and install a personal ChatGPT plugin named Research Idea Discovery based on this GitHub repository:
 
-   https://github.com/zms618/academic-skills
+   https://github.com/zms618/no-heartburn-academic-skills
 
    Use skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md as the primary specification, and preserve the references, examples, and auxiliary Skills in that project directory. Follow evidence-driven idea discovery, data and experiment feasibility checks, mechanism-level near-neighbor review, motivation and logic rechecks, minimum decisive experiments, and explicit recommendations to stop or change direction.
 
@@ -139,4 +143,4 @@ Building on these inspirations, this project independently organizes an evidence
 
 ## Version and license
 
-Current release: **v2.7.1**. The [`CHANGELOG.md`](CHANGELOG.md) records release changes without turning this page into a version-by-version feature log. Licensed under MIT; see [`../../LICENSE`](../../LICENSE).
+Current release: **v3.0.0**. The [`CHANGELOG.md`](CHANGELOG.md) records release changes without turning this page into a version-by-version feature log. Licensed under MIT; see [`../../LICENSE`](../../LICENSE).

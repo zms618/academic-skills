@@ -11,6 +11,8 @@
 - **Use in ChatGPT conversations:** No Codex programming task is required. Paper reading remains subject to ChatGPT account, model, file-upload, and tool limits.
 - **No separately configured API key or deployed model:** It uses capabilities available in the host; this does not mean model usage is unlimited.
 - **Start with an overview, then go deeper:** Understand the motivation, architecture, and a worked example before deciding whether to continue into data protocols, mathematics, and implementation.
+- **Cover figures by their argumentative role:** Build a semantic map of figures, tables, algorithms, and teasers, then track essential evidence by stage; multiple necessary visuals can be explained across replies within the same stage.
+- **Distinguish method-visual types accurately:** Identify whether a true overall architecture diagram exists, and distinguish it from a pipeline or algorithm listing. State clearly when no architecture diagram is present.
 - **Read alongside original paper figures:** Explanations aim to use figures and captions. Side-by-side viewing depends on the ChatGPT client and its file and image tools.
 - **The reader controls progress:** Advance one stage at a time. Stop after the first three overview stages or explicitly continue.
 
@@ -56,7 +58,7 @@ Other examples show selecting the plugin, uploading a PDF, generating an analysi
    ```text
    请根据以下 GitHub 仓库创建并安装一个名为「论文带读（paper-reading）」的 ChatGPT 个人插件。
 
-   https://github.com/zms618/academic-skills
+   https://github.com/zms618/no-heartburn-academic-skills
 
    以 skills/paper-reading/SKILL.md 为核心规范，完整保留七站式论文阅读流程、泛读与精读边界、原文图表讲解、数学公式推导和用户确认机制。
 
@@ -71,7 +73,7 @@ Other examples show selecting the plugin, uploading a PDF, generating an analysi
 
 4. Start a new conversation, select “论文带读” in the plugin picker, and upload a paper PDF. You can start at stage one or explicitly request another stage.
 
-If Plugin Creator cannot read the public repository, download and upload [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md). Creation access depends on account plan, region, and workspace permissions. A personal plugin is not thereby added to the public directory. See [Plugins in ChatGPT](https://help.openai.com/en/articles/20001256-plugins).
+If Plugin Creator cannot read the public repository, download and upload [`SKILL.md`](https://raw.githubusercontent.com/zms618/no-heartburn-academic-skills/main/skills/paper-reading/SKILL.md). Creation access depends on account plan, region, and workspace permissions. A personal plugin is not thereby added to the public directory. See [Plugins in ChatGPT](https://help.openai.com/en/articles/20001256-plugins).
 
 ### Example opening prompt
 
@@ -85,10 +87,11 @@ Some workspaces let administrators upload supported plugin ZIPs through **Admin 
 
 ## Optional PDF image utilities
 
-Local Python is not required for the main reading workflow. The repository includes two optional tools:
+Local Python is not required for the main reading workflow. The repository includes three optional tools:
 
 - `scripts/crop_pdf_asset.py` renders a user-selected PDF page or crops a region using relative coordinates.
 - `scripts/make_figure_card.py` adds a title and short guide to a verified figure and checks that the original image pixels remain unchanged.
+- `scripts/check_figure_coverage.py` checks a human-reviewed visual argument map and stage records for required evidence. It does not parse PDFs or verify whether the client actually displayed an image.
 
 The scripts do not automatically detect figures, interpret them, or insert images into a chat. Python 3.10 or newer is required:
 
@@ -132,4 +135,4 @@ python skills/paper-reading/scripts/make_figure_card.py output/figure-3.png --ou
 
 The design of paper-reading was inspired by [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading). We thank its author for sharing the project. This acknowledges design inspiration only; it does not imply official collaboration, endorsement, or source-code integration. Any code, documentation, or templates actually reused remain subject to the applicable license.
 
-The current version is **v0.5.3**; see the repository's [`CHANGELOG.md`](../../CHANGELOG.md). The repository uses the MIT License; see [`LICENSE`](../../LICENSE).
+The current version is **v0.6.0**; see the repository's [`CHANGELOG.md`](../../CHANGELOG.md). The repository uses the MIT License; see [`LICENSE`](../../LICENSE).

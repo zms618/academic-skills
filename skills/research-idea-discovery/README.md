@@ -48,6 +48,10 @@
 
 证据仍不足时，可生成针对当前缺口的 ChatGPT Deep Research 调研提示词，供用户手动发起调研并将报告带回原流程。候选 Idea、近邻、淘汰原因和实验反馈可保存在本地工作目录，帮助后续复查；这不是 ChatGPT 云端自动记忆或后台任务。
 
+### 导师式研究决策报告
+
+完成证据审查后，插件可将结果整理为面向研究决策的导师式报告，覆盖通俗的问题解释、研究动机、相关工作定位、可证伪假设、证据支持的潜在贡献、科学故事、审稿风险、可行性和下一项决定性实验。主张会标注为 `VERIFIED`、`CONDITIONAL`、`UNKNOWN` 或 `HYPOTHESIS`，并区分 Idea、Evidence、Contribution 与 Paper Claim；报告格式不会把未核实内容变成已验证结论。
+
 ## Research workflow
 
 **研究机会发现**：文献调查 → 失败分析 → Idea Seeds
@@ -70,7 +74,7 @@
    ```text
    请根据以下 GitHub 仓库创建并安装一个名为 Research Idea Discovery 的 ChatGPT 个人插件：
 
-   https://github.com/zms618/academic-skills
+   https://github.com/zms618/no-heartburn-academic-skills
 
    以 skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md 为主规范，并保留该项目目录内的 references、examples 和其他辅助 Skills。重点遵循证据驱动的 Idea 发现、数据与实验可行性核验、机制级近邻审查、动机与逻辑复审、最小决定性实验和明确的停止/转向建议。
 
@@ -139,4 +143,4 @@ Research Idea Discovery 在设计过程中受到以下开源科研项目的工�
 
 ## 版本与许可
 
-当前版本为 **v2.7.1**。发布变化记录在 [`CHANGELOG.md`](CHANGELOG.md)，首页只保留当前项目说明。仓库采用 MIT License，见 [`../../LICENSE`](../../LICENSE)。
+当前版本为 **v3.0.0**。发布变化记录在 [`CHANGELOG.md`](CHANGELOG.md)，首页只保留当前项目说明。仓库采用 MIT License，见 [`../../LICENSE`](../../LICENSE)。
