@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 README = (ROOT / 'README.md').read_text(encoding='utf-8')
 
 EXAMPLE_IMAGES = (
+    'docs/images/chatgpt-side-by-side-paper-figure.png',
     'docs/images/chatgpt-plugin-picker.png',
     'docs/images/chatgpt-paper-reading-analysis.png',
     'docs/images/chatgpt-paper-reading-stage1.png',
