@@ -8,7 +8,7 @@ I am a student too, and I know that tokens and API calls can be expensive for st
 
 That is why I collected and organized these research plugins for **ChatGPT Web**. Students can use ChatGPT's **Plugin Creator** to create their own personal plugins, then use them directly in ChatGPT conversations—**without consuming Codex or Claude-specific quota and without configuring a separate API token**.
 
-Here, “token-free” means no separately paid API token and no Codex / Claude-specific quota. ChatGPT Web itself remains subject to account-plan, model, and message limits.
+Here, “token-free” means no separately configured or paid API token and no Codex / Claude-specific quota; the plugins are used directly in ChatGPT Web conversations.
 
 ## Plugins in this collection
 
@@ -20,7 +20,7 @@ These plugins are installed and used in ChatGPT Web. Each is powered by Skill in
 
 ### [paper-reading](skills/paper-reading/README.en.md)
 
-> **Read with ChatGPT without using Codex-specific task quota or configuring a separate API key, while following explanations alongside the paper's original figures.** ChatGPT account and plan limits still apply, and side-by-side viewing depends on client support.
+> **Read with ChatGPT without using Codex-specific task quota or configuring a separate API key, while following explanations alongside the paper's original figures.** Side-by-side viewing depends on client support.
 
 ![Following a paper explanation alongside its original figure in ChatGPT](docs/images/chatgpt-side-by-side-paper-figure.png)
 
