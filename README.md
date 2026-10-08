@@ -50,7 +50,17 @@ v0.5.3 起，讲解论文图表时优先尝试在对话中真实显示已核验�
 
 ### 个人账号：在 ChatGPT 网页中创建并安装
 
-目前 `paper-reading` **尚未上架 ChatGPT 公共插件目录**，所以不能通过搜索插件名称直接一键安装。个人账号可按 ChatGPT 提供的 Plugin Creator 流程创建自己的版本：
+目前 `paper-reading` **尚未上架 ChatGPT 公共插件目录**，所以不能通过搜索插件名称直接一键安装。最简单的尝试方式是在 ChatGPT 网页中新建对话，直接发送仓库链接和请求：
+
+```text
+https://github.com/zms618/academic-skills.git
+
+帮我安装并启用这个仓库里的论文带读（paper-reading）插件。
+请读取 README 和 skills/paper-reading/SKILL.md，保留完整七站流程与泛读/精读边界。
+如果当前聊天不能直接安装，请告诉我，并引导我通过 Plugin Creator 创建和安装。
+```
+
+如果当前 ChatGPT 支持从链接读取仓库并安装插件，按提示确认即可。**发送链接是最简单的开始方式，但不保证普通聊天一定具有安装权限。** 若无法直接安装，可用下面的 Plugin Creator 流程：
 
 1. 在浏览器打开 [ChatGPT 网页版](https://chatgpt.com/)，从侧边栏进入 **Plugins**，在插件目录中找到并安装 **Plugin Creator**（若该入口对你的账号和工作区开放）。
 2. 开始新对话并提及 `@plugin-creator`。
@@ -168,7 +178,7 @@ GitHub Actions 会在 push 和 pull request 时运行检查。
 
 The screenshot above is an example of a Transformer explanation; its attention diagram is an explanatory schematic, not an original figure from the paper. Since v0.5.3, the workflow prefers displaying verified paper crops inline. A `sandbox:` link is only a download fallback and does not guarantee a right-side preview. One-click next-stage controls are used only when the host actually supports them; otherwise readers can explicitly reply “continue.”
 
-In ChatGPT, use Plugin Creator to build a plugin from the skill source and its supporting scripts, then test it with a paper before installing or sharing it. The public GitHub repository is the source for the project; it does not mean the plugin is listed in ChatGPT’s public directory or available to every account. Plugin access depends on account, plan, region, workspace, role, and client. A skills-only plugin does not require an external app connection or a separately configured OpenAI API key, but ChatGPT model, file, and tool usage remains subject to the account’s applicable limits. See the [official plugin guide](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt) and [ChatGPT model limits](https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt).
+For ChatGPT Web, the simplest first step is to paste `https://github.com/zms618/academic-skills.git` into a new chat and ask ChatGPT to install `paper-reading`. This only works if the current account and chat can read the repository and install plugins; otherwise use Plugin Creator and provide [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md). The repository is not currently listed in ChatGPT’s public plugin directory. Plugin access depends on account, plan, region, workspace, role, and client. A skills-only plugin does not require an external app connection or a separately configured OpenAI API key, but ChatGPT model, file, and tool usage remains subject to the account’s applicable limits. See the [official plugin guide](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt) and [ChatGPT model limits](https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt).
 
 The repository is not a standalone paper-reading application. PDF interpretation, web research, image display, and conversation continuity depend on the host platform and its tools. The Python scripts only render or crop user-selected PDF regions and create guide cards that preserve the original image pixels.
 
