@@ -40,9 +40,9 @@ def test_root_readmes_are_collection_overviews():
     assert '不消耗 Codex 或 Claude 专用额度' in root_zh
     assert 'Codex-specific quota' in root_en
     assert 'ChatGPT Web Plugin' in root_en
-    assert '**[📄 paper-reading]' in root_en
+    assert '### 🧩 ChatGPT Web Plugin 01 · [paper-reading]' in root_en
     assert 'ChatGPT 网页端插件' in root_zh
-    assert '**[📄 论文带读 · paper-reading]' in root_zh
+    assert '### 🧩 ChatGPT 网页端插件 01 · [论文带读 · paper-reading]' in root_zh
     assert '](docs/images/chatgpt-side-by-side-paper-figure.png)' in root_zh
     assert '](docs/images/chatgpt-side-by-side-paper-figure.png)' in root_en
 

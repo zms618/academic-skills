@@ -13,7 +13,7 @@ def test_public_display_name_and_stable_internal_identifier():
     readme = (ROOT / 'README.md').read_text(encoding='utf-8')
     assert readme.splitlines()[0] == '# 不烧心 academic-skills'
     assert '## ChatGPT 网页端科研插件' in readme
-    assert '**[📄 论文带读 · paper-reading](skills/paper-reading/README.md)**' in readme
+    assert '### 🧩 ChatGPT 网页端插件 01 · [论文带读 · paper-reading]' in readme
 
 def test_reading_flow_unchanged():
     skill = (ROOT / 'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')

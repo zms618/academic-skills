@@ -20,17 +20,21 @@ These plugins are installed and used in ChatGPT Web. Each is powered by Skill in
 
 ## ChatGPT Web Research Plugins
 
-The two projects below are **plugins you can create and use in ChatGPT Web**. Open a card for its guide and installation tutorial.
+This collection currently includes two research plugins you can create and use in ChatGPT Web:
 
-| 🧩 ChatGPT Web Plugin · Paper Reading | 🔬 ChatGPT Web Plugin · Research Ideation |
-| --- | --- |
-| **[📄 paper-reading](skills/paper-reading/README.en.md)**<br><br>Read explanations alongside a paper's original figures in ChatGPT, with a seven-stage overview-to-deep-reading workflow.<br><br>**[Guide and ChatGPT installation tutorial →](skills/paper-reading/README.en.md#create-and-install-it-on-chatgpt-web)** | **[🧪 Research Idea Discovery](skills/research-idea-discovery/README.en.md)**<br><br>Discover research opportunities from papers and failure cases, then examine feasibility, motivation, mechanism-level novelty, and evidence.<br><br>**[Guide and ChatGPT installation tutorial →](skills/research-idea-discovery/README.en.md#create-and-install-this-plugin-in-chatgpt-web)** |
+### 🧩 ChatGPT Web Plugin 01 · [paper-reading](skills/paper-reading/README.en.md)
 
-### Paper Reading: Follow the Original Figures in ChatGPT
+**Read explanations alongside a paper's original figures in ChatGPT**, with a seven-stage overview-to-deep-reading workflow.
 
 ![Following a paper explanation alongside its original figure in ChatGPT](docs/images/chatgpt-side-by-side-paper-figure.png)
 
-Plugin instructions: [`paper-reading/SKILL.md`](skills/paper-reading/SKILL.md) · [`Research Idea Discovery primary Skill`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)
+Install it in ChatGPT Web: see the [paper-reading plugin guide and installation tutorial](skills/paper-reading/README.en.md#create-and-install-it-on-chatgpt-web). Core instructions: [`paper-reading/SKILL.md`](skills/paper-reading/SKILL.md).
+
+### 🔬 ChatGPT Web Plugin 02 · [Research Idea Discovery](skills/research-idea-discovery/README.en.md)
+
+**Discover research opportunities from papers and failure cases**, then examine feasibility, motivation, mechanism-level novelty, and evidence. When evidence is insufficient, the workflow can recommend revising, researching further, or stopping.
+
+Install it in ChatGPT Web: see the [Research Idea Discovery plugin guide and installation tutorial](skills/research-idea-discovery/README.en.md#create-and-install-this-plugin-in-chatgpt-web). Primary Skill: [`Research Idea Discovery`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md).
 
 ## 🙏 Acknowledgements & Inspirations
 
