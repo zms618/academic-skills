@@ -6,7 +6,25 @@
 
 ## 当前项目：paper-reading · 论文带读
 
-**核心目标：在 ChatGPT 里带着读者逐步读懂论文。** 插件提供七站式阅读流程和两个 PDF 图像辅助脚本：前三站建立直觉、理解架构并跟踪一个样本如何经过方法得到输出；之后可继续深入数据协议、数学与训练、精确执行，以及可选的实验审视与研究迁移。
+> **论文带读：面向 ChatGPT 网页聊天的图文论文学习工具。无需启动 Codex 编程任务，也无需另配 API Key 或部署本地大模型；从理解研究动机到掌握方法实现，带你一步步读懂论文。**
+
+它的目标不是替读者快速生成一份“读完了”的摘要，而是帮助读者自己建立对问题、方法和证据的理解。
+
+### 为什么使用论文带读
+
+- **直接在 ChatGPT 对话中使用**：不必启动 Codex 编程任务，也不占用 Codex 专用任务额度；实际阅读仍受 ChatGPT 账号、模型、文件上传和工具使用限制。
+- **无需单独配置 API Key 或部署模型**：使用 ChatGPT 当前可用的模型能力，不需要另建论文问答服务或承担单独的 API 调用配置。
+- **先建立直觉，再逐层深入**：七站流程从研究动机、核心架构和样本运行开始；前三站结束后可以停下，也可以继续到数据协议、公式训练和实现细节。
+- **结合论文中的真实图表学习**：优先依据论文原图与 caption 讲解；实际读取、裁图和在对话中显示图片取决于宿主提供的 PDF 与图像工具。仓库脚本不会自动识别所有 Figure/Table。
+- **每一步由读者决定**：支持真实交互控件时可以点选下一站；否则回复“继续”即可，不会擅自跳过阶段。
+
+### ChatGPT 阅读示例
+
+下面展示了用 Transformer 论文讲解 Self-Attention 的一段实际阅读内容。图中的连线图是帮助理解全局连接的示意图，**不是论文原图**。
+
+![论文带读示例：通过示意图解释 Transformer Self-Attention 的全局连接](docs/images/self-attention-reading-example.png)
+
+插件提供七站式阅读流程和两个 PDF 图像辅助脚本：前三站建立直觉、理解架构并跟踪一个样本如何经过方法得到输出；之后可继续深入数据协议、数学与训练、精确执行，以及可选的实验审视与研究迁移。
 
 阅读者可以在前三站结束后停下，也可以继续精读。每站的论文结论应区分原文报告、代码核验和合理推测；来源未提供的设置、数字和结果不得补造。七站顺序和阶段边界保留在 [`SKILL.md`](skills/paper-reading/SKILL.md)，本仓库文档更新不会改写框架。
 
@@ -20,12 +38,6 @@
 | 精读 | 6. 精确执行与双轮推演 | 执行顺序、状态与缓存，以及明确标注的玩具数值推演 |
 | 可选 | 7. 实验、审稿与科研迁移 | 主结果、消融、负面证据、公平性、复现与研究启发 |
 
-### ChatGPT 阅读示例
-
-下面展示了用 Transformer 论文讲解 Self-Attention 的一段实际阅读内容。图中的连线图是帮助理解全局连接的示意图，**不是论文原图**。
-
-![论文带读示例：通过示意图解释 Transformer Self-Attention 的全局连接](docs/images/self-attention-reading-example.png)
-
 ### 论文图像辅助脚本
 
 - `crop_pdf_asset.py`：渲染用户指定的 PDF 页面，或按相对坐标裁剪指定区域。
@@ -36,17 +48,35 @@ v0.5.3 起，讲解论文图表时优先尝试在对话中真实显示已核验�
 
 ## 在 ChatGPT 中使用
 
-本项目优先面向 ChatGPT。可以在 ChatGPT 中通过 **Plugins → Plugin Creator** 创建自己的插件，并将本仓库的 `skills/paper-reading/SKILL.md`、配套 `scripts/` 和 README 作为构建与测试依据；创建后先用一篇论文验证流程，再安装或分享。只含 Skill 的插件不需要连接外部服务。当前 GitHub 仓库是源码与发布信息来源；它本身不代表该插件已上架 ChatGPT 公共目录，也不保证每个账号都能看到相同入口。
+### 个人账号：在 ChatGPT 网页中创建并安装
 
-组织工作区若使用管理员管理的插件，可以由有权限的管理员上传支持的插件 ZIP，或配置从 GitHub 导入插件 marketplace。具体入口和可用方式取决于账号计划、地区、工作区策略、角色和客户端；ChatGPT 官方说明见[插件说明](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt)。
+目前 `paper-reading` **尚未上架 ChatGPT 公共插件目录**，所以不能通过搜索插件名称直接一键安装。个人账号可按 ChatGPT 提供的 Plugin Creator 流程创建自己的版本：
 
-**用量说明：** 使用 ChatGPT 插件不需要为本项目单独部署论文问答模型或填写 OpenAI API Key；这不等于模型调用没有用量。阅读论文仍由 ChatGPT 中选用的模型处理，消息、文件上传及工具使用受账号计划、模型和工作区额度限制。插件不会绕过这些限制。可用额度会随计划和产品政策变化，参见 [ChatGPT 模型与使用限制](https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt)。
+1. 在浏览器打开 [ChatGPT 网页版](https://chatgpt.com/)，从侧边栏进入 **Plugins**，在插件目录中找到并安装 **Plugin Creator**（若该入口对你的账号和工作区开放）。
+2. 开始新对话并提及 `@plugin-creator`。
+3. 下载并上传本项目的 [`SKILL.md`](https://raw.githubusercontent.com/zms618/academic-skills/main/skills/paper-reading/SKILL.md)，或在创建对话中提供公开的 [GitHub 源码](https://github.com/zms618/academic-skills/tree/main/skills/paper-reading)。让 Plugin Creator 以这个文件作为主要行为规范，插件名称使用 **论文带读 / paper-reading**，保留七站顺序、阶段边界和读者确认，不要把它改成一次性摘要器。
+4. 可将以下说明发给 Plugin Creator：
+
+   > 请根据我附上的 `SKILL.md` 创建一个名为“论文带读（paper-reading）”的 ChatGPT 插件。完整保留七站式阅读框架与泛读/精读边界，不需要连接外部应用、配置 API Key 或部署模型。优先依据论文原图和 caption 讲解；只有当前宿主确实支持时才使用可点击的下一站控件，否则提示用户回复“继续”。不要把下载链接称为图片预览。完成后先用我上传的论文 PDF 测试前三站流程，再安装到我的插件列表。
+
+5. 按 Plugin Creator 的提示检查并安装。ChatGPT 创建的本地插件可能自动安装而不显示单独的安装卡；安装后可在新对话的 **Plugins** 选择器中选择“论文带读”，或使用 `@` 提及它。
+6. 上传论文 PDF，先试用下面的示例提示。确认回答确实按站推进、图表说明和原文相符，再继续精读。
+
+主要阅读流程由 Skill 说明提供，不需要本地安装 Python。PDF 裁图脚本是可选辅助；只有在宿主提供可运行脚本的环境时才能执行，不能假设 ChatGPT 网页会直接运行仓库中的 Python 文件。
+
+如果找不到 **Plugins** 或 **Plugin Creator**，通常表示当前账号、计划、地区或工作区策略没有开放相应功能；请查看工作区权限或使用当前账号可用的 Skills 入口。官方安装与可用范围说明见 [Plugins in ChatGPT](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt)。
+
+### 工作区管理员：上传或从 GitHub 同步
+
+部分工作区允许管理员在 **Admin Console → Plugins → Add** 上传受支持格式的插件 ZIP，也支持管理员从 GitHub 导入插件 marketplace。两种方式都需要相应管理员权限和兼容的插件包。普通 GitHub 仓库压缩包不一定就是 ChatGPT 可直接上传的插件 ZIP；本仓库目前主要提供源码和 Skill，不应把克隆/下载 ZIP 当成已验证的一键安装包。具体权限与路径以 [OpenAI 官方说明](https://help.openai.com/en/articles/20001256-plugins-in-chatgpt) 为准。
 
 ### 示例提示
 
-在 ChatGPT 对话中安装或选择插件并上传论文 PDF 后，可以这样开始：
+在 ChatGPT 对话中选择“论文带读”并上传论文 PDF 后，可以这样开始：
 
 > 帮我读这篇论文。先进入第一站，用通俗语言说明研究问题和动机，并核验官方代码开源状态。按七站框架先完成前三站泛读，每次只讲一站；优先结合论文原图。第三站结束时停下来问我是否进入第四站精读。
+
+**用量说明：** 使用 ChatGPT 插件不需要为本项目单独部署论文问答模型或填写 OpenAI API Key；这不等于模型调用没有用量。阅读论文仍由 ChatGPT 中选用的模型处理，消息、文件上传及工具使用受账号计划、模型和工作区额度限制。插件不会绕过这些限制。可用额度会随计划和产品政策变化，参见 [ChatGPT 模型与使用限制](https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt)。
 
 之后可以回复“继续”，或问“详细解释 Figure 3”。也可以要求“从第五站开始讲公式”或“直接评估实验”。每站结束时，若当前宿主提供真实可用的后续提问控件，可以点击进入下一站；不支持时仍以“继续”作为确认，插件不会自动跳站。能否读取上传附件、联网核验代码和显示原图，取决于当前 ChatGPT 账号、所选模型、客户端与可用工具。
 
