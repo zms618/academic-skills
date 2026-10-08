@@ -1,4 +1,4 @@
-# academic-skills · Research Plugins for Students
+# No Heartburn Academic Skills
 
 **A collection of research plugins for students, made to use in ChatGPT Web without consuming Codex-specific quota. Research with less worry.**
 
