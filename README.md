@@ -18,25 +18,19 @@
 
 > **使用方式：在 ChatGPT 网页端创建并安装个人插件 → 在 ChatGPT 对话中选择插件并使用。**
 
-## 当前收录
+## ChatGPT 网页端科研插件
 
-### [paper-reading · 论文带读](skills/paper-reading/README.md)
+以下是本项目目前收录的两个**可在 ChatGPT 网页端创建并使用的插件**。点击卡片进入插件说明和安装教程。
 
-> **无需 Codex 专用额度或额外 API Key，就能在 ChatGPT 对话中边读讲解、边对照论文原图。** 并排查看取决于客户端支持。
+| 🧩 ChatGPT 网页端插件 · 论文阅读 | 🔬 ChatGPT 网页端插件 · 科研选题 |
+| --- | --- |
+| **[📄 论文带读 · paper-reading](skills/paper-reading/README.md)**<br><br>在 ChatGPT 对话中边读讲解、边对照论文原图；支持七阶段泛读与精读流程。<br><br>**[查看介绍与 ChatGPT 安装教程 →](skills/paper-reading/README.md#在-chatgpt-网页端创建和安装)** | **[🧪 科研创新点发现与验证 · Research Idea Discovery](skills/research-idea-discovery/README.md)**<br><br>从论文和失败现象中寻找研究机会，并审查可行性、研究动机、机制新颖性与验证证据。<br><br>**[查看介绍与 ChatGPT 安装教程 →](skills/research-idea-discovery/README.md#在-chatgpt-网页端创建和安装插件)** |
+
+### 论文带读：在 ChatGPT 中对照原文图表
 
 ![ChatGPT 中边读论文讲解、边对照论文原图的示例](docs/images/chatgpt-side-by-side-paper-figure.png)
 
-在 ChatGPT 网页端安装：查看[论文带读插件安装教程](skills/paper-reading/README.md#在-chatgpt-网页端创建和安装)。功能、七站式阅读流程、示例截图和本地 PDF 辅助脚本也见[项目说明](skills/paper-reading/README.md)。
-
-核心行为规范位于 [`skills/paper-reading/SKILL.md`](skills/paper-reading/SKILL.md)。
-
-### [Research Idea Discovery · 科研创新点发现与验证](skills/research-idea-discovery/README.md)
-
-**从产生科研想法，到验证科研价值：让每一个创新点经受可行性、动机、机制与证据的多重检验。** 它从论文和失败现象中寻找研究机会，再审查数据可行性、危险近邻、机制必要性和最小决定性实验；证据不足时允许建议调整、继续调研或停止。
-
-在 ChatGPT 网页端安装：查看[Research Idea Discovery 插件安装教程](skills/research-idea-discovery/README.md#在-chatgpt-网页端创建和安装插件)。详细能力与限制见[项目说明](skills/research-idea-discovery/README.md)。
-
-主 Skill：[`skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)。
+插件行为规范：[`paper-reading/SKILL.md`](skills/paper-reading/SKILL.md) · [`Research Idea Discovery 主 Skill`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)
 
 ## 🙏 致谢与灵感来源
 

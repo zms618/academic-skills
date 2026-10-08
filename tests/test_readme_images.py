@@ -30,15 +30,19 @@ def test_readme_documents_verified_plugin_creator_install_prompt():
 def test_root_readmes_are_collection_overviews():
     root_zh = (ROOT / 'README.md').read_text(encoding='utf-8')
     root_en = (ROOT / 'README.en.md').read_text(encoding='utf-8')
-    assert root_zh.startswith('# academic-skills · 科研技能集')
+    assert root_zh.startswith('# 不烧心 academic-skills')
     assert '**简体中文** | [English](README.en.md)' in root_zh
     assert '[简体中文](README.md) | **English**' in root_en
     assert 'skills/paper-reading/README.md' in root_zh
     assert 'skills/paper-reading/README.en.md' in root_en
     assert '## 在 ChatGPT 网页端创建和安装' not in root_zh
     assert '## Create and install it on ChatGPT Web' not in root_en
-    assert '无需 Codex 专用额度或额外 API Key' in root_zh
-    assert 'Codex-specific task quota' in root_en
+    assert '不消耗 Codex 或 Claude 专用额度' in root_zh
+    assert 'Codex-specific quota' in root_en
+    assert 'ChatGPT Web Plugin' in root_en
+    assert '**[📄 paper-reading]' in root_en
+    assert 'ChatGPT 网页端插件' in root_zh
+    assert '**[📄 论文带读 · paper-reading]' in root_zh
     assert '](docs/images/chatgpt-side-by-side-paper-figure.png)' in root_zh
     assert '](docs/images/chatgpt-side-by-side-paper-figure.png)' in root_en
 

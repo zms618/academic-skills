@@ -11,9 +11,9 @@ def test_public_display_name_and_stable_internal_identifier():
     assert a['extensions']['com.openai']['interface']['displayName'] == '论文带读'
     assert b['interface']['displayName'] == '论文带读'
     readme = (ROOT / 'README.md').read_text(encoding='utf-8')
-    assert readme.splitlines()[0].startswith('# academic-skills')
-    assert '## 当前收录' in readme
-    assert '[paper-reading · 论文带读](skills/paper-reading/README.md)' in readme
+    assert readme.splitlines()[0] == '# 不烧心 academic-skills'
+    assert '## ChatGPT 网页端科研插件' in readme
+    assert '**[📄 论文带读 · paper-reading](skills/paper-reading/README.md)**' in readme
 
 def test_reading_flow_unchanged():
     skill = (ROOT / 'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')

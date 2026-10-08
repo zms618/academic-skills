@@ -12,12 +12,12 @@ def test_research_idea_discovery_is_listed_in_both_collection_overviews():
     assert 'skills/research-idea-discovery/README.md' in zh
     assert 'skills/research-idea-discovery/README.en.md' in en
     assert '不消耗 Codex 或 Claude 专用额度' in zh
-    assert 'Codex-specific task quota' in en
-    assert '从产生科研想法，到验证科研价值' in zh
-    assert 'From idea generation to defensible research' in en
+    assert 'Codex-specific quota' in en
+    assert '研究机会' in zh and '机制新颖性' in zh
+    assert 'Discover research opportunities' in en and 'mechanism-level novelty' in en
     assert '## 项目初衷' in zh and '## Why this project exists' in en
-    assert zh.index('## 项目初衷') < zh.index('## 本项目的插件') < zh.index('## 当前收录')
-    assert en.index('## Why this project exists') < en.index('## Plugins in this collection') < en.index('## Available projects')
+    assert zh.index('## 项目初衷') < zh.index('## 本项目的插件') < zh.index('## ChatGPT 网页端科研插件')
+    assert en.index('## Why this project exists') < en.index('## Plugins in this collection') < en.index('## ChatGPT Web Research Plugins')
     assert '学生' in zh and 'Plugin Creator' in zh and 'Claude 专用额度' in zh
     assert 'I am a student too' in en and 'Plugin Creator' in en and 'Claude-specific quota' in en
 
