@@ -1,4 +1,6 @@
-# academic-skills · 科研技能集
+# 不烧心 academic-skills
+
+**面向学生党的 ChatGPT 网页端科研插件合集：不耗 Codex 专用额度，用着不烧心。**
 
 **简体中文** | [English](README.en.md)
 

@@ -1,4 +1,6 @@
-# academic-skills · Research Skills Collection
+# academic-skills · Research Plugins for Students
+
+**A collection of research plugins for students, made to use in ChatGPT Web without consuming Codex-specific quota. Research with less worry.**
 
 [简体中文](README.md) | **English**
 
