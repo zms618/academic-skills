@@ -1,0 +1,44 @@
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+PROJECT = ROOT / 'skills/research-idea-discovery'
+
+
+def test_research_idea_discovery_is_listed_in_both_collection_overviews():
+    zh = (ROOT / 'README.md').read_text(encoding='utf-8')
+    en = (ROOT / 'README.en.md').read_text(encoding='utf-8')
+    assert 'skills/research-idea-discovery/README.md' in zh
+    assert 'skills/research-idea-discovery/README.en.md' in en
+    assert '不消耗 Codex 专用额度' in zh
+    assert 'Codex-specific task quota' in en
+    assert '从产生科研想法，到验证科研价值' in zh
+    assert 'From idea generation to defensible research' in en
+
+
+def test_plugin_manifests_and_primary_skill_are_present():
+    plugin = json.loads((PROJECT / 'plugin.json').read_text(encoding='utf-8'))
+    codex = json.loads((PROJECT / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
+    assert plugin['name'] == codex['name'] == 'research-idea-discovery'
+    assert plugin['version'] == codex['version'] == '2.7.1'
+    assert (PROJECT / 'skills/research-idea-discovery/SKILL.md').is_file()
+    assert '[English](README.en.md)' in (PROJECT / 'README.md').read_text(encoding='utf-8')
+    assert '[简体中文](README.md)' in (PROJECT / 'README.en.md').read_text(encoding='utf-8')
+
+
+def test_project_documentation_local_links_resolve():
+    docs = [
+        ROOT / 'README.md',
+        ROOT / 'README.en.md',
+        ROOT / 'skills/research-idea-discovery/README.md',
+        ROOT / 'skills/research-idea-discovery/README.en.md',
+    ]
+    for doc in docs:
+        text = doc.read_text(encoding='utf-8')
+        links = re.findall(r'(?<!!)\[[^\]]*\]\(([^)]+)\)', text)
+        for target in links:
+            target = target.split('#', 1)[0]
+            if not target or '://' in target or target.startswith('mailto:'):
+                continue
+            assert (doc.parent / target).exists(), f'{doc.relative_to(ROOT)} -> {target}'

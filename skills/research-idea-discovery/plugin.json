@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "research-idea-discovery",
+  "version": "2.7.1",
+  "description": "Evidence-executed research Idea discovery with verifiable dataset sample access, reviewer and pilot gates, prior-art coverage logs, and negative-result feedback.",
+  "author": {
+    "name": "ADA F CRAIG",
+    "email": "hecheng006@outlook.com"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Research Idea Discovery",
+        "shortDescription": "发现并验证科研创新点",
+        "longDescription": "通用 Idea-first 科研创新发现：主动查文献和可用数据，验证实际小样本访问、近邻创新性、动机与逻辑；审稿和 Pilot 需要可检查的记录，失败实验会反向修改研究结论；可输出 Deep Research 定向调研提示词。",
+        "developerName": "Plugin owner",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive"
+        ],
+        "defaultPrompt": [
+          "使用 Research Idea Discovery：我的研究方向是【填写方向】，目标是【填写会议/期刊/研究目标】。请从文献中寻找值得推进、可证伪且能避开已有工作的创新点。",
+          "使用 Research Idea Discovery：审查我这个 Idea 的新颖性、最危险近邻、核心假设和最小决定性实验。",
+          "使用 Research Idea Discovery：我暂时没有确定方向，请先做跨方向机会探索，列出有证据支持的问题，再帮我选择。"
+        ]
+      }
+    }
+  }
+}

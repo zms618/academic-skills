@@ -4,6 +4,8 @@
 
 一个持续扩展的开源科研技能集合，收录面向学术研究的 AI skills 与插件。每个项目在自己的目录中维护使用说明和相关资源；本仓库根目录用于介绍整个集合。
 
+> **本项目的 Skills 面向 ChatGPT 网页版使用，无需启动 Codex 编程任务，也不消耗 Codex 专用额度。** ChatGPT 自身的模型、消息和工具使用仍受账号及套餐限制。
+
 ## 当前收录
 
 ### [paper-reading · 论文带读](skills/paper-reading/README.md)
@@ -16,16 +18,29 @@
 
 核心行为规范位于 [`skills/paper-reading/SKILL.md`](skills/paper-reading/SKILL.md)。
 
+### [Research Idea Discovery · 科研创新点发现与验证](skills/research-idea-discovery/README.md)
+
+**从产生科研想法，到验证科研价值：让每一个创新点经受可行性、动机、机制与证据的多重检验。** 它从论文和失败现象中寻找研究机会，再审查数据可行性、危险近邻、机制必要性和最小决定性实验；证据不足时允许建议调整、继续调研或停止。
+
+详细能力、ChatGPT 网页版安装说明和能力边界见[项目说明](skills/research-idea-discovery/README.md)。
+
+主 Skill：[`skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)。
+
 ## 仓库结构
 
 ```text
 academic-skills/
 ├── skills/
-│   └── paper-reading/
-│       ├── README.md       # 论文带读的详细介绍与安装指南
-│       ├── README.en.md    # English documentation
-│       ├── SKILL.md        # 助手行为规范
-│       └── scripts/        # 可选 PDF 图像辅助脚本
+│   ├── paper-reading/
+│   │   ├── README.md       # 论文带读的详细介绍与安装指南
+│   │   ├── README.en.md    # English documentation
+│   │   ├── SKILL.md        # 助手行为规范
+│   │   └── scripts/        # 可选 PDF 图像辅助脚本
+│   └── research-idea-discovery/
+│       ├── README.md       # 项目介绍与 ChatGPT 使用指南
+│       ├── README.en.md    # English project guide
+│       ├── skills/         # 主 Skill、辅助角色与参考规范
+│       └── scripts/        # 可选本地研究工作流工具
 ├── docs/images/            # 项目演示截图
 ├── tests/
 ├── .github/workflows/
@@ -36,11 +51,18 @@ academic-skills/
 
 ## 开发与许可
 
-运行仓库检查：
+运行仓库总览与 paper-reading 检查：
 
 ```bash
 python -m pip install -r requirements.txt pytest
 python -m pytest -q
+```
+
+运行 Research Idea Discovery 自带的测试：
+
+```bash
+cd skills/research-idea-discovery
+python -m unittest discover -s tests -v
 ```
 
 本仓库采用 MIT License，详见 [`LICENSE`](LICENSE)。
