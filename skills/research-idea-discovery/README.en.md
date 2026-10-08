@@ -6,6 +6,8 @@
 
 A personal research-idea discovery and validation plugin for ChatGPT Web, driven by the primary Research Idea Discovery Skill and supporting Skills. It helps researchers identify opportunities in papers and real failure cases, then assess whether a candidate idea merits time and resources through data feasibility, novelty, motivation, mechanism logic, and experiment design.
 
+> **This personal plugin is installed and used in ChatGPT Web; it does not consume Codex-specific task quota.** A step-by-step guide below shows how to create it with Plugin Creator and select it in a new conversation.
+
 > **From idea generation to defensible research: discover, challenge, validate, and refine scientific ideas with evidence.**
 
 It supports computer vision, multimodal learning, robotics, machine learning, and other user-selected fields. Scope can be adapted to a target venue or research goal. The objective is not to force an idea: when evidence is insufficient, the workflow may recommend narrowing the question, researching further, or stopping.

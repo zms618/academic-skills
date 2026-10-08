@@ -2,9 +2,9 @@
 
 [简体中文](README.md) | **English**
 
-An evolving open-source collection of research plugins for ChatGPT Web. Each plugin is driven by Skill instructions and supporting resources, and has its own ChatGPT installation guide and project documentation. This root README introduces the collection as a whole.
+An evolving open-source collection of research plugins. **These plugins are installed and used in ChatGPT Web; they do not consume Codex-specific task quota.** Each plugin is powered by Skill instructions and supporting resources, and has its own ChatGPT installation tutorial in its project README.
 
-> **The plugins in this collection are used in ChatGPT Web and do not consume Codex-specific task quota.**
+> **How to use:** create and install the personal plugin in ChatGPT Web, then select it in a ChatGPT conversation.
 
 ## Available projects
 
@@ -14,7 +14,7 @@ An evolving open-source collection of research plugins for ChatGPT Web. Each plu
 
 ![Following a paper explanation alongside its original figure in ChatGPT](docs/images/chatgpt-side-by-side-paper-figure.png)
 
-The [project documentation](skills/paper-reading/README.en.md) covers features, the seven-stage workflow, installation, more screenshots, and optional local PDF utilities.
+Install it in ChatGPT Web: follow the [paper-reading plugin installation tutorial](skills/paper-reading/README.en.md#create-and-install-it-on-chatgpt-web). The [project guide](skills/paper-reading/README.en.md) also covers its features, seven-stage workflow, screenshots, and optional local PDF utilities.
 
 The core assistant instructions are in [`skills/paper-reading/SKILL.md`](skills/paper-reading/SKILL.md).
 
@@ -22,7 +22,7 @@ The core assistant instructions are in [`skills/paper-reading/SKILL.md`](skills/
 
 **From idea generation to defensible research: put each idea through feasibility, motivation, mechanism, and evidence checks.** Discover opportunities from papers and failure cases, then examine data feasibility, dangerous near neighbors, mechanism necessity, and minimum decisive experiments. When evidence is insufficient, the workflow can recommend revising, researching further, or stopping.
 
-See the [project guide](skills/research-idea-discovery/README.en.md) for detailed capabilities, ChatGPT Web installation, and limitations.
+Install it in ChatGPT Web: follow the [Research Idea Discovery plugin installation tutorial](skills/research-idea-discovery/README.en.md#create-and-install-this-plugin-in-chatgpt-web). See the [project guide](skills/research-idea-discovery/README.en.md) for its capabilities and limitations.
 
 Primary Skill: [`skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md).
 

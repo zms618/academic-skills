@@ -15,7 +15,8 @@ def test_research_idea_discovery_is_listed_in_both_collection_overviews():
     assert 'Codex-specific task quota' in en
     assert '从产生科研想法，到验证科研价值' in zh
     assert 'From idea generation to defensible research' in en
-    assert '**本项目的 Skills 面向 ChatGPT 网页版使用，不消耗 Codex 专用额度。**' in zh
+    assert '**这些插件安装并使用于 ChatGPT 网页端，不消耗 Codex 专用额度。**' in zh
+    assert '**These plugins are installed and used in ChatGPT Web; they do not consume Codex-specific task quota.**' in en
 
 
 def test_plugin_manifests_and_primary_skill_are_present():
@@ -75,3 +76,7 @@ def test_each_plugin_has_a_chatgpt_web_installation_tutorial():
     assert '## Create and install it on ChatGPT Web' in paper_en
     assert '## 在 ChatGPT 网页端创建和安装插件' in idea_zh
     assert '## Create and install this plugin in ChatGPT Web' in idea_en
+    assert '不消耗 Codex 专用额度' in paper_zh
+    assert '不消耗 Codex 专用额度' in idea_zh
+    assert 'Codex-specific task quota' in paper_en
+    assert 'Codex-specific task quota' in idea_en

@@ -4,6 +4,8 @@
 
 `paper-reading` 是一款面向 ChatGPT 网页版的论文带读个人插件，由 Skill 规范驱动。它通过分阶段讲解帮助读者真正理解论文，而不只是生成一份摘要。核心流程和行为规范见 [`SKILL.md`](SKILL.md)。
 
+> **这是安装在 ChatGPT 网页端使用的个人插件，不消耗 Codex 专用额度。** 下方提供从 Plugin Creator 创建到在新对话中选择插件的完整教程。
+
 ## 特点
 
 - **在 ChatGPT 对话中使用**：不必启动 Codex 编程任务；论文阅读仍受 ChatGPT 账号、模型、文件上传和工具限制。

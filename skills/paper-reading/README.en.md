@@ -4,6 +4,8 @@
 
 `paper-reading` is a personal paper-reading plugin for ChatGPT Web, driven by its Skill instructions. It guides readers through a paper step by step, helping them understand the research rather than just receive a summary. The core workflow and assistant behavior are specified in [`SKILL.md`](SKILL.md).
 
+> **This personal plugin is installed and used in ChatGPT Web; it does not consume Codex-specific task quota.** A step-by-step guide below shows how to create it with Plugin Creator and select it in a new conversation.
+
 ## Features
 
 - **Use in ChatGPT conversations:** No Codex programming task is required. Paper reading remains subject to ChatGPT account, model, file-upload, and tool limits.

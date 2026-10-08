@@ -2,9 +2,9 @@
 
 **简体中文** | [English](README.en.md)
 
-一个持续扩展的开源科研插件集合，面向 ChatGPT 网页版使用。每个插件由 Skill 规范及其配套资源驱动，并在自己的目录中提供 ChatGPT 安装教程和项目说明；本仓库根目录介绍整个集合。
+这是一个持续扩展的开源科研插件集合。**这些插件安装并使用于 ChatGPT 网页端，不消耗 Codex 专用额度。** 插件内部由 Skill 规范和配套资源驱动；ChatGPT 网页端的具体安装教程分别列在每个项目的 README 中。
 
-> **本项目的 Skills 面向 ChatGPT 网页版使用，不消耗 Codex 专用额度。**
+> **使用方式：在 ChatGPT 网页端创建并安装个人插件 → 在 ChatGPT 对话中选择插件并使用。**
 
 ## 当前收录
 
@@ -14,7 +14,7 @@
 
 ![ChatGPT 中边读论文讲解、边对照论文原图的示例](docs/images/chatgpt-side-by-side-paper-figure.png)
 
-详细功能、七站式阅读流程、安装说明、更多截图和本地 PDF 辅助脚本见[项目说明](skills/paper-reading/README.md)。
+在 ChatGPT 网页端安装：查看[论文带读插件安装教程](skills/paper-reading/README.md#在-chatgpt-网页端创建和安装)。功能、七站式阅读流程、示例截图和本地 PDF 辅助脚本也见[项目说明](skills/paper-reading/README.md)。
 
 核心行为规范位于 [`skills/paper-reading/SKILL.md`](skills/paper-reading/SKILL.md)。
 
@@ -22,7 +22,7 @@
 
 **从产生科研想法，到验证科研价值：让每一个创新点经受可行性、动机、机制与证据的多重检验。** 它从论文和失败现象中寻找研究机会，再审查数据可行性、危险近邻、机制必要性和最小决定性实验；证据不足时允许建议调整、继续调研或停止。
 
-详细能力、ChatGPT 网页版安装说明和能力边界见[项目说明](skills/research-idea-discovery/README.md)。
+在 ChatGPT 网页端安装：查看[Research Idea Discovery 插件安装教程](skills/research-idea-discovery/README.md#在-chatgpt-网页端创建和安装插件)。详细能力与限制见[项目说明](skills/research-idea-discovery/README.md)。
 
 主 Skill：[`skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)。
 
