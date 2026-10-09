@@ -24,7 +24,7 @@ This collection currently includes two research plugins you can create and use i
 
 ### 🧩 ChatGPT Web Plugin 01 · [paper-reading](skills/paper-reading/README.en.md)
 
-**Read explanations alongside a paper's original figures in ChatGPT**, with a seven-stage workflow, an argument map of the paper's figures and tables, and stage-by-stage evidence coverage checks.
+**Understand papers and practice scientific thinking.** Read explanations alongside original figures in ChatGPT, then learn to question assumptions, examine evidence, and design falsification experiments.
 
 ![Following a paper explanation alongside its original figure in ChatGPT](docs/images/chatgpt-side-by-side-paper-figure.png)
 

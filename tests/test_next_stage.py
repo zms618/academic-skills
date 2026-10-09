@@ -17,7 +17,7 @@ def test_mapped_stages_and_fallback():
 def test_version_stays_consistent():
     a=json.loads((ROOT/'plugin.json').read_text(encoding='utf-8'))
     b=json.loads((ROOT/'.codex-plugin/plugin.json').read_text(encoding='utf-8'))
-    assert a['version']==b['version']=='0.6.0'
+    assert a['version']==b['version']=='0.7.0'
     assert a['extensions']['com.openai']['interface']['displayName']=='论文带读'
 
 def test_keeps_depth_split_and_image_rules():

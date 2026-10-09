@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_public_display_name_and_stable_internal_identifier():
     a = json.loads((ROOT / 'plugin.json').read_text(encoding='utf-8'))
     b = json.loads((ROOT / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
-    assert a['version'] == b['version'] == '0.6.0'
+    assert a['version'] == b['version'] == '0.7.0'
     assert a['name'] == b['name'] == 'paper-reading'
     assert a['extensions']['com.openai']['interface']['displayName'] == '论文带读'
     assert b['interface']['displayName'] == '论文带读'
@@ -14,6 +14,7 @@ def test_public_display_name_and_stable_internal_identifier():
     assert readme.splitlines()[0] == '# 不烧心 academic-skills'
     assert '## ChatGPT 网页端科研插件' in readme
     assert '### 🧩 ChatGPT 网页端插件 01 · [论文带读 · paper-reading]' in readme
+    assert '练习科研思维' in readme
 
 def test_reading_flow_unchanged():
     skill = (ROOT / 'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')
@@ -23,3 +24,12 @@ def test_reading_flow_unchanged():
         assert stage in skill
     for required in ('代码开源状态', '原论文', '数学排版显示', 't=0', 't=1', '可选第七站'):
         assert required in skill
+
+def test_v070_research_thinking_is_optional_and_evidence_led():
+    skill = (ROOT / 'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')
+    guide = (ROOT / 'skills/paper-reading/references/research-thinking.md').read_text(encoding='utf-8')
+    assert '全程科研思维培养合同（v0.7.0' in skill
+    assert 'Topic → Problem → Idea → Concrete Work' in guide
+    assert 'Claim / Evidence / Alternative / Falsifier / Next experiment' in skill
+    assert '可选的「泛读后科研思考」入口' in skill
+    assert 'references/research-thinking.md' in skill

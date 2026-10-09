@@ -1,0 +1,45 @@
+{
+  "paper": "Realistic Test-Time Adaptation of Vision-Language Models (CVPR 2025)",
+  "comment": "Regression example based on verified PDF text/figure descriptions. Must be rebuilt by reading each new paper. Audit is NOT proof that pixels were rendered in ChatGPT.",
+  "assets": [
+    {
+      "id": "Figure 1", "kind": "figure", "visual_type": "result", "pdf_page": 1,
+      "caption": "We advocate for evaluating transductive or online TTA methods on more extensive realistic scenarios.",
+      "visually_observed": "Two panels of comparative performance changes for varied effective class counts and correlated data streams.",
+      "body_reference": "Introduction, page 2: new method compared across broader scenarios; Section 3 refers to realistic setting.",
+      "argument_role": "baseline weakness under realistic test conditions and motivation evidence",
+      "why_required": "Demonstrates the performance consequences of the realistic scenarios shown in Figure 2.",
+      "first_stage": 1, "required_stages": [1, 7], "revisit_stages": []
+    },
+    {
+      "id": "Figure 2", "kind": "figure", "visual_type": "scenario", "pdf_page": 3,
+      "caption": "Illustration of two realistic scenarios: batch adaptation with limited effective classes and non-i.i.d. online streams.",
+      "visually_observed": "EuroSAT satellite image batch with limited classes, and UCF101 video stream with repeated correlated classes.",
+      "body_reference": "Introduction page 2 explicitly cites Figure 2; Section 3 page 3 calls it illustration of realistic TTA deployments.",
+      "argument_role": "reality of changing batch class composition and temporally correlated testing stream",
+      "why_required": "Without it first-stage readers may not understand which deployment assumptions Figure 1 challenges.",
+      "first_stage": 1, "required_stages": [1, 4], "revisit_stages": []
+    },
+    {
+      "id": "Algorithm 1", "kind": "algorithm", "visual_type": "algorithm", "pdf_page": 5,
+      "caption": "StatA procedure",
+      "visually_observed": "Initialization, iterative assignment update, statistical parameter updates, and returned assignments.",
+      "body_reference": "Method section refers to alternating optimization and Algorithm 1.",
+      "argument_role": "formal procedural description, not neural architecture figure",
+      "why_required": "Second-stage explanation should ground the intuitive Input–Operations–Output in the algorithm.",
+      "first_stage": 2, "required_stages": [2, 6], "revisit_stages": []
+    }
+  ],
+  "required_links": [{"stage": 1, "from": "Figure 2", "to": "Figure 1", "why": "Connect realistic input conditions to observed baseline performance failures.", "explained": true}],
+  "method_overview": {
+    "type": "algorithm_only", "explicitly_declared": true, "lack_of_architecture_stated": true,
+    "input_output_explained": true, "intuitive_flow_explained": true
+  },
+  "stage_audit": {
+    "1": {
+      "Figure 1": {"display_attempted": true, "explained": true},
+      "Figure 2": {"display_attempted": true, "explained": true}
+    },
+    "2": {"Algorithm 1": {"display_attempted": true, "explained": true}}
+  }
+}

@@ -7,7 +7,7 @@ SKILL = (ROOT/'skills/paper-reading/SKILL.md').read_text(encoding='utf-8')
 def test_version_name_and_manifest_routing():
     a = json.loads((ROOT/'plugin.json').read_text(encoding='utf-8'))
     b = json.loads((ROOT/'.codex-plugin/plugin.json').read_text(encoding='utf-8'))
-    assert a['version'] == b['version'] == '0.6.0'
+    assert a['version'] == b['version'] == '0.7.0'
     assert a['extensions']['com.openai']['interface']['displayName'] == '论文带读'
     assert b['interface']['displayName'] == '论文带读'
     assert '前三站' in a['extensions']['com.openai']['interface']['longDescription']
@@ -21,7 +21,7 @@ def test_late_formulas_and_stage_order():
 
 def test_stage_three_has_complete_non_formula_walkthrough():
     s=SKILL.split('## 第三站专门规范')[1].split('## 第四站专门规范')[0]
-    for x in ['输入 → 第一次处理', '效果快照', '读到这里已经完成泛读', '不能因为讲过架构模块就省略样本怎么运行', '不靠公式']:
+    for x in ['输入 → 第一次处理', '读到这里已经完成泛读', '不能因为讲过架构模块就省略样本怎么运行', '不靠公式']:
         assert x in s
 
 def test_deep_reading_preserves_reproducibility_and_figures():

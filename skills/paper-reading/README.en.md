@@ -2,11 +2,13 @@
 
 [简体中文](README.md) | **English** | [Collection overview](../../README.en.md)
 
-`paper-reading` is a personal paper-reading plugin for ChatGPT Web, driven by its Skill instructions. It guides readers through a paper step by step, helping them understand the research rather than just receive a summary. The core workflow and assistant behavior are specified in [`SKILL.md`](SKILL.md).
+`paper-reading` is a personal paper-reading plugin for ChatGPT Web, driven by its Skill instructions. It does more than explain papers: through questions, challenges, and evidence-based reasoning, it helps readers practice thinking like researchers. The core workflow and assistant behavior are specified in [`SKILL.md`](SKILL.md).
 
 > **This personal plugin is installed and used in ChatGPT Web; it does not consume Codex-specific task quota.** A step-by-step guide below shows how to create it with Plugin Creator and select it in a new conversation.
 
 ## Features
+
+> **More than understanding papers: practice scientific thinking.** The goal is not to read a paper for you, but to help you truly understand it and gradually develop independent research judgment.
 
 - **Use in ChatGPT conversations:** No Codex programming task is required. Paper reading remains subject to ChatGPT account, model, file-upload, and tool limits.
 - **No separately configured API key or deployed model:** It uses capabilities available in the host; this does not mean model usage is unlimited.
@@ -15,6 +17,12 @@
 - **Distinguish method-visual types accurately:** Identify whether a true overall architecture diagram exists, and distinguish it from a pipeline or algorithm listing. State clearly when no architecture diagram is present.
 - **Read alongside original paper figures:** Explanations aim to use figures and captions. Side-by-side viewing depends on the ChatGPT client and its file and image tools.
 - **The reader controls progress:** Advance one stage at a time. Stop after the first three overview stages or explicitly continue.
+
+### From understanding a paper to practicing research thinking
+
+After stage three, readers can stop, begin stage four, or choose a short research-thinking discussion. It starts from the paper's actual problem: under what conditions does the difficulty arise? Is there a simpler alternative? Which assumption matters most? This is optional, not a forced quiz, and it does not generate batches of unverified “novel ideas.”
+
+After deep reading or experiment analysis, readers may also use **Claim → Evidence → Alternative → Falsifier → Next Experiment** to examine a research claim: what evidence supports it, which alternative explanations remain, what result would challenge the proposed mechanism, and what is the smallest useful next experiment? Only when requested, the plugin can help prepare a research-question candidate card, paper-reading note, or presentation exercise. It distinguishes paper facts, inferences, and hypotheses to verify instead of presenting speculation from one paper as established novelty.
 
 The goal is to help readers understand a paper's problem, method, and evidence. Distinguish what the paper reports, what has been checked in code, and what is inferred. Do not invent information absent from the sources.
 
@@ -135,4 +143,4 @@ python skills/paper-reading/scripts/make_figure_card.py output/figure-3.png --ou
 
 The design of paper-reading was inspired by [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) and [Research Starter Kit](https://github.com/LAMDA-NeSy/Research-Starter-Kit), whose authors and maintainers share useful references on paper reading and research workflows. This acknowledges conceptual and workflow inspiration only; it does not imply official collaboration, endorsement, or source-code integration. Any code, documentation, or templates actually reused remain subject to the applicable license.
 
-The current version is **v0.6.0**; see the repository's [`CHANGELOG.md`](../../CHANGELOG.md). The repository uses the MIT License; see [`LICENSE`](../../LICENSE).
+The current version is **v0.7.0**; see the repository's [`CHANGELOG.md`](../../CHANGELOG.md). The repository uses the MIT License; see [`LICENSE`](../../LICENSE).

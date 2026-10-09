@@ -24,7 +24,7 @@
 
 ### 🧩 ChatGPT 网页端插件 01 · [论文带读 · paper-reading](skills/paper-reading/README.md)
 
-**在 ChatGPT 对话中边读讲解、边对照论文原图。** 支持七阶段泛读与精读，并建立全篇图表论证图谱，逐站检查必需证据是否讲全。
+**不止带你读懂论文，也帮助你练习科研思维。** 在 ChatGPT 对话中边读讲解、边对照论文原图；通过质疑假设、检查证据和设计反证实验，逐步练习独立科研判断。
 
 ![ChatGPT 中边读论文讲解、边对照论文原图的示例](docs/images/chatgpt-side-by-side-paper-figure.png)
 

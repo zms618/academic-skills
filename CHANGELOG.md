@@ -1,5 +1,20 @@
 # Release notes
 
+## v0.7.0 — 2026-10-09
+
+### Added
+
+- Extend the first overview stage to connect the research problem, paper story, main conclusion, and a verified result snapshot with its limits.
+- Add an optional research-thinking choice after the third overview stage; readers can discuss problem necessity, key assumptions, and simple alternatives, or proceed directly to deep reading.
+- Add a post-reading evidence review using Claim → Evidence → Alternative → Falsifier → Next Experiment, with optional research-question cards and presentation practice.
+- Keep research thinking evidence-led and user-controlled; do not force answers or present an unverified idea as established novelty.
+
+### Updated
+
+- Refresh the bilingual project guides and plugin metadata to describe paper reading as both paper understanding and research-thinking practice.
+- Add `references/research-thinking.md` with discussion flows, candidate-question criteria, and optional reporting formats.
+- Preserve the stable plugin identifier `paper-reading`, ChatGPT installation guides, screenshots, and acknowledgements.
+
 ## v0.6.0 — 2026-10-08
 
 ### Added
