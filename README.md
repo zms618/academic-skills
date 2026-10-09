@@ -8,7 +8,7 @@
 
 作者自己也是学生，理解 token 和 API 调用成本会给经费有限的学生带来负担。传统科研 Skills 通常需要在 Codex、Claude Code 等客户端中使用；如果把日常读论文、找研究 Idea 等繁琐工作都放在那里，专用额度和费用可能让学生难以长期承担。
 
-因此，我搜集并整理了这些面向 **ChatGPT 网页端**的科研插件。学生可以通过网页版 ChatGPT 的 **Plugin Creator** 创建属于自己的插件，然后直接在 ChatGPT 对话中使用，**不消耗 Codex 或 Claude 专用额度，也无需额外配置 API Token**。
+这些插件由我创作。我搜集了网上许多开源科研 Skill，借鉴各自的优点，并结合自己的理解进行设计与创作，整理成面向 **ChatGPT 网页端**使用的科研插件。学生可以通过网页版 ChatGPT 的 **Plugin Creator** 创建属于自己的插件，然后直接在 ChatGPT 对话中使用，**不消耗 Codex 或 Claude 专用额度，也无需额外配置 API Token**。
 
 这里的“免 token”指无需额外配置或支付 API Token，也不消耗 Codex / Claude 专用额度；插件直接在 ChatGPT 网页端的对话中使用。
 

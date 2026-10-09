@@ -8,7 +8,7 @@
 
 I am a student too, and I know that tokens and API calls can be expensive for students with limited budgets. Traditional research Skills often run in clients such as Codex or Claude Code. Using those dedicated quotas for routine work like reading papers and exploring research ideas can make these tasks difficult to sustain.
 
-That is why I collected and organized these research plugins for **ChatGPT Web**. Students can use ChatGPT's **Plugin Creator** to create their own personal plugins, then use them directly in ChatGPT conversations—**without consuming Codex or Claude-specific quota and without configuring a separate API token**.
+I created these research plugins for **ChatGPT Web** after exploring many open-source research Skills, learning from their strengths, and shaping the workflows with my own understanding. Students can use ChatGPT's **Plugin Creator** to create their own personal plugins, then use them directly in ChatGPT conversations—**without consuming Codex or Claude-specific quota and without configuring a separate API token**.
 
 Here, “token-free” means no separately configured or paid API token and no Codex / Claude-specific quota; the plugins are used directly in ChatGPT Web conversations.
 
