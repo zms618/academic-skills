@@ -133,6 +133,6 @@ python skills/paper-reading/scripts/make_figure_card.py output/figure-3.png --ou
 
 ## 🙏 Acknowledgements & Inspirations
 
-The design of paper-reading was inspired by [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading). We thank its author for sharing the project. This acknowledges design inspiration only; it does not imply official collaboration, endorsement, or source-code integration. Any code, documentation, or templates actually reused remain subject to the applicable license.
+The design of paper-reading was inspired by [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) and [Research Starter Kit](https://github.com/LAMDA-NeSy/Research-Starter-Kit), whose authors and maintainers share useful references on paper reading and research workflows. This acknowledges conceptual and workflow inspiration only; it does not imply official collaboration, endorsement, or source-code integration. Any code, documentation, or templates actually reused remain subject to the applicable license.
 
 The current version is **v0.6.0**; see the repository's [`CHANGELOG.md`](../../CHANGELOG.md). The repository uses the MIT License; see [`LICENSE`](../../LICENSE).

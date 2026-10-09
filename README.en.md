@@ -38,7 +38,7 @@ Install it in ChatGPT Web: see the [Research Idea Discovery plugin guide and ins
 
 ## 🙏 Acknowledgements & Inspirations
 
-- **paper-reading** was inspired by [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading).
+- **paper-reading** was inspired by [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) and [Research Starter Kit](https://github.com/LAMDA-NeSy/Research-Starter-Kit), whose authors share useful paper-reading and research-workflow resources.
 - **Research Idea Discovery** was inspired by [ResearchStudio](https://github.com/microsoft/ResearchStudio), [CCFA-Skills](https://github.com/mikubaka88/CCFA-Skills), [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep), [RW Research Skill](https://github.com/ozrwayne/rw-research-skill), [TaShan Research Skills](https://github.com/TashanGKD/tashan-research-skills), [AI Night-Scientist](https://github.com/microsoft/ai_night_scientist), and [PatSnap Skills](https://github.com/patsnap/skills).
 
 These acknowledgements refer to design and workflow inspiration; they do not imply official collaboration, endorsement, or source-code integration. Any code, documentation, or templates actually reused remain subject to their respective licenses. See each project's README for details.

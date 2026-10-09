@@ -137,6 +137,6 @@ python skills/paper-reading/scripts/make_figure_card.py output/figure-3.png --ou
 
 ## 🙏 Acknowledgements & Inspirations
 
-论文带读的设计受到 [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) 启发。感谢该项目作者分享相关工作。此处表示设计灵感来源，不代表官方合作、背书或源码整合；若实际复用其代码、文档或模板，仍需遵守其适用许可证。
+论文带读的设计受到 [kelip-paper-reading](https://github.com/skJack/kelip-paper-reading) 和 [Research Starter Kit](https://github.com/LAMDA-NeSy/Research-Starter-Kit) 启发。感谢相关作者与维护者分享论文阅读和科研入门工作流参考。此处表示概念与工作流灵感来源，不代表官方合作、背书或源码整合；若实际复用代码、文档或模板，仍需遵守其适用许可证。
 
 当前版本为 **v0.6.0**，详见仓库根目录 [`CHANGELOG.md`](../../CHANGELOG.md)。仓库采用 MIT License，见 [`LICENSE`](../../LICENSE)。

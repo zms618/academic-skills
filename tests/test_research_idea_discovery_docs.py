@@ -75,6 +75,8 @@ def test_both_projects_credit_their_inspiration_sources():
         assert source in idea_en
     assert 'kelip-paper-reading' in paper_zh
     assert 'kelip-paper-reading' in paper_en
+    assert 'Research-Starter-Kit' in paper_zh and 'Research-Starter-Kit' in paper_en
+    assert 'Research-Starter-Kit' in root_zh and 'Research-Starter-Kit' in root_en
     assert 'kelip-paper-reading' in root_zh and 'kelip-paper-reading' in root_en
     assert 'PatSnap Skills' in root_zh and 'PatSnap Skills' in root_en
     assert '不代表官方合作、背书' in idea_zh
