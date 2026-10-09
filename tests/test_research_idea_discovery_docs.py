@@ -13,8 +13,10 @@ def test_research_idea_discovery_is_listed_in_both_collection_overviews():
     assert 'skills/research-idea-discovery/README.en.md' in en
     assert '不消耗 Codex 或 Claude 专用额度' in zh
     assert 'Codex-specific quota' in en
-    assert '研究机会' in zh and '机制新颖性' in zh
-    assert 'Discover research opportunities' in en and 'mechanism-level novelty' in en
+    assert '从真实失败、成功机制、结论冲突和应用困难中发现研究问题' in zh
+    assert 'Discover research problems while reading key papers' in en
+    assert '四种有证据的问题入口' in (PROJECT / 'README.md').read_text(encoding='utf-8')
+    assert 'Four evidence-grounded entry points' in (PROJECT / 'README.en.md').read_text(encoding='utf-8')
     assert '## 项目初衷' in zh and '## Why this project exists' in en
     assert zh.index('## 项目初衷') < zh.index('## 本项目的插件') < zh.index('## ChatGPT 网页端科研插件')
     assert en.index('## Why this project exists') < en.index('## Plugins in this collection') < en.index('## ChatGPT Web Research Plugins')
@@ -26,7 +28,7 @@ def test_plugin_manifests_and_primary_skill_are_present():
     plugin = json.loads((PROJECT / 'plugin.json').read_text(encoding='utf-8'))
     codex = json.loads((PROJECT / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
     assert plugin['name'] == codex['name'] == 'research-idea-discovery'
-    assert plugin['version'] == codex['version'] == '3.0.0'
+    assert plugin['version'] == codex['version'] == '3.5.0'
     assert (PROJECT / 'skills/research-idea-discovery/SKILL.md').is_file()
     assert '[English](README.en.md)' in (PROJECT / 'README.md').read_text(encoding='utf-8')
     assert '[简体中文](README.md)' in (PROJECT / 'README.en.md').read_text(encoding='utf-8')
@@ -36,11 +38,11 @@ def test_v3_advisor_report_is_registered_and_evidence_labeled():
     main_skill = (PROJECT / 'skills/research-idea-discovery/SKILL.md').read_text(encoding='utf-8')
     report_skill = (PROJECT / 'skills/research-advisor-report/SKILL.md').read_text(encoding='utf-8')
     protocol = (PROJECT / 'skills/research-idea-discovery/references/research-advisor-output-protocol.md').read_text(encoding='utf-8')
-    assert 'skills/research-advisor-report/SKILL.md' in main_skill
+    assert '`research-advisor-report`' in main_skill
     assert 'references/research-advisor-output-protocol.md' in main_skill
     for label in ('VERIFIED', 'CONDITIONAL', 'UNKNOWN', 'HYPOTHESIS'):
         assert label in report_skill
-    assert 'Idea -> Evidence -> Contribution -> Paper Claim' in protocol
+    assert 'Potential Contributions' in protocol
 
 
 def test_project_documentation_local_links_resolve():

@@ -1,3 +1,7 @@
+# v3.3 OPEN and DISCOVER: Problem Scout precedes Idea generation
+
+Default first output is up to three ranked **scientific problems**, not 2–4 method ideas. Ranking is based on source-located negative results, substantive stakes, matched comparison and no-new-model falsifiability. PROBE_ONLY and RESEARCH_MORE must not be silently converted to preferred Idea. Even if the user gives an Idea, test problem premise (M0) before the usual validation steps. See `motivation-first-gate.md`.
+
 # 可配置范围与启动协议
 
 ## 使用原则

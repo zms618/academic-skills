@@ -10,6 +10,9 @@ import json
 import sys
 from pathlib import Path
 try:
+    from scripts.motivation_gate import assess as assess_m0
+    from scripts.motivation_portfolio import assess_portfolio, assess_gap
+    from scripts.paper_anchor_audit import assess as assess_paper_anchors
     from scripts.argument_audit import (audit_motivation, audit_story, audit_logic,
                                          audit_motivation_recheck, audit_novelty)
     from scripts.dataset_anchor import assess_anchor
@@ -18,6 +21,9 @@ try:
     from scripts.execution_evidence import review_record, pilot_record
     from scripts.literature_coverage import report as coverage_report
 except ModuleNotFoundError:
+    from motivation_gate import assess as assess_m0
+    from motivation_portfolio import assess_portfolio, assess_gap
+    from paper_anchor_audit import assess as assess_paper_anchors
     from argument_audit import (audit_motivation, audit_story, audit_logic,
                                  audit_motivation_recheck, audit_novelty)
     from dataset_anchor import assess_anchor
@@ -26,10 +32,11 @@ except ModuleNotFoundError:
     from execution_evidence import review_record, pilot_record
     from literature_coverage import report as coverage_report
 
-STAGES=['SCOPE','SEARCH','EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR','FEASIBILITY',
+STAGES=['SCOPE','SEARCH','EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR','FEASIBILITY',
         'MOTIVATION_INITIAL','FREEZE','SCOOP','MECHANISM_LOGIC','MOTIVATION_RECHECK',
         'NARRATIVE','REVIEW','PILOT','UPDATE']
 CHECKS={
+    'DIVERGE':('motivation_gate_result.json','ready','M0: motivation lacks sufficient located evidence; first investigate the scientific problem'),
     'FEASIBILITY':('dataset_access_result.json','access_ready','D0: a dataset card/URL is not evidence of readable sample bytes and schema'),
     'MOTIVATION_INITIAL':('feasibility_result.json','precheck_ready','G0: full feasibility not established'),
     'FREEZE':('motivation_initial_result.json','ready','M1: initial motivation lacks evidence'),
@@ -54,6 +61,36 @@ def write_json(path,obj):
 
 def validate_stage_evidence(p, stage):
     """Replay local artifact checks rather than trusting an editable ready=true flag."""
+    if stage=='DIVERGE':
+        stfile=p/'workflow_state.json'
+        state=read_json(stfile) if stfile.is_file() else {}
+        if state.get('paper_anchor_required'):
+            card_path=p/'paper_anchor_card.json'
+            result_path=p/'paper_anchor_result.json'
+            if not card_path.is_file() or not result_path.is_file():return False
+            anchor_card=read_json(card_path)
+            anchor_result=assess_paper_anchors(anchor_card)
+            if not anchor_result['ready'] or read_json(result_path)!=anchor_result:return False
+            # Paper-to-problem lineage must explain at least the selected M0 problem.
+            m0_path=p/'motivation_gate_card.json'
+            if not m0_path.is_file():return False
+            problem=read_json(m0_path).get('problem_id')
+            if problem not in [q.get('problem_id') for q in anchor_card.get('problem_lineage',[]) if isinstance(q,dict)]:return False
+        if state.get('portfolio_required'):
+            sources=('motivation_portfolio_card.json','motivation_portfolio_result.json',
+                     'gap_investigation_card.json','gap_investigation_result.json')
+            if any(not (p/f).is_file() for f in sources):return False
+            portfolio=assess_portfolio(read_json(p/'motivation_portfolio_card.json'))
+            gap=assess_gap(read_json(p/'gap_investigation_card.json'),portfolio)
+            if (not portfolio['ready'] or not gap['ready'] or
+                portfolio!=read_json(p/'motivation_portfolio_result.json') or
+                gap!=read_json(p/'gap_investigation_result.json')):return False
+            m0card=p/'motivation_gate_card.json'
+            if not m0card.exists() or read_json(m0card).get('problem_id')!=gap['focus_problem_id']:
+                return False
+        card=p/'motivation_gate_card.json'
+        result=p/'motivation_gate_result.json'
+        return card.is_file() and result.is_file() and assess_m0(read_json(card))==read_json(result) and read_json(result).get('ready') is True
     if stage=='FEASIBILITY':
         manifest=p/'dataset_access_manifest.json'
         anchor=p/'dataset_anchor_result.json'
@@ -79,7 +116,7 @@ def validate_stage_evidence(p, stage):
 
 def check_idea(idea):
     if not isinstance(idea,dict):idea={}
-    required=['idea_id','revision','problem','hypothesis','falsifier','mechanism','unique_prediction',
+    required=['motivation_gate','idea_id','revision','problem','hypothesis','falsifier','mechanism','unique_prediction',
               'naive_baseline','closest_prior_work','pilot','sources','dataset_anchor','feasibility',
               'motivation_initial','novelty','mechanism_logic','motivation_recheck','story']
     missing=[k for k in required if not idea.get(k)]
@@ -91,6 +128,7 @@ def check_idea(idea):
     logic=audit_logic(idea.get('mechanism_logic'))
     motivation_recheck=audit_motivation_recheck(idea.get('motivation_recheck'))
     checks={
+        'M0_problem_motivation':assess_m0(idea.get('motivation_gate'))['ready'],
         'D0_existing_dataset_anchor':anchor['anchor_ready'],
         'D0_sample_access': isinstance(idea.get('dataset_access'),dict) and idea['dataset_access'].get('access_ready') is True,
         'G0_feasibility':feasibility['precheck_ready'],
@@ -132,12 +170,16 @@ def clear_downstream(p,st,from_stage,reason):
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     sub=parser.add_subparsers(dest='cmd',required=True)
-    init=sub.add_parser('init');init.add_argument('--project',required=True);init.add_argument('--domain',default='OPEN');init.add_argument('--goal',default='UNSPECIFIED')
+    init=sub.add_parser('init');init.add_argument('--project',required=True);init.add_argument('--domain',default='OPEN');init.add_argument('--goal',default='UNSPECIFIED');init.add_argument('--motivation-mode',choices=['AUTO','SINGLE','PORTFOLIO'],default='AUTO');init.add_argument('--discovery-entry',choices=['AUTO','PAPER_ANCHORED','OPEN_PROBLEM'],default='AUTO')
     audit=sub.add_parser('audit');audit.add_argument('--project',required=True);audit.add_argument('--idea',required=True)
     advance=sub.add_parser('advance');advance.add_argument('--project',required=True);advance.add_argument('--stage',choices=STAGES,required=True);advance.add_argument('--reason',required=True)
     dv=sub.add_parser('dataset-verify');dv.add_argument('--project',required=True);dv.add_argument('--manifest',required=True)
     rv=sub.add_parser('record-review');rv.add_argument('--project',required=True);rv.add_argument('--card',required=True)
     pv=sub.add_parser('record-pilot');pv.add_argument('--project',required=True);pv.add_argument('--run-dir',required=True);pv.add_argument('--metrics')
+    mg=sub.add_parser('motivation-gate');mg.add_argument('--project',required=True);mg.add_argument('--card',required=True)
+    port=sub.add_parser('motivation-portfolio');port.add_argument('--project',required=True);port.add_argument('--card',required=True)
+    gp=sub.add_parser('gap-investigation');gp.add_argument('--project',required=True);gp.add_argument('--card',required=True)
+    paper=sub.add_parser('paper-anchors');paper.add_argument('--project',required=True);paper.add_argument('--card',required=True)
     cv=sub.add_parser('literature-coverage');cv.add_argument('--project',required=True);cv.add_argument('--manifest',required=True)
     for cmd in ('dataset-anchor','feasibility','motivation-initial','motivation','novelty','logic','motivation-recheck','narrative'):
         a=sub.add_parser(cmd);a.add_argument('--project',required=True);a.add_argument('--card',required=True)
@@ -147,8 +189,14 @@ def main(argv=None):
         if fp.exists():raise SystemExit('Project exists; will not erase prior research')
         write_json(fp,{'domain':a.domain,'goal':a.goal,'stage':'SCOPE','history':[],
             'created_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
-            'dataset_policy':'IDEA_FIRST_AGENT_DISCOVERY_EXISTING_OR_DERIVED_ONLY',
-            'argument_protocol':'M1_N_L_M2_S','evidence_status':'UNVERIFIED','role_mode':'ROLE_SIMULATED'})
+            'dataset_policy':'MOTIVATION_FIRST_THEN_IDEA_FIRST_EXISTING_OR_DERIVED_ONLY',
+            'portfolio_required': a.motivation_mode=='PORTFOLIO' or (a.motivation_mode=='AUTO' and
+                (('CVPR' in a.goal.upper() and ('BEST' in a.goal.upper() or '最佳' in a.goal))
+                or 'MOTIVATION_PORTFOLIO' in a.goal.upper())),
+            'protocol_version':'M0_MOTIVATION_FIRST_3_5',
+            'discovery_entry':a.discovery_entry,
+            'paper_anchor_required':a.discovery_entry=='PAPER_ANCHORED',
+            'argument_protocol':'M0_M1_N_L_M2_S','evidence_status':'UNVERIFIED','role_mode':'ROLE_SIMULATED'})
         print(fp);return 0
     if not fp.exists():raise SystemExit('Project not initialized')
     st=read_json(fp)
@@ -158,6 +206,70 @@ def main(argv=None):
         st['history'].append({'from':old,'to':st['stage'],'reason':'v2.5 order migration: previous motivation was post-novelty; re-audit required'})
         write_json(fp,st)
     if a.cmd=='status':print(json.dumps(st,indent=2,ensure_ascii=False));return 0
+    if a.cmd=='paper-anchors':
+        if st['stage']!='MOTIVATION_GATE':
+            raise SystemExit('Paper anchors are submitted at MOTIVATION_GATE, before method design')
+        card=read_json(a.card)
+        result=assess_paper_anchors(card)
+        old=p/'paper_anchor_card.json'
+        if not old.exists() or read_json(old)!=card:
+            # Changed evidence invalidates all dependent portfolio/gap and M0 judgments.
+            for artifact in ('motivation_portfolio_card.json','motivation_portfolio_result.json',
+                             'motivation_gate_card.json','motivation_gate_result.json',
+                             'gap_investigation_card.json','gap_investigation_result.json'):
+                (p/artifact).unlink(missing_ok=True)
+        write_json(old,card)
+        write_json(p/'paper_anchor_result.json',result)
+        print(result['status']);return 0 if result['ready'] else 2
+    if a.cmd=='motivation-portfolio':
+        if st['stage']!='MOTIVATION_GATE':
+            raise SystemExit('Portfolio must be submitted at MOTIVATION_GATE stage')
+        card=read_json(a.card)
+        result=assess_portfolio(card)
+        old=p/'motivation_portfolio_card.json'
+        if not old.exists() or read_json(old)!=card:
+            for artifact in ('motivation_gate_result.json','gap_investigation_card.json',
+                             'gap_investigation_result.json'):(p/artifact).unlink(missing_ok=True)
+        write_json(old,card)
+        write_json(p/'motivation_portfolio_result.json',result)
+        print(result['status']);return 0 if result['ready'] else 2
+    if a.cmd=='gap-investigation':
+        if st['stage']!='MOTIVATION_GATE':
+            raise SystemExit('Gap investigation must precede Idea Seed at MOTIVATION_GATE stage')
+        source=p/'motivation_portfolio_card.json'
+        if not source.is_file():raise SystemExit('Need Motivation Portfolio before gap research')
+        portfolio=assess_portfolio(read_json(source))
+        if not portfolio.get('ready'):raise SystemExit('Motivation Portfolio is invalid')
+        card=read_json(a.card)
+        # The focus motivation must have independently passed M0 before committing
+        # to a positive gap judgment. Other shortlisted motives may remain PROBE_ONLY.
+        m0=p/'motivation_gate_card.json'
+        m0r=p/'motivation_gate_result.json'
+        if not m0.is_file() or not m0r.is_file() or \
+                assess_m0(read_json(m0)) != read_json(m0r) or \
+                not read_json(m0r).get('ready') or \
+                read_json(m0).get('problem_id')!=card.get('focus_problem_id'):
+            raise SystemExit('Selected focus must pass M0 before a positive gap investigation')
+        result=assess_gap(card,portfolio)
+        old=p/'gap_investigation_card.json'
+        # Gap findings do not erase a previously valid M0 observation check.
+        # DIVERGE independently replays the portfolio, M0 and gap source records.
+        write_json(old,card)
+        write_json(p/'gap_investigation_result.json',result)
+        print(result['status']);return 0 if result['ready'] else 2
+    if a.cmd=='motivation-gate':
+        if st['stage']!='MOTIVATION_GATE':
+            raise SystemExit('M0 motivation evidence is submitted at MOTIVATION_GATE stage')
+        card=read_json(a.card)
+        old=p/'motivation_gate_card.json'
+        if old.exists() and read_json(old)!=card:
+            # A genuinely new observation requires a new gate, not recycling old PASS.
+            (p/'motivation_gate_result.json').unlink(missing_ok=True)
+        result=assess_m0(card)
+        write_json(old,card)
+        write_json(p/'motivation_gate_result.json',result)
+        print(result['status']+' -> '+str(p/'motivation_gate_result.json'))
+        return 0 if result['ready'] else 2
     if a.cmd=='dataset-verify':
         card=read_json(a.manifest)
         old=p/'dataset_access_manifest.json'
@@ -268,6 +380,12 @@ def main(argv=None):
     if tar>cur+1:raise SystemExit('Cannot skip scientific stages')
     # Check conditions on arrival at each stage. No stage can replace evidence with a flattering score.
     if tar>cur:
+        # New projects must not reuse legacy or forged 'ready' flags. 3.2 projects
+        # that were already past the gate before migration remain readable but
+        # must be explicitly labelled LEGACY_M0_NOT_AUDITED in final reports.
+        if st.get('protocol_version') in ('M0_MOTIVATION_FIRST_3_3','M0_MOTIVATION_FIRST_3_4','M0_MOTIVATION_FIRST_3_5') and tar>=STAGES.index('DIVERGE'):
+            if not validate_stage_evidence(p,'DIVERGE'):
+                raise SystemExit('M0: real problem evidence missing, stale, or structurally insufficient')
         if a.stage in CHECKS:
             filename,flag,message=CHECKS[a.stage]
             path=p/filename
@@ -275,6 +393,13 @@ def main(argv=None):
         if a.stage in ('FEASIBILITY','MECHANISM_LOGIC','PILOT','UPDATE') and not validate_stage_evidence(p,a.stage):
             raise SystemExit(a.stage+': underlying source artifact missing, stale, or invalid')
     if tar<cur:
+        if tar<=STAGES.index('MOTIVATION_GATE'):
+            (p/'motivation_gate_result.json').unlink(missing_ok=True)
+            (p/'motivation_gate_card.json').unlink(missing_ok=True)
+            for name in ('paper_anchor_result.json','paper_anchor_card.json',
+                         'motivation_portfolio_result.json','motivation_portfolio_card.json',
+                         'gap_investigation_card.json','gap_investigation_result.json'):
+                (p/name).unlink(missing_ok=True)
         # Revisions invalidate research conclusions from the point they are revised.
         if tar<=STAGES.index('FEASIBILITY'):
             clear_downstream(p,st,a.stage,'research assumption changed: '+a.reason)

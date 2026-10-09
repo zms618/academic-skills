@@ -1,12 +1,63 @@
 ---
 name: research-idea-discovery
-description: Use for finding, validating, refining, comparing or rejecting scientific research ideas and paper contributions in any user-chosen research field. Handles literature-grounded gap discovery, mechanism-level novelty checks, falsifiable hypotheses, minimum decisive experiments, reviewer-style critique, and evidence-labeled mentor-style decision reports. Target venue (including CCF-A) and research domain are selectable, never fixed. Do not trigger for ordinary paper summarization, writing polish, or generic brainstorming unless the user asks to discover or evaluate novel research contributions.
+description: Use for finding, validating, refining, comparing or rejecting scientific research ideas and paper contributions in any user-chosen research field. Handles literature-grounded gap discovery, mechanism-level novelty checks, falsifiable hypotheses, minimum decisive experiments, and reviewer-style critique. Target venue (including CCF-A) and research domain are selectable, never fixed. Do not trigger for ordinary paper summarization, writing polish, or generic brainstorming unless the user asks to discover or evaluate novel research contributions.
 ---
 
 # Research Idea Discovery — 用户指定领域 · 证据驱动 · 审稿级创新审计
 
 
-## v2.7 VERIFIED EVIDENCE + PILOT FEEDBACK（最高优先级）
+
+## v3.5 PAPER-GROUNDED DISCOVERY — READ WHILE QUESTIONING (HIGHEST PRIORITY)
+
+**The fast-start path uses prior scientific knowledge rather than starting from an invented network.** For open CVPR-level idea discovery, suggest an adversarial set of 3–5 anchor papers (not necessarily 5 if literature is sparse), critically read exact figures/tables, failure cases, assumptions and later citations, and build the Motivation Portfolio from located source evidence. Read `references/paper-lineage-and-critical-reading.md`, `references/reproduction-asset-policy.md`, and run `research-paper-anchor-scout`. Do not assume an unverified paper limitation is a real open problem.
+
+**Problem-driven is the main line; method-driven is a constrained helper.** Four research entry operators: reproduce real failures, reverse-engineer WHY a successful technique works, reconcile apparently conflicting papers under matched protocols, and translate deployment pain to a measurable scientific test. For each credible question record `paper → located experiment → problem/hypothesis → strongest null explanation → no-new-method probe`. Critical questioning occurs DURING literature reading, never after the user has read 50 papers. A popular Mamba/SSM/GRPO or fusion module can be proposed as a possible solution **only after the independent scientific motivation passes M0**.
+
+**No fake contradictions, no fake replicability.** Contrast only when task/split/backbone/metric/pretraining/compute are comparable; otherwise label apparent disagreement and specify fair harmonizing controls. Exact data rights, repository, checkpoint, setup, runnable command and actual logs determine `REPRODUCTION_READY`, not a GitHub URL. `SCIENTIFIC_UPSIDE` and `RESEARCH_VELOCITY` are distinct, not one fabricated 9/10 score. The first user deliverable is a compact paper-evidence landscape and motivation selection; a solution comes only after gap investigation. For a researcher seeking rapid results, use a resource-dependent 14-day GO/STOP decision window, not a guarantee of a paper.
+
+For an explicit paper-first local workflow, initialize with `--discovery-entry PAPER_ANCHORED`, submit `paper-anchors --card ...` at MOTIVATION_GATE, and preserve this evidence as a gate before DIVERGE. `OPEN_PROBLEM` preserves v3.4 broad scouting when too few papers exist; `SINGLE` validation retains one-question operation. The structural checker cannot verify research claims. Existing M0/M1/N/L/M2/S and full method/reviewer gates are unchanged.
+
+## v3.4 MULTIPLE MOTIVATIONS → SHORTLIST → GAP FIRST (OVERRIDES SINGLE-IDEA DISCOVERY)
+
+**For DISCOVER / OPEN_EXPLORE when the goal is CVPR Best Paper, or when the user requests multiple motivations, the first deliverable is a cross-problem research portfolio—not an Idea.** Read `references/motivation-portfolio-and-cvpr.md` and run `research-motivation-portfolio` before single-candidate M0. Broad neutral literature scan → up to 5–8 genuinely distinct motivations (fewer if evidence demands, no padding) → explain each scientific necessity, hard failure and strongest null explanation → shortlist 2–3 with real comparative reasons → per-motivation M0 → targeted near-neighbor GAP INVESTIGATION for **all shortlisted motivations** → choose surviving problem(s) → only then generate Ideas, potential contributions and detailed methodology. Do not lock into one idea and hunt supporting citations. No mechanism proposal for failed or unprobed M0; a `PRIMARY_LEAD` must never be displayed as confirmed. Sources and counters must stay alongside favorable evidence.
+
+**CVPR Best Paper is the user's aspirational bar, not a review score or official award algorithm.** Use current official CVPR review guidance when available (novelty/significance, potential impact, soundness, bold concepts, reproducibility); do not promise award/acceptance or reduce all value to SOTA. Important scientific discovery, convincing generalization and strong mechanism necessity matter more than inflating scores or module count. The plugin remains venue-agnostic when users target other venues. User-facing report must present Motivation Landscape **before** shortlisted Gap Reports, and both before Contribution/Method. If the shortlisted gaps disappear on closer inspection, publish a negative report and restart scouting, not a three-contribution package. The v3.3 one-problem path remains for explicitly single-idea VALIDATE/REFINE tasks.
+
+## v3.3 M0 MOTIVATION-FIRST HARD GATE — RESEARCH PROBLEM BEFORE IDEA (TOP PRIORITY)
+
+**任何 DISCOVER/OPEN_EXPLORE/PIVOT 任务，第一步不是生成 Idea Seed，而是独立发现并核实“值得研究的问题”。** 必须先读取 `references/motivation-first-gate.md` 并让 `research-problem-scout` 进行有边界的中立问题证据检索。先定位原论文 Table/Figure/负面结果/明确理论反例，排查强基线是否公平；再审严重性、科学意义、竞争解释与低成本可证伪实验。**不能先选“未见模态偏移组合”、Router 或任一方法名再找支持它的文献。** 对用户直接提供的 Idea 也必须先拆除方法包装，检验问题本身。
+
+新版不可跳过顺序：`SCOPE → SEARCH/PROBLEM_SCOUT → EXPLAIN_PROBLEM → MOTIVATION_GATE (M0) → DIVERGE/IDEA_SEED → DATA_SEARCH/D0 → FEASIBILITY/G0 → MOTIVATION_INITIAL (M1) → FREEZE → NOVELTY N → LOGIC L → MOTIVATION_RECHECK M2 → STORY S → REVIEW/PILOT`。M0 仅做低成本的事实和科学价值判断；**只有 `PASS_FOR_IDEATION` 可以生成 Idea Seed 和启动后续昂贵研究**。单一线索时 `PROBE_ONLY` 只允许小规模无新模型的 E0/公平性核验；没有真实证据就 `REJECT_OR_REFRAME`，缺资料 `RESEARCH_MORE`。这不是禁止前置查文献，而是要求检索寻找真实问题、反例和替代解释，不为预设方法背书。根因是科学假设，不是看完一张表便得到的结论。
+
+**三层动机审查**：M0（最早判断问题有无价值）→ M1（数据/资源确认后验证重要性和科学命题）→ M2（最危险近邻与机制审查后复审问题是否仍未解决）。任一道关失败都真实 STOP/PIVOT，不允许在后续拼模型、找 3 个创新点或润色故事。最终报告首先交付“问题证据与动机裁决”：明确什么真实失败，哪些来源/表格、匹配设置、为什么重要、两个竞争解释、一项无新模型的 E0、准入决定；若 M0 不通过，**不输出三创新点、网络结构、Loss 或一周模型训练计划**，而是简明解释为何不足与下一次寻找真实问题的范围。
+
+**现有 v2.x/v3.2 语句若把 IDEA_SEED 写在 M0 前，只代表历史协议，均被本节及 `motivation-first-gate.md` 覆盖。CLI 的结构通过不等于实际审稿验证，通过必须以来源真实内容和公平对照为依据。** 用户只问某个事实时仍直接回答，不机械运行完整工作流。
+
+## v3.2 SCIENTIFIC METHOD SYNTHESIS + RESEARCHER UTILITY GATE (TOP PRIORITY)
+
+**用户要的是一个研究员明天可以验证的科学方案，而不是三个英文模块和十项抽象评分。** 在完整 IDEA DISCOVERY、VALIDATE、REFINE 的最终推荐中，除 v3.1 的导师报告外必须先读取 `references/method-design-and-necessity.md` 和 `references/researcher-value-acceptance.md`，并按 `research-method-designer` 设计最小方法；最后强制执行 **Implementing PhD Student + Critical Reviewer** 两种对立视角的桌面模拟审查，发现未定义的函数、漏掉的对照、数据和模型不匹配，须修改方案或下调裁决，不能只附一句风险提示。
+
+**问 WHAT → WHY → HOW → TEST → KILL。** 先复述一个任务中的可测失败与尚待证实的根因，再给能与强简单 Baseline 区分的最小机制。要针对动机设计 **最多三个彼此可独立检验的潜在贡献**，每项都要明确与近邻的运算级差异、输入输出/必要资源、唯一预测、关键消融、验证状态；**不强凑三个**。如果只是「估计、建图、门控」三个串联模块但同一科学命题，应合并成一个机制贡献。
+
+**Method Spec 是 v3.2 新硬交付**（深度学习领域）：准确说明可观测决策量怎么算/校准、具体张量接口（未核实写 UNKNOWN）、公式/损失每项与 stopgrad/teacher 及梯度路径、前向与测试更新的先后顺序/多轮缓存、冻结与更新参数、失败回退行为、时间/显存/类别平方复杂度，以及与公开代码的真实接入点（未检查的文件名写 TO_LOCATE，禁止乱编）。必须区分测试时无标签更新与离线有标签诊断；源域原型/源数据是否可用、missing vs corruption 是否兼容要明确。**只画结构图或取名不能算设计出方法。**
+
+**研究者实用性审查**：最终能明确回答 `读哪个真实入口 → 检查哪个 checkpoint/config → 首先新增哪一个函数 → 用什么输入输出 → 跑什么对照 → 保存什么 CSV/JSON → 看到什么结果停止`。没有来源和可运行证据时，第一动作是资源核查而非凭空给训练命令。至少包含一个反例/不可恢复边界（例如信息已丢失不可恢复）和两步测试时更新 trace（若序列应用）；复杂方案必须有无需新架构的竞争方案。最后附最值得做的第一行动，不要用形式化门控日志替代解释。
+
+**注意**：这是模拟的研究员/审稿人 *角色评估*，不是插件真实运行了独立模型、文献系统综述或用户机器上的训练。没有原始日志不允许声称实验已运行。若用户只问架构或一条贡献，则专注回应，不机械铺满模板。领域非 DL 时改用适合该领域的可执行技术路径与控制实验，不强求网络 Loss。
+
+## v3.1 FIRST-CLASS USER DELIVERABLE — EXPLAIN + EXECUTE (HIGHEST PRIORITY)
+
+**科研审计是内部推理过程，最终必须交给用户一份听得懂、做得了、能证伪的导师式研究方案。** 每次完成 DISCOVER/REFINE/COMPARE/VALIDATE 的主要候选审查，先阅读以下文档并使用 `research-advisor-report` 组织结果：
+
+- `references/plain-language-idea-protocol.md`: 先讲真实场景与数字/玩具样例、直觉性动机，再介绍英文术语；用三句短话说清 *原本怎么办 → 为什么失败 → 新方案改变了什么*。普通研究生读完应能复述，不要连续堆 Evidence Graph/Router/关系级优化等术语。
+- `references/research-execution-protocol.md`: **必须具体推荐或明确暂不能推荐**现成 Dataset、数据版本/任务字段/标签、官方入口与许可、**同一可兼容模型/Baseline 套件**、权重与代码、冻结/更新参数、估算资源依据、最初 48 小时 E0、第一周计划和 Kill Criteria；给出访问/运行证据等级。禁止未经核查泛列 ImageBind、CLIP、AV-HuBERT 等互不兼容骨干。用户无需自己先找数据。
+- `references/scientific-story-and-contributions.md`: 先陈述动机、竞争解释、可证伪观察；按 Observation → Why failure → Root cause (HYPOTHESIS until proved) → Insight → Method → Evidence 的故事链给研究者讲清**因果逻辑**，而非写漂亮的营销语；潜在 1–3 个贡献要标验证状态，**不能硬凑第三个创新点**。
+- `references/research-advisor-output-protocol.md`: 固定最终报告顺序与无合格候选的交付分支。最终用一句大白话总结、明确一项可马上执行的 E0 与撤销/继续阈值；文献、模型及数据如未经核验要明确写 UNKNOWN，不捏造可行性。
+- 本次升级包含 `research-idea-explainer` 和 `research-execution-planner` 两个任务模块，不是独立部署模型或自动 GPU 代理。审计记录/字段/长术语放到尾部或 DEEP 附录，不允许替代导师报告。
+
+**输出次序为用户易理解服务，内部 M1/N/L/M2/S 等硬门保持不变。** 先让人理解意义，再讲近邻与创新；最终研究建议必须包含明确的数据/骨干/基线与第一实验或逐项说明不可核验的阻碍。任何想法可以只是 PROMISING SEED，不能因最终报告写得完整就宣称实验已完成、创新已证实或 CCF-A 可录用。若用户只问单个问题，则仅回答该问题，不机械展开 12 节。
+
+## v2.7 VERIFIED EVIDENCE + PILOT FEEDBACK（执行证据硬门，仍然有效）
 
 在 v2.6 的 Idea First → D0/G0 → M1/N/L/M2/S → REVIEW/PILOT 双循环之上新增**可核查的执行证据规则**。必须读取 `references/verification-and-pilot-protocol.md`：
 
@@ -18,9 +69,9 @@ description: Use for finding, validating, refining, comparing or rejecting scien
 
 ## v2.6 IDEA FIRST + EVIDENCE ESCALATION（保留）
 
-**用户不需要提供已核实的数据集、现成代码或完整实验方案。插件自己先调查文献，提出研究假设与 Idea Seeds，再为每条 Seed 主动检索现有数据集、可衍生父数据集、开源 Baseline 和评测协议，核实可访问性与任务字段，完成 G0 可行性审计；随后先做动机初审，再进行机制级新颖性审查、机制逻辑/必要性审核和动机复审，最后才开展科学故事审查。**
+**用户不需要提供已核实的数据集、现成代码或完整实验方案。通过 v3.3 M0 后，插件自己提出研究假设与 Idea Seeds，再为每条 Seed 主动检索现有数据集、可衍生父数据集、开源 Baseline 和评测协议，核实可访问性与任务字段，完成 G0 可行性审计；随后先做动机初审，再进行机制级新颖性审查、机制逻辑/必要性审核和动机复审，最后才开展科学故事审查。**
 
-**正式筛选顺序不可颠倒：** `SCOPE → SEARCH → EXPLAIN → DIVERGE (IDEA_SEED) → DATA_SEARCH → DATA_ANCHOR (D0) → FEASIBILITY (G0) → MOTIVATION_INITIAL (M1) → FREEZE → SCOOP (N) → MECHANISM_LOGIC (L) → MOTIVATION_RECHECK (M2) → NARRATIVE (S) → REVIEW → PILOT → UPDATE`。其中 **M1 动机初审**先验证问题是否真实重要；**N 查重**分析危险近邻；**L 逻辑/必要性**审查机制为什么真正解决问题且简单替代不够；**M2 动机复审**必须利用近邻结果重新判断原问题与贡献边界；**S 故事审查**最后处理可信论证，不是修辞包装。
+**旧版执行序列（在 v3.3 中 M0 之后才执行）：** `SCOPE → SEARCH → EXPLAIN → DIVERGE (IDEA_SEED) → DATA_SEARCH → DATA_ANCHOR (D0) → FEASIBILITY (G0) → MOTIVATION_INITIAL (M1) → FREEZE → SCOOP (N) → MECHANISM_LOGIC (L) → MOTIVATION_RECHECK (M2) → NARRATIVE (S) → REVIEW → PILOT → UPDATE`。其中 **M1 动机初审**先验证问题是否真实重要；**N 查重**分析危险近邻；**L 逻辑/必要性**审查机制为什么真正解决问题且简单替代不够；**M2 动机复审**必须利用近邻结果重新判断原问题与贡献边界；**S 故事审查**最后处理可信论证，不是修辞包装。
 
 **两层循环**：第一层 `Idea Seed → 数据可行性 → 动机初审 → 新颖性 → 机制逻辑 → 动机复审` 回答“这题值不值得做”；第二层 `科学假设 → 机制/实验设计 → 证据地图 → 科学故事 → 独立审稿 → 有授权时 Pilot → 用实验结果重审核心主张` 回答“论证是否成立”。允许带着新证据回退；禁止仅通过重写措辞反复过关。实验前的故事只是 `PROVISIONAL_STORY`，绝不等于实验证实或 CCF-A 保证接收。
 
@@ -186,15 +237,13 @@ description: Use for finding, validating, refining, comparing or rejecting scien
 
 `QUICK`：一个问题+主要证据+一个假设+最危险近邻+一个 killer test；`STANDARD` 默认优选一个经过比较的 Idea；`DEEP` 包含完整检索记录、候选淘汰史和更细实验矩阵。若用户只提某一个问题，直接针对该问题回答，不机械倾倒全部工作流。
 
-## 5. 终版交付标准与阶段连续性
-
-### v3.0 导师式研究决策报告
-
-形成最终建议时，按插件中的 `skills/research-advisor-report/SKILL.md` 组织成可帮助研究者做决定的导师式报告，并遵守本 Skill 的 `references/research-advisor-output-protocol.md`。报告应把 Idea、证据、潜在贡献和论文主张分开；每项主张标注 `VERIFIED`、`CONDITIONAL`、`UNKNOWN` 或 `HYPOTHESIS`。结论必须来自前述证据门，不能因为报告格式完整就把未核实的新颖性或可行性说成已验证。
+## 5. 终版交付标准与阶段连续性（受 v3.1 导师输出协议约束）
 
 若没有经核实的合格候选，**交付 Deep Research 定向提示词和报告返还说明，不允许空泛建议“再看看论文”**。若收到报告，明确报告增量及未核验事项。
 
-至少给出：⓪**Idea Seed 的研究问题与假设、所需数据字段；插件主动检索的数据集候选与适配/获取证据；Feasibility Card 和 G0 判定（不通过时不生成正式候选）**；⓪a **M1 动机初审（重要性与问题证据）、N 近邻查重、L 机制必要性与因果逻辑、M2 动机复审（原命题经近邻审计是否仍成立）、S 科学故事审查（原理/实验/论证一致性）**；①最强候选的一句话科学问题；②具体来源及证据限制；③最危险近邻与具体机制差异；④独有预测与最简单替代；⑤一项快速证伪实验；⑥风险和是否值得继续；⑦三个可执行下一步。按 `references/idea-card-template.md` 组织。
+**用户可见正文先交付导师报告（大白话 + Motivation + Potential Contributions + Story + 可执行 Dataset/Model/Baseline/E0/Week1/Kill），再按需提供以下内部审计材料；审计记录不得排在用户解释前。**
+
+审计附件至少给出：⓪**Idea Seed 的研究问题与假设、所需数据字段；插件主动检索的数据集候选与适配/获取证据；Feasibility Card 和 G0 判定（不通过时不生成正式候选）**；⓪a **M1 动机初审（重要性与问题证据）、N 近邻查重、L 机制必要性与因果逻辑、M2 动机复审（原命题经近邻审计是否仍成立）、S 科学故事审查（原理/实验/论证一致性）**；①最强候选的一句话科学问题；②具体来源及证据限制；③最危险近邻与具体机制差异；④独有预测与最简单替代；⑤一项快速证伪实验；⑥风险和是否值得继续；⑦三个可执行下一步。按 `references/idea-card-template.md` 组织。
 
 如果文件工作区可用且用户任务较复杂，可保存 `research-brief.md / evidence-map.md / collision-matrix.md / idea-candidates.md / best-idea-card.md / pilot-plan.md / rejected-ideas.md`；真实运行前不要宣称已写入不存在的文件。保留已经证实的负面结论，避免后续又提出同一个撞车 Idea。
 

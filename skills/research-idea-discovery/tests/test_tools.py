@@ -36,7 +36,7 @@ class Tests(unittest.TestCase):
       d=run_pilot([sys.executable,'-c','print(123)'],root,root/'out',execute=False)
       self.assertEqual(d['status'],'DRY_RUN');self.assertFalse((root/'out'/'stdout.txt').exists())
       a=run_pilot([sys.executable,'-c','print(123)'],root,root/'out',execute=True)
-      self.assertEqual(a['status'],'RUN_COMPLETE');self.assertIn('123',(root/'out'/'stdout.txt').read_text())
+      self.assertEqual(a['status'],'RUN_COMPLETE');self.assertIn('123',(root/'out'/'stdout.txt').read_text(encoding='utf-8'))
 
 import sys
 if __name__=='__main__':unittest.main()

@@ -1,4 +1,4 @@
-from tests.helpers import confirm_dataset_sample
+from tests.helpers import confirm_motivation_gate, confirm_dataset_sample
 import json
 import tempfile
 import unittest
@@ -59,7 +59,8 @@ class DatasetAnchorTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)
             self.assertEqual(main(['init','--project',d]),0)
-            for stage in ('SEARCH','EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+            for stage in ('SEARCH','EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':self.assertEqual(confirm_motivation_gate(d),0)
                 self.assertEqual(main(['advance','--project',d,'--stage',stage,'--reason','fixture']),0)
             first=p/'anchor1.json';first.write_text(json.dumps(existing_fixture()))
             self.assertEqual(main(['dataset-anchor','--project',d,'--card',str(first)]),0)
@@ -71,7 +72,7 @@ class DatasetAnchorTests(unittest.TestCase):
             self.assertEqual(main(['dataset-anchor','--project',d,'--card',str(second)]),0)
             self.assertEqual(confirm_dataset_sample(d),0)
             self.assertFalse((p/'feasibility_result.json').exists())
-            self.assertEqual(json.loads((p/'workflow_state.json').read_text())['stage'],'DATA_ANCHOR')
+            self.assertEqual(json.loads((p/'workflow_state.json').read_text(encoding='utf-8'))['stage'],'DATA_ANCHOR')
     def test_audit_fails_if_dataset_anchor_missing(self):
         self.assertFalse(check_idea({'problem':'P','feasibility':{}})['gate_presence']['D0_existing_dataset_anchor'])
     def test_workflow_allows_idea_seed_but_blocks_feasibility_without_dataset(self):
@@ -79,7 +80,8 @@ class DatasetAnchorTests(unittest.TestCase):
             p=Path(d)
             self.assertEqual(main(['init','--project',d]),0)
             self.assertEqual(main(['advance','--project',d,'--stage','SEARCH','--reason','fixture']),0)
-            for stage in ('EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+            for stage in ('EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':self.assertEqual(confirm_motivation_gate(d),0)
                 self.assertEqual(main(['advance','--project',d,'--stage',stage,'--reason','idea first']),0)
             with self.assertRaises(SystemExit):
                 main(['advance','--project',d,'--stage','FEASIBILITY','--reason','no data'])

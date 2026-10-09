@@ -32,7 +32,7 @@
 
 ### 🔬 ChatGPT 网页端插件 02 · [科研创新点发现与验证 · Research Idea Discovery](skills/research-idea-discovery/README.md)
 
-**从论文和失败现象中寻找研究机会**，审查可行性、研究动机、机制新颖性与验证证据，并生成标注证据状态的导师式研究决策报告。
+**边读关键论文，边从真实失败、成功机制、结论冲突和应用困难中发现研究问题。** 再经过动机准入、近邻查新、复现资产核验和最小实验，判断是否值得继续。
 
 在 ChatGPT 网页端安装：查看[Research Idea Discovery 插件介绍与安装教程](skills/research-idea-discovery/README.md#在-chatgpt-网页端创建和安装插件)。主 Skill：[`Research Idea Discovery`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md)。
 

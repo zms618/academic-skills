@@ -32,7 +32,7 @@ Install it in ChatGPT Web: see the [paper-reading plugin guide and installation 
 
 ### 🔬 ChatGPT Web Plugin 02 · [Research Idea Discovery](skills/research-idea-discovery/README.en.md)
 
-**Discover research opportunities from papers and failure cases**, examine feasibility, motivation, mechanism-level novelty, and evidence, then produce an evidence-labeled mentor-style research decision report.
+**Discover research problems while reading key papers**—from real failures, successful mechanisms, conflicting results, and deployment needs—then test motivation, nearby work, reproducibility, and the smallest useful experiment.
 
 Install it in ChatGPT Web: see the [Research Idea Discovery plugin guide and installation tutorial](skills/research-idea-discovery/README.en.md#create-and-install-this-plugin-in-chatgpt-web). Primary Skill: [`Research Idea Discovery`](skills/research-idea-discovery/skills/research-idea-discovery/SKILL.md).
 

@@ -1,5 +1,19 @@
 # Release notes
 
+## Research Idea Discovery v3.5.0 — 2026-10-09
+
+### Added
+
+- Add paper-grounded research discovery while reading, with four evidence-based entry points: real failures, reverse-engineering successful mechanisms, apparent contradictions, and deployment needs.
+- Add an optional paper-anchored workflow that connects located experiments to falsifiable problems, null explanations, and low-cost probes while preserving open-problem and single-question routes.
+- Add separate scientific-depth and research-velocity assessments, along with asset/reproduction checks and conditional GO/STOP planning.
+- Expand the bilingual project README with the new research workflow, keeping the installation tutorials and acknowledgements.
+
+### Updated
+
+- Advance both Research Idea Discovery plugin manifests and the project guide to v3.5.0 while preserving the stable plugin ID and repository paths.
+- Add new scout, portfolio, execution-planning, explanation, and method-design Skills, references, examples, checks, and regression tests.
+
 ## v0.7.0 — 2026-10-09
 
 ### Added

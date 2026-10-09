@@ -1,0 +1,116 @@
+{
+  "status": "PROMISING_SEED",
+  "action": "GO_E0",
+  "plain_language_question": "摄像头失效后，音频能判别狗叫和关门，却未必能区分开门和关门；模型应继续强化哪些判断？",
+  "concrete_example": "TOY: 视频缺失；声音将开门/关门概率分成 0.55/0.40，狗叫 0.05。此数字仅用于理解，不是实验结果。",
+  "motivation": "视频与音频信息的缺失可能只影响某些类别对，模态级可靠性不能代替类别对证据；是否有 TTA 所致的更新伤害必须先实证。",
+  "prior_work": "DASP CVPR26 对模态偏移做诊断和稳定/可塑适应 https://openaccess.thecvf.com/content/CVPR2026/html/He_Decoupling_Stability_and_Plasticity_for_Multi-Modal_Test-Time_Adaptation_CVPR_2026_paper.html; MiDl ICLR25 研究缺失模态 https://proceedings.iclr.cc/paper_files/paper/2025/hash/cdd0640218a27e9e2c0e52e324e25db0-Abstract-Conference.html; PASLE ICLR25 候选标签而非确定伪标签 https://proceedings.iclr.cc/paper_files/paper/2025/hash/ac662d74829e4407ce1d126477f4a03a-Abstract-Conference.html.",
+  "hypothesis": "给定相同的熵/置信度/模态质量，额外的类别对证据代理可以预测更新导致的错误增加；若不能则假设不成立。",
+  "potential_contributions": [
+    {
+      "claim": "类别对证据代理能增量解释负适应",
+      "status": "EVIDENCE_PENDING",
+      "required_evidence": "confidence-stratified per-pair harm diagnostics across seeds",
+      "nearest_prior": "DASP modality diagnosis and PASLE uncertain candidate-label handling",
+      "novelty_delta": "pair-specific incremental prediction of adaptation-caused harm after conditioning on entropy/confidence/modality quality",
+      "distinguishing_test": "within matched entropy and modality quality strata, predict update-driven error flips per class pair",
+      "necessity_ablation": "replace pair proxy with entropy threshold and sample confidence under same update count",
+      "kill_signal": "proxy no better than simple controls"
+    },
+    {
+      "claim": "仅在可测证据支持的关系中更新能减少坏边界被放大",
+      "status": "NOVELTY_UNVERIFIED",
+      "required_evidence": "same-stack SOTA+simple rival comparisons and low-score margin drift ablation",
+      "nearest_prior": "DASP asymmetric update, MiDl missing-modality adaptation, PASLE candidate-label approach",
+      "novelty_delta": "gradient-producing loss conditioned on class-pair proxy and low-evidence margin-limiting penalty",
+      "distinguishing_test": "reduce source-to-TTA harmful flips without hurting high-evidence accuracy beyond freeze/skip",
+      "necessity_ablation": "remove pair weighting and low-evidence protective term separately",
+      "kill_signal": "simple skip/reset works as well or shared gradients corrupt all pairs"
+    }
+  ],
+  "scientific_story": "失效模态→类别对证据损伤不均(HYPOTHESIS)→常规 TTA 在无证据边界更新(HYPOTHESIS)→可观测 pair-proxy→条件适应→与最简控制法做 paired harm 对比。",
+  "feasibility": {
+    "dataset": "Kinetics50-C audio/video; DASP README official reference",
+    "dataset_url": "https://github.com/he4cs/DASP",
+    "model_checkpoint": "CAV-MAE ks50-specific checkpoint FILE REQUIRES CONFIG INSPECTION",
+    "checkpoint_url": "https://github.com/he4cs/DASP",
+    "baselines": "Source no-update; skip-update/entropy-threshold; DASP same-stack; PASLE original code NOT automatically comparable",
+    "data_access_status": "ACCESS_PENDING",
+    "evaluation_protocol": "same sample ids, severity and seed, adaptation before-vs-after, class-pair confusion and confidence-conditioned negative flips",
+    "checkpoint_mapping_status": "UNVERIFIED DASP README table/directory mapping requires configs/label mapping inspection",
+    "licenses": "UNVERIFIED for datasets and checkpoints"
+  },
+  "first_48h": [
+    "D0: inspect DASP readme/config/checkpoint label mapping and rights; save artifact_inventory.csv",
+    "E0: run tiny same-sample paired source/no-update and DASP; save source_predictions.csv, e0_pair_harm.csv"
+  ],
+  "first_week": "D1 verify license; D2 data and matched source; D3 E0; D4 score-vs-entropy calibration; D5 minimal mechanism if E0 positive; D6 rival and ablation; D7 verify STOP decision",
+  "kill_criteria": [
+    "No repeatable adaptation-induced harm beyond corrupted-only Source performance",
+    "Pairwise estimator adds no value after entropy, missingness and confidence controls",
+    "Freezing or simplest confidence gate matches mechanism with same update budget"
+  ],
+  "reviewer_risks": "PASLE may already avoid pseudo-label collapse; a pairwise mask cannot isolate shared model gradients; source-only pair AUC does not identify individual sample information; whether zero-fill acts as missing token.",
+  "teach_back": "不是凭空恢复已经丢掉的音视频信息，而是先证明错误自适应存在，再查能否用剩余证据阻止自我强化。",
+  "pilot_status": "NOT_EXECUTED",
+  "method_status": "METHOD_NOT_READY",
+  "method_design": {
+    "track": "DL",
+    "task_io": "audio/video modalities (tensor shapes TO_VERIFY) to event-class logits [B,C], masked missingness handled separately",
+    "baseline_decision": "DASP diagnose modalities then adapt stable/plastic portions, source baseline makes no update; actual repo config mapping to verify",
+    "decision_rule": "For candidate class pairs with observable evidence estimate e_ij(x)>=tau AND stable teacher ordering, use pairwise margin distillation; otherwise limit increased logit magnitude relative frozen source. Calibration tau NOT tuned on test labels.",
+    "estimator": {
+      "observables": "available modality flag; source pair discriminability from source validation (if permitted); no-label feature perturbation stability of logit margins",
+      "formula_or_procedure": "proposed: e_ij = calibrated(source_pair_prior_ij * fraction_of_augmentations_with_stable_order_ij); prior is not sample proof and calibration data must be held out",
+      "validation_test": "offline test labels ONLY for held-out diagnostic AUC and matched-error analysis; test-time update never sees y"
+    },
+    "loss_or_algorithm": "L = Σ_e>=τ w*D(m_ij(theta,x),stopgrad(m_teacher_ij(x))) + λΣ_e<τ max(0,|m_ij(theta,x)|-|m_ij(frozen,x)|-δ)^2 + μ||adapter-adapter_init||²; shared gradient leakage not solved by masking alone",
+    "frozen_parameters": "pretrained audio and video encoders + frozen source teacher snapshot",
+    "updated_parameters": "fusion-side small adapter only, proposed injection not yet located",
+    "integration": {
+      "repo_url_or_status": "https://github.com/he4cs/DASP",
+      "entrypoint_status": "TO_LOCATE — need to inspect repo main Python and YAML config before naming functions",
+      "first_function": "estimate_pair_evidence(available_features, source_pair_prior, augmentation_logits) -> [B,C,C]",
+      "input_contract": "floating feature/logit tensors, availability masks, allowed source prior, selected class subset",
+      "output_contract": "symmetric scores [B,C,C] with diagonal masked; no test labels used"
+    },
+    "update_timeline": [
+      "t0: frozen source logits and unlabeled current input -> estimate class-pair scores -> compute loss -> update adapter only -> prediction",
+      "t1: new input -> snapshot teacher policy (defined/frozen) -> recompute pair scores -> update retained adapter, or reset in control condition"
+    ],
+    "test_label_policy": "no target labels for TTA or tuning hyperparameters; labels accessed after predictions offline for diagnostics only",
+    "source_data_policy": "source validation prototype/accuracy stats allowed only if protocol explicitly permits preprocessing at training time; source-free TTA cannot use raw source at adaptation",
+    "shift_protocol": "video/audio corruption vs genuine missingness use distinct masks/config; only compare if model accepts missing representation",
+    "leakage_controls": "separate source validation for score priors and threshold selection; test labels only after all predictions; no per-test-label oracle gating",
+    "implementation_limitations": "whether an instance-specific pairwise score is even observable is UNSOLVED, no runnable loss and no implemented integration; bounded cannot recreate physically lost info",
+    "weakest_assumption": "pairwise evidence proxy adds predictive value conditional on confidence and modality reliability; cannot be measured solely by a high-confidence model",
+    "cost_scaling": "dense [B,C,C] pair scores O(B*C^2) compute/memory; top-k pairs should be considered only after checking coverage and cost on real C"
+  },
+  "researcher_trial": {
+    "student_blockers": "DASP checkpoint table and folder labels inconsistent on sight; dataset license/download and CAV-MAE actual class mapping unknown; method estimator f must be measured",
+    "reviewer_attacks": "DASP already diagnoses modalities; PASLE offers uncertain candidate sets; freeze/skip could be equal; masked pair losses do not independently freeze boundaries",
+    "fixes_applied": "downgrade to METHOD_NOT_READY, do E0 before implementation, include entropy-stratified diagnostic, separate missingness from corruption, record shared-gradient interference",
+    "remaining_unknowns": "actual DASP repo entrypoint and valid checkpoint mapping; legal access, hardware, whether residual per-pair effect exists",
+    "simulation_status": "ROLE_SIMULATED"
+  },
+  "action_cards": [
+    {
+      "prerequisite": "public repo page",
+      "action": "inspect DASP readme/config and verify dataset/checkpoint URLs, checksum/permissions, class head, label map",
+      "artifact": "artifact_inventory.csv",
+      "interpretation": "if weight/labels mismatch, halt all training and repair matching"
+    },
+    {
+      "prerequisite": "legal tiny dataset sample + working matching checkpoint",
+      "action": "generate source/no-update predictions for clean/corrupt/missing-if-supported and freeze config",
+      "artifact": "source_predictions.csv",
+      "interpretation": "show information loss, not mislabel as TTA-specific damage"
+    },
+    {
+      "prerequisite": "baseline configs and matched same sample ids",
+      "action": "compare pre-update versus post-update errors by pair at matched entropy, and compare skip-update",
+      "artifact": "e0_harm_by_pair.csv",
+      "interpretation": "if no residual harm, PIVOT/STOP; only then try method"
+    }
+  ]
+}

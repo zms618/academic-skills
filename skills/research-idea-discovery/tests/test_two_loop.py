@@ -1,4 +1,4 @@
-from tests.helpers import confirm_dataset_sample, confirm_literature_coverage
+from tests.helpers import confirm_motivation_gate, confirm_dataset_sample, confirm_literature_coverage
 import json
 import tempfile
 import unittest
@@ -77,7 +77,9 @@ class TwoLoopTests(unittest.TestCase):
                 f=p/(name+'.json');f.write_text(json.dumps(record,ensure_ascii=False));return str(f)
             def go(stage):return main(['advance','--project',d,'--stage',stage,'--reason','fixture'])
             self.assertEqual(run('init'),0)
-            for stage in ('SEARCH','EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):go(stage)
+            for stage in ('SEARCH','EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':self.assertEqual(confirm_motivation_gate(d),0)
+                go(stage)
             self.assertEqual(main(['dataset-anchor','--project',d,'--card',card('anchor',existing_fixture())]),0)
             self.assertEqual(confirm_dataset_sample(d),0)
             go('FEASIBILITY')
@@ -111,8 +113,8 @@ class TwoLoopTests(unittest.TestCase):
         self.assertFalse(audit_motivation_recheck(a)['ready'])
     def test_legacy_motivation_stage_invalidated(self):
         with tempfile.TemporaryDirectory() as d:
-            p=Path(d); main(['init','--project',d]);data=json.loads((p/'workflow_state.json').read_text())
+            p=Path(d); main(['init','--project',d]);data=json.loads((p/'workflow_state.json').read_text(encoding='utf-8'))
             data['stage']='MOTIVATION';(p/'workflow_state.json').write_text(json.dumps(data))
-            main(['status','--project',d]);self.assertEqual(json.loads((p/'workflow_state.json').read_text())['stage'],'FEASIBILITY')
+            main(['status','--project',d]);self.assertEqual(json.loads((p/'workflow_state.json').read_text(encoding='utf-8'))['stage'],'FEASIBILITY')
 
 if __name__=='__main__':unittest.main()

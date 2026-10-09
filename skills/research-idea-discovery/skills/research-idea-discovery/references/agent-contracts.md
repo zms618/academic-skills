@@ -1,3 +1,7 @@
+# v3.3 PRIORITY: Problem Scout and M0 gate before all Idea roles
+
+`research-problem-scout` runs first and collects failure evidence/contradictions, matched baselines, alternate explanations, importance and an inexpensive problem-only falsifier. `research-hypothesis-lab` must not generate an IDEA_SEED or name three contributions until M0 is PASS_FOR_IDEATION. Only then use earlier Scout→D0/G0→M1→N→L→M2→S roles. M0 PROBE_ONLY is a neutral problem pilot, not a proposal-method pilot. For user-supplied Ideas, first strip the method and evaluate the underlying problem. `ROLE_SIMULATED` stays explicit.
+
 # Agent contracts — 从角色分离到真实多模型代理
 
 ## 实际能力边界

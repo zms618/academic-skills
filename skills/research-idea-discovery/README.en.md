@@ -4,15 +4,55 @@
 
 **Evidence-Driven Research Idea Discovery, Feasibility Validation & Scientific Review**
 
-A personal research-idea discovery and validation plugin for ChatGPT Web, driven by the primary Research Idea Discovery Skill and supporting Skills. It helps researchers identify opportunities in papers and real failure cases, then assess whether a candidate idea merits time and resources through data feasibility, novelty, motivation, mechanism logic, and experiment design.
+A personal research-idea discovery and validation plugin for ChatGPT Web, driven by the primary Research Idea Discovery Skill and supporting Skills. It does not treat idea generation as the finish line: it helps researchers find problems in prior evidence, challenge explanations, and decide what merits their time and resources.
 
 > **This personal plugin is installed and used in ChatGPT Web; it does not consume Codex-specific task quota.** A step-by-step guide below shows how to create it with Plugin Creator and select it in a new conversation.
 
-> **From idea generation to defensible research: discover, challenge, validate, and refine scientific ideas with evidence.**
+> **Start asking research questions while reading papers—not after reading dozens of them.** Move from reported experiments to falsifiable questions, then ask whether a problem matters, remains open, and is worth testing.
 
 It supports computer vision, multimodal learning, robotics, machine learning, and other user-selected fields. Scope can be adapted to a target venue or research goal. The objective is not to force an idea: when evidence is insufficient, the workflow may recommend narrowing the question, researching further, or stopping.
 
 This plugin is used in **ChatGPT Web** and does not consume Codex-specific task quota. ChatGPT model, message, and tool use remains subject to the user's account and plan. Optional Python scripts run only in a local Python environment; do not assume ChatGPT Web executes them directly.
+
+## v3.5: Discover worthwhile problems while reading
+
+Research Idea Discovery treats papers as **evidence, baselines, and intellectual lineage**, not just background to summarize after a literature search. For each key paper, it encourages questions such as: What does the result actually establish? What remains unproven? What is the strongest alternative explanation? Which low-cost experiment could tell these explanations apart?
+
+### Four evidence-grounded entry points
+
+| Entry point | Start from | What to test |
+| --- | --- | --- |
+| **Failure-driven** | A failure, degradation, or boundary case actually reported in a paper | After checking samples, metrics, splits, and budget, can the failure be reproduced? |
+| **Reverse-engineer success** | A method with a strong reported result | Does the gain come from the claimed mechanism, or from capacity, budget, pretraining, or ordinary regularization? |
+| **Triage apparent contradictions** | Findings that seem to disagree across papers | Are task, data, backbone, split, metric, and compute comparable? If not, propose a fair comparison before calling it a scientific contradiction. |
+| **Translate deployment pain** | A real difficulty in hospitals, robotics, or industry | Can it become an important, measurable, testable scientific problem rather than an anecdote? |
+
+Each lead should form a traceable chain:
+
+**Paper → located experiment → known vs. unproven → problem/hypothesis → strongest null explanation → minimum no-new-method probe**
+
+This puts scientific questioning inside the reading process instead of waiting until many papers have been collected and then inventing an idea from memory. Paper claims, reasonable inferences, and hypotheses to test remain distinct. A contribution statement or public code URL alone does not establish reproducibility.
+
+### Establish the problem before choosing a method
+
+The default is **problem-driven**: establish that a problem is real, important, and unresolved before selecting a method. **Method-driven** inspiration remains possible, but transferring a popular technique only generates a hypothesis. It must return to the independent M0 problem gate and show why it is more necessary than a simple alternative.
+
+For suitable paper-anchored fast-start tasks, v3.5 can suggest a small set of key papers with different roles and build an evidence map and motivation candidates while reading. When literature is sparse, an open-problem discovery route remains available; the workflow does not force a paper quota. After motivation screening, it proceeds to near-neighbor research, data/code asset checks, mechanism necessity, and a minimum decisive experiment. If the motivation gate fails, it can recommend more evidence, a narrower problem, a pivot, or stopping instead of fabricating a method.
+
+### Scientific depth and research velocity are separate
+
+The plugin treats research value and startup speed as distinct questions:
+
+- **Scientific Depth:** What understanding could change? Is the question important, the mechanism unresolved, and the prediction falsifiable?
+- **Research Velocity:** Are data, code, weights, and licenses accessible? What time and compute are needed for the first diagnostic experiment?
+
+A high-impact direction blocked by resources and a fast experiment with limited contribution should be reported differently. v3.5 can help set conditional short-term GO/STOP checkpoints; it does not promise a paper in two weeks or predict acceptance at any venue.
+
+### v3.5 workflow
+
+**Anchor papers and opportunity landscape → motivation candidates → M0 problem gate → near-neighbor and reproducibility checks → necessary mechanism and method design → minimum decisive experiment → GO / REFINE / PIVOT / STOP / RESEARCH MORE**
+
+This is an iterative evidence-review process, not a pipeline that guarantees an idea. Structural checkers can validate whether records are complete; they cannot verify that a paper claim is true, a method is novel, or an experiment succeeded.
 
 ## Why not just an idea generator?
 
@@ -143,4 +183,4 @@ Building on these inspirations, this project independently organizes an evidence
 
 ## Version and license
 
-Current release: **v3.0.0**. The [`CHANGELOG.md`](CHANGELOG.md) records release changes without turning this page into a version-by-version feature log. Licensed under MIT; see [`../../LICENSE`](../../LICENSE).
+Current release: **v3.5.0**. The [`CHANGELOG.md`](CHANGELOG.md) records release changes without turning this page into a version-by-version feature log. Licensed under MIT; see [`../../LICENSE`](../../LICENSE).

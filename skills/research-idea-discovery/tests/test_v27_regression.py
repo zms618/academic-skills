@@ -8,7 +8,7 @@ from scripts.literature_coverage import report
 from scripts.idea_ledger import add
 from scripts.pilot_bridge import run as run_pilot
 from scripts.workflow import main
-from tests.helpers import confirm_dataset_sample
+from tests.helpers import confirm_motivation_gate, confirm_dataset_sample
 import sys
 
 
@@ -44,13 +44,14 @@ class V27RegressionTests(unittest.TestCase):
     def test_forged_ready_file_does_not_bypass_dataset_gate(self):
         with tempfile.TemporaryDirectory() as p:
             root=Path(p);main(['init','--project',p]);
-            for stage in ('SEARCH','EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+            for stage in ('SEARCH','EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':confirm_motivation_gate(p)
                 main(['advance','--project',p,'--stage',stage,'--reason','test'])
             (root/'dataset_access_result.json').write_text('{"access_ready":true}')
             with self.assertRaises(SystemExit):main(['advance','--project',p,'--stage','FEASIBILITY','--reason','forged'])
     def test_review_stage_requires_specific_record_and_idea_revision(self):
         with tempfile.TemporaryDirectory() as p:
-            root=Path(p);main(['init','--project',p]);state=json.loads((root/'workflow_state.json').read_text());state['stage']='REVIEW';
+            root=Path(p);main(['init','--project',p]);state=json.loads((root/'workflow_state.json').read_text(encoding='utf-8'));state['stage']='REVIEW';state.pop('protocol_version',None);
             (root/'workflow_state.json').write_text(json.dumps(state))
             with self.assertRaises(SystemExit):main(['advance','--project',p,'--stage','PILOT','--reason','no review'])
             (root/'review_result.json').write_text('{"ready":true}')
@@ -90,7 +91,7 @@ class V27RegressionTests(unittest.TestCase):
     def test_coverage_report_requires_real_record_before_novelty_promotion(self):
         with tempfile.TemporaryDirectory() as p:
             root=Path(p);main(['init','--project',p])
-            state=json.loads((root/'workflow_state.json').read_text());state['stage']='SCOOP'
+            state=json.loads((root/'workflow_state.json').read_text(encoding='utf-8'));state['stage']='SCOOP'
             (root/'workflow_state.json').write_text(json.dumps(state))
             (root/'novelty_result.json').write_text('{"ready":true}')
             with self.assertRaises(SystemExit):

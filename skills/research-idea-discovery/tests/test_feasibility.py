@@ -1,4 +1,4 @@
-from tests.helpers import confirm_dataset_sample
+from tests.helpers import confirm_motivation_gate, confirm_dataset_sample
 import json
 import tempfile
 import unittest
@@ -58,7 +58,8 @@ class FeasibilityTests(unittest.TestCase):
             p=Path(d)
             self.assertEqual(main(['init','--project',d]),0)
             self.assertEqual(main(['advance','--project',d,'--stage','SEARCH','--reason','search done']),0)
-            for stage in ('EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+            for stage in ('EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':self.assertEqual(confirm_motivation_gate(d),0)
                 self.assertEqual(main(['advance','--project',d,'--stage',stage,'--reason','idea first']),0)
             with self.assertRaises(SystemExit):
                 main(['advance','--project',d,'--stage','FEASIBILITY','--reason','no verified data yet'])

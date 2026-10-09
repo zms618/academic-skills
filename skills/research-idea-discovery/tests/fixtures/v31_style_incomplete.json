@@ -1,0 +1,46 @@
+{
+  "status": "PROMISING_SEED",
+  "action": "GO_E0",
+  "plain_language_question": "摄像头失效后，音频能判别狗叫和关门，却未必能区分开门和关门；模型应继续强化哪些判断？",
+  "concrete_example": "TOY: 视频缺失；声音将开门/关门概率分成 0.55/0.40，狗叫 0.05。此数字仅用于理解，不是实验结果。",
+  "motivation": "视频与音频信息的缺失可能只影响某些类别对，模态级可靠性不能代替类别对证据；是否有 TTA 所致的更新伤害必须先实证。",
+  "prior_work": "DASP CVPR26 对模态偏移做诊断和稳定/可塑适应 https://openaccess.thecvf.com/content/CVPR2026/html/He_Decoupling_Stability_and_Plasticity_for_Multi-Modal_Test-Time_Adaptation_CVPR_2026_paper.html; MiDl ICLR25 研究缺失模态 https://proceedings.iclr.cc/paper_files/paper/2025/hash/cdd0640218a27e9e2c0e52e324e25db0-Abstract-Conference.html; PASLE ICLR25 候选标签而非确定伪标签 https://proceedings.iclr.cc/paper_files/paper/2025/hash/ac662d74829e4407ce1d126477f4a03a-Abstract-Conference.html.",
+  "hypothesis": "给定相同的熵/置信度/模态质量，额外的类别对证据代理可以预测更新导致的错误增加；若不能则假设不成立。",
+  "potential_contributions": [
+    {
+      "claim": "类别对证据代理能增量解释负适应",
+      "status": "EVIDENCE_PENDING",
+      "required_evidence": "confidence-stratified per-pair harm diagnostics across seeds"
+    },
+    {
+      "claim": "仅在可测证据支持的关系中更新能减少坏边界被放大",
+      "status": "NOVELTY_UNVERIFIED",
+      "required_evidence": "same-stack SOTA+simple rival comparisons and low-score margin drift ablation"
+    }
+  ],
+  "scientific_story": "失效模态→类别对证据损伤不均(HYPOTHESIS)→常规 TTA 在无证据边界更新(HYPOTHESIS)→可观测 pair-proxy→条件适应→与最简控制法做 paired harm 对比。",
+  "feasibility": {
+    "dataset": "Kinetics50-C audio/video; DASP README official reference",
+    "dataset_url": "https://github.com/he4cs/DASP",
+    "model_checkpoint": "CAV-MAE ks50-specific checkpoint FILE REQUIRES CONFIG INSPECTION",
+    "checkpoint_url": "https://github.com/he4cs/DASP",
+    "baselines": "Source no-update; skip-update/entropy-threshold; DASP same-stack; PASLE original code NOT automatically comparable",
+    "data_access_status": "ACCESS_PENDING",
+    "evaluation_protocol": "same sample ids, severity and seed, adaptation before-vs-after, class-pair confusion and confidence-conditioned negative flips",
+    "checkpoint_mapping_status": "UNVERIFIED DASP README table/directory mapping requires configs/label mapping inspection",
+    "licenses": "UNVERIFIED for datasets and checkpoints"
+  },
+  "first_48h": [
+    "D0: inspect DASP readme/config/checkpoint label mapping and rights; save artifact_inventory.csv",
+    "E0: run tiny same-sample paired source/no-update and DASP; save source_predictions.csv, e0_pair_harm.csv"
+  ],
+  "first_week": "D1 verify license; D2 data and matched source; D3 E0; D4 score-vs-entropy calibration; D5 minimal mechanism if E0 positive; D6 rival and ablation; D7 verify STOP decision",
+  "kill_criteria": [
+    "No repeatable adaptation-induced harm beyond corrupted-only Source performance",
+    "Pairwise estimator adds no value after entropy, missingness and confidence controls",
+    "Freezing or simplest confidence gate matches mechanism with same update budget"
+  ],
+  "reviewer_risks": "PASLE may already avoid pseudo-label collapse; a pairwise mask cannot isolate shared model gradients; source-only pair AUC does not identify individual sample information; whether zero-fill acts as missing token.",
+  "teach_back": "不是凭空恢复已经丢掉的音视频信息，而是先证明错误自适应存在，再查能否用剩余证据阻止自我强化。",
+  "pilot_status": "NOT_EXECUTED"
+}

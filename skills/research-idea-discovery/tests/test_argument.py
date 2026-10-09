@@ -1,4 +1,4 @@
-from tests.helpers import confirm_dataset_sample
+from tests.helpers import confirm_motivation_gate, confirm_dataset_sample
 import json
 import tempfile
 import unittest
@@ -85,7 +85,8 @@ class NarrativeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             project=Path(folder)
             self.assertEqual(main(['init','--project',folder]),0)
-            for stage in ('SEARCH','EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+            for stage in ('SEARCH','EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':self.assertEqual(confirm_motivation_gate(folder),0)
                 self.assertEqual(main(['advance','--project',folder,'--stage',stage,'--reason','fixture']),0)
             anchor=project/'anchor.json';anchor.write_text(json.dumps(existing_fixture()))
             self.assertEqual(main(['dataset-anchor','--project',folder,'--card',str(anchor)]),0)

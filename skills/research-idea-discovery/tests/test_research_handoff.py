@@ -26,11 +26,11 @@ class HandoffTests(unittest.TestCase):
             context=p/'context.json';context.write_text(json.dumps(self.context()))
             rec=export_handoff(p,context,p/'prompt.md')
             self.assertEqual(rec['status'],'PENDING_USER_DEEP_RESEARCH')
-            self.assertEqual(json.loads((p/'workflow_state.json').read_text())['stage'],'SCOOP')
+            self.assertEqual(json.loads((p/'workflow_state.json').read_text(encoding='utf-8'))['stage'],'SCOOP')
             report=p/'report.md';report.write_text('Citations and dataset sources must be checked. '*3)
             received=ingest_report(p,report)
             self.assertEqual(received['status'],'RECEIVED_UNVERIFIED')
-            state=json.loads((p/'workflow_state.json').read_text())
+            state=json.loads((p/'workflow_state.json').read_text(encoding='utf-8'))
             self.assertEqual(state['evidence_status'],'IMPORTED_UNVERIFIED')
             self.assertEqual(state['stage'],'SCOOP') # no auto-advancement
             with self.assertRaises(ValueError):ingest_report(p,report)

@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "research-idea-discovery",
-  "version": "3.0.0",
-  "description": "Evidence-executed research Idea discovery with mentor-style advisor reports, feasibility validation, novelty auditing, and scientific story review.",
+  "version": "3.5.0",
+  "description": "Paper-grounded research discovery from failures, successful mechanisms, apparent contradictions, and real-world needs, with motivation and evidence checks.",
   "author": {
     "name": "ADA F CRAIG",
     "email": "hecheng006@outlook.com"
@@ -11,8 +11,8 @@
     "com.openai": {
       "interface": {
         "displayName": "Research Idea Discovery",
-        "shortDescription": "发现并验证科研创新点",
-        "longDescription": "证据驱动的科研创新发现与导师式决策报告：主动查文献和数据可行性，审查近邻创新性、研究动机、机制逻辑与实验；最终报告区分已核实证据、条件判断、未知和假设，并提出风险与下一步验证。",
+        "shortDescription": "从论文证据发现并审查研究问题",
+        "longDescription": "面向 ChatGPT 的证据驱动科研发现插件：从论文中的真实失败、成功机制、表面矛盾与应用困难出发，边读边提出可证伪问题。先通过 M0 动机准入，再核查近邻、数据与复现条件，审查机制必要性并设计最小验证实验；将科学深度与研究速度分开判断，证据不足时允许补查、转向或停止。",
         "developerName": "Plugin owner",
         "category": "Productivity",
         "capabilities": [

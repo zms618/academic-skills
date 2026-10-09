@@ -1,4 +1,4 @@
-from tests.helpers import confirm_dataset_sample
+from tests.helpers import confirm_motivation_gate, confirm_dataset_sample
 import json
 import tempfile
 import unittest
@@ -12,14 +12,16 @@ class IdeaFirstTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)
             self.assertEqual(main(['init','--project',d]),0)
-            for stage in ('SEARCH','EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+            for stage in ('SEARCH','EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':self.assertEqual(confirm_motivation_gate(d),0)
                 self.assertEqual(main(['advance','--project',d,'--stage',stage,'--reason','idea generated from literature']),0)
-            self.assertEqual(json.loads((p/'workflow_state.json').read_text())['stage'],'DATA_ANCHOR')
+            self.assertEqual(json.loads((p/'workflow_state.json').read_text(encoding='utf-8'))['stage'],'DATA_ANCHOR')
     def test_dataset_required_after_idea_for_promotion(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)
             self.assertEqual(main(['init','--project',d]),0)
-            for stage in ('SEARCH','EXPLAIN','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+            for stage in ('SEARCH','EXPLAIN','MOTIVATION_GATE','DIVERGE','DATA_SEARCH','DATA_ANCHOR'):
+                if stage=='DIVERGE':self.assertEqual(confirm_motivation_gate(d),0)
                 self.assertEqual(main(['advance','--project',d,'--stage',stage,'--reason','test']),0)
             with self.assertRaises(SystemExit):
                 main(['advance','--project',d,'--stage','FEASIBILITY','--reason','no dataset'])
