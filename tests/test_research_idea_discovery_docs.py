@@ -22,8 +22,9 @@ def test_research_idea_discovery_is_listed_in_both_collection_overviews():
     assert en.index('## Why this project exists') < en.index('## Plugins in this collection') < en.index('## ChatGPT Web Research Plugins')
     assert '学生' in zh and 'Plugin Creator' in zh and 'Claude 专用额度' in zh
     assert 'I am a student too' in en and 'Plugin Creator' in en and 'Claude-specific quota' in en
-    assert '这些插件由我创作' in zh and '搜集了网上许多开源科研 Skill' in zh
-    assert 'I created these research plugins' in en and 'many open-source research Skills' in en
+    assert '我搜集了网上许多开源科研 Skill' in zh
+    assert '推出了这款面向 **ChatGPT 网页端**使用的科研插件' in zh
+    assert 'I explored many open-source research Skills' in en and 'this research plugin for **ChatGPT Web**' in en
 
 
 def test_plugin_manifests_and_primary_skill_are_present():
